@@ -2,7 +2,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { Component } from 'react';
 import { connect } from 'dva';
-import { Menu, Layout, Button } from 'antd';
 
 import './style.scss';
 

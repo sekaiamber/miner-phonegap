@@ -82,8 +82,7 @@ module.exports = {
   },
   externals: {
     react: "React",
-    'react-dom': "ReactDOM",
-    antd: 'antd'
+    'react-dom': "ReactDOM"
   },
   optimization: {
     minimizer: [new TerserPlugin({
