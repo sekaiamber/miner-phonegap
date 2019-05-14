@@ -1,0 +1,43 @@
+#login {
+  padding: 0 0.2rem;
+
+  .logo-container {
+    margin: 0.33rem 0;
+    text-align: center;
+
+    img {
+      width: 0.8rem;
+    }
+  }
+
+  .form {
+    .item {
+      padding: 0.12rem 0;
+      border-bottom: #F2F2F2 solid 1px;
+      margin-bottom: 0.24rem;
+
+      input {
+        border: none;
+        width: 100%;
+        line-height: 2;
+        padding: 0;
+
+        &::placeholder {
+          color: #6788A2;
+        }
+      }
+    }
+  }
+
+  .submit {
+    padding: 0.24rem 0.1rem;
+
+    button {
+      width: 100%;
+    }
+  }
+
+  .opts {
+    text-align: center;
+  }
+}

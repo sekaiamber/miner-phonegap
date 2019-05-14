@@ -1,0 +1,48 @@
+@import "~noty/src/noty.scss";
+@import "~noty/src/themes/mint.scss";
+
+// @import '~antd/dist/antd.css';
+html {
+  font-size: 100px;
+}
+
+body {
+  font-size: 0.14rem;
+  font-weight: 300;
+  background: #fff;
+}
+
+input {
+  font-weight: 300;
+  outline: none;
+}
+
+button {
+  background-image: linear-gradient(to right, #FF7F22 0%, #FFB645 100%);
+  color: #fff;
+  border: none;
+  border-radius: 2px;
+  font-size: 0.16rem;
+  padding: 0.12rem 0.24rem;
+}
+
+a {
+  text-decoration: none;
+  color: #D7B97E;
+  font-weight: 400;
+}
+
+header {
+  font-size: 0.18rem;
+  height: 0.44rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .title {
+    width: 100%;
+    text-align: center;
+    color: #2A455A;
+    font-weight: 500;
+  }
+}
