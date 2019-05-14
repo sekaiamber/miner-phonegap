@@ -1,60 +1,505 @@
 <!DOCTYPE html>
-<!--
-    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
-
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
-<html>
-
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="msapplication-tap-highlight" content="no" />
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
-    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
-    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
-    <!-- Good default declaration:
-    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-        * Enable inline JS: add 'unsafe-inline' to default-src
-        * Enable eval(): add 'unsafe-eval' to default-src
-    * Create your own at http://cspisawesome.com
-    -->
-    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>比特幣以太坊萊特幣交易平台 | 數字貨幣交易平台 | 比特兔</title>
+  <meta name="keywords" content="比特兔,比特幣,比特幣交易平臺,比特幣價格,比特幣行情,比特币,比特币交易平台,比特币价格,比特币行情,BTC,ETH,Bitcoin Exchange, Bitcoin, BTC, Bitcoin Price, Bitcoin Markets, Ethereum, ETH, Ethereum Classic">
+  <meta name="description" content="比特兔是澳洲最大線上數字資產交易所，擁有可達每秒壹百萬筆交易的撮合引擎，以及新穎的保障投資人權益的“分布式決議人委員會”制度，其立誌成為下壹代數字資產交易平臺，為用戶帶來更多服務，如使用比特兔交易平臺投資期權和美股的互換合約，以及其他衍生性金融商品交易等。">
+  <script src="https://assets.zjzsxhy.com/g/jquery/3.3.1/jquery.min.js"></script>
+  <link href="https://assets.zjzsxhy.com/g/normalize/8.0.0/normalize.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://at.alicdn.com/t/font_579225_01gt47h8tk9sh5mi.css">
+  <script src="https://assets.zjzsxhy.com/g/animejs/2.2.0/anime.min.js"></script>
+  <script src="https://static.geetest.com/static/tools/gt.js"></script>
+  <script>
+    window.locale = 'zh-TW';
+    // window.ga = () => {};
+  </script>
+  <script>
+    window.current_user = undefined;
+    if (window.current_user && window.current_user.covered_up_email) {
+      window.current_user.email = window.current_user.covered_up_email;
+    }
+  </script>
+  <script>
+window.i18n = {
+  "dashboard": "帳號中心",
+  "logout": "登出",
+  "email_error": "請輸入正確的郵箱",
+  "forget_password_send_success": "已發送重置密碼郵件",
+  "forget_phone_password_send_success": "已發送重置密碼短信",
+  "market": "市場",
+  "market_favorite": "自選",
+  "market_name": "市場",
+  "market_price": "最新價",
+  "market_cny_price": "USD",
+  "market_change": "24h漲跌",
+  "market_high": "24h最高價",
+  "market_low": "24h最低價",
+  "market_volume": "24h成交量",
+  "market_turnover": "24h成交額",
+  "signin_empty": "請輸入完整的信息",
+  "signup_empty": "請輸入完整的信息",
+  "signup_please_choice": "請選擇區號",
+  "phone_empty": "請選擇區號并輸入手機號碼",
+  "phone_error": "請輸入正確的手機號碼",
+  "send_success": "驗證碼發送成功，請注意查收",
+  "signup_password_error": "兩次輸入密碼不一致",
+  "signup_passowrd_check": "密碼不得少於6位",
+  "signup_not_check": "請同意服務協議和隱私政策",
+  "country_limit": "請確認您不是美國公民或者美國納稅人",
+  "reset_password_empty": "請輸入新密碼",
+  "reset_password_token_error": "無效的Token",
+  "reset_password_send_success": "重置密碼成功，請登錄",
+  "tags_super": "超值",
+  "tags_giveaways": "豪禮",
+  "tags_aridrop": "空投",
+  "tags_lottery": "抽獎",
+  "tags_free": "Free",
+  "tags_excellent": "優質",
+  "tags_st": "ST",
+  "tags_innovative": "創新",
+  "tags_game": "遊戲",
+  "tags_super_content": "幣正在進行交易返幣/打折活動！詳情查看",
+  "tags_giveaways_content": "幣正在進行交易排位賽活動！詳情查看",
+  "tags_aridrop_content": "幣正在空投",
+  "tags_lottery_content": "幣在活動中作為獎品",
+  "tags_free_content": "幣現在交易免手續費，詳情查看",
+  "tags_excellent_content": "該項目用戶量大、發展好、團隊穩定、具有落地應用場景，已進入比特兔交易所生態",
+  "tags_st_content": "該項目正進行強制審查，在BitRabbit交易所面臨下架的風險",
+  "tags_innovative_content": "該項目誕生時間相對較短，市場認知程度較低，技術成熟度有待時間驗證，具有相對較高的風險性，投資者需要充分學習并了解項目情況，審慎做出投資選擇，并自行承擔由上述風險帶來的責任和損失。",
+  "tags_game_content": "該項目具有一定用戶基礎，擁有完整的生態閉環架構，已與BitRabbit達成深度合作。",
+  "captcha_error": "驗證失敗，請重試",
+  "innovation": "創新區",
+  "entertainment": "娛樂區"
+};
+  </script>
+  <script>
+    window.legalCurrency = {
+      key: 'last_usdt',
+      sign: '$ ',
+    }
+  </script>
+  <script>
+    window.rucaptcha = true;
+    window.emptyImgSrc = 'https://assets.zjzsxhy.com/upload/837196c5-d440-4669-89f7-15b73ce2858e.jpg';
+  </script>
+<link href="https://assets.zjzsxhy.com/static/home/c8cef731.css" rel="stylesheet">
+<%= csrf_meta_tags %>
+<%= action_cable_meta_tag %>
+<%= render 'shared/ga' %>
 
-    <link rel="stylesheet" type="text/css" href="css/index.css" />
-    <title>Hello World</title>
 </head>
-
 <body>
-    <div class="app">
-        <h1>HELLO WORLD</h1>
-        <div id="deviceready" class="blink">
-            <p class="event listening">Connecting to Device</p>
-            <p class="event received">Device is Ready</p>
-        </div>
+  <header>
+    <div>
+      <div class="logo-container">
+        <img class="default-logo" src="https://assets.zjzsxhy.com/upload/cbf922a8-a683-46dd-8e64-1b1860d6d267.svg" alt="BitRabbit">
+        <img class="m-logo" src="https://assets.zjzsxhy.com/upload/b3f0c477-9dce-4ec6-8572-c91664950a8f.svg" alt="BitRabbit">
+      </div>
+      <div class="header-menu">
+        <div class="menu-btn"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNTU2MTAzMTkxNjU5IiBjbGFzcz0iaWNvbiIgc3R5bGU9IiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjE2NDI0IiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PC9zdHlsZT48L2RlZnM+PHBhdGggZD0iTTkwNCAxNjBIMTIwYy00LjQgMC04IDMuNi04IDh2NjRjMCA0LjQgMy42IDggOCA4aDc4NGM0LjQgMCA4LTMuNiA4LTh2LTY0YzAtNC40LTMuNi04LTgtOHpNOTA0IDc4NEgxMjBjLTQuNCAwLTggMy42LTggOHY2NGMwIDQuNCAzLjYgOCA4IDhoNzg0YzQuNCAwIDgtMy42IDgtOHYtNjRjMC00LjQtMy42LTgtOC04ek05MDQgNDcySDEyMGMtNC40IDAtOCAzLjYtOCA4djY0YzAgNC40IDMuNiA4IDggOGg3ODRjNC40IDAgOC0zLjYgOC04di02NGMwLTQuNC0zLjYtOC04LTh6IiBwLWlkPSIxNjQyNSI+PC9wYXRoPjwvc3ZnPg==" alt="menu"></div>
+        <ol class="menu-l">
+          <li><a target="_blank" href="/markets/eth_btc">交易大廳</a></li>
+          <li><a target="_blank" href="/download/zh-tw.html">APP下載</a></li>
+        </ol>
+        <ol class="menu-mobile">
+          <li class="markers-hall"><a target="_blank" href="/markets/eth_btc">交易大廳</a></li>
+          <li id="slBtns"><a class="signin-btn">登錄</a><span>/</span><a class="signup-btn">注冊</a></li>
+        </ol>
+        <ol class="menu-r">
+          <li><a target="_blank" href="https://www.bunnypub.net/zh-cn/blackboard/topics/114710">BRB賞金計劃</a></li>
+          <li><a target="_blank" href="https://www.bunnypub.net/zh-tw">兔基社區</a></li>
+          <li><a target="_blank" href="https://wiki.bitrabbit.com/">幣種百科</a></li>
+          <li><a target="_blank" href="/events/task/index.html">每日任務</a></li>
+          <li><a target="_blank" href="https://www.bunnypub.net/zh-tw/statement">最新消息</a></li>
+          <li><a target="_blank" href="https://happyblockcity.com/">赚BTC</a></li>
+          <li id="slBtns"><a class="signin-btn">登錄</a><span>/</span><a class="signup-btn">注冊</a></li>
+          <li class="download-mobile"><a target="_blank" href="/download/zh-cn.html">APP下載</a></li>
+          <li id="localChange">
+            <a id="showText"></a>
+            <div class="menu">
+              <a href="/zh-cn">简体中文</a>
+              <a href="/zh-tw">繁體中文</a>
+              <a href="/en">English</a>
+            </div>
+          </li>
+        </ol>
+      </div>
     </div>
-    <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript">
-        app.initialize();
-    </script>
-</body>
+  </header>
+  <div id="banner-box">
+    <div id="blocks">
+      <div id="banner">
+        <ul class="carousel-img"></ul>
+        <!--<div class="carousel-order"></div>-->
+      </div>
+       <div class="sidebar-box">
+        <div id="sidebar">
+          <div id="sidebar-title">
+            <strong>熱點訊息</strong>
+          </div>
+          <div id="sidebar-content">
+            <ul id="article-list">
+            </ul>
+          </div>
+        </div>
+        <div class="article-more">
+          <div class="btn-box">
+            <div class="more-btn btn-down">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <div class="banner-b">
+    <div class="blocks"></div>
+    <div class="blocks-m"></div>
+  </div>
+
+  <div id="markets"></div>
+
+  <div id="votes" class="vote-index indexes">
+    <div class="vote-panel index" type="brb">
+      <div class="index-left">
+        <img class="logo">
+      </div>
+      <div class="index-right">
+        <div class="vote-coin">
+          <span class="transaction"></span>
+          <a target="_blank" href="/f/voting.html#/" class="goto">前往投票</a>
+        </div>
+        <div class="vote-process">
+          <div class="vote-bg">
+            <div class="vote-wrapper">
+              <div class="vote-value"></div>
+              <span class="vote-data"><span class="vote-current"></span>/<span class="total"></span></span>
+              <span class="vote-value-text"><span class="process"></span>%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vote-panel index" type="carrot">
+      <div class="index-left">
+        <img class="logo">
+      </div>
+      <div class="index-right">
+        <div class="vote-coin">
+          <span class="transaction"></span>
+          <a target="_blank" href="/f/voting.html#/" class="goto">前往投票</a>
+        </div>
+        <div class="vote-process">
+          <div class="vote-bg">
+            <div class="vote-wrapper">
+              <div class="vote-value"></div>
+              <span class="vote-data"><span class="vote-current"></span>/<span class="total"></span></span>
+              <span class="vote-value-text"><span class="process"></span>%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="friend-link">
+    <div class="link-title"><strong class="text">友情鏈接</strong></div>
+    <ul id="links">
+      <li><a target="_blank" href="https://coinmarketcap.com/">CoinMarketCap</a></li>
+      <li><a target="_blank" href="https://www.feixiaohao.com/exchange/bitrabbit/">非小號</a></li>
+      <li><a target="_blank" href="http://www.tokenpapa.com/">幣頭條</a></li>
+      <li><a target="_blank" href="http://tuibit.com/">推比特</a></li>
+      <li><a target="_blank" href="http://www.chain.vip//">Vipchain</a></li>
+      <li><a target="_blank" href="http://www.btc798.com/">比特之家</a></li>
+      <li><a target="_blank" href="https://www.coinbull.one/">幣牛牛</a></li>
+      <li><a target="_blank" href="http://www.bityixia.com/">比特一下</a></li>
+      <li><a target="_blank" href="http://bitjia.com">比特家</a></li>
+      <li><a target="_blank" href="http://tdapk.com">糖果空投網</a></li>
+      <li><a target="_blank" href="http://bitool.cn">幣兔網</a></li>
+      <li><a target="_blank" href="https://hyperpay.tech">超級支付</a></li>
+      <li><a target="_blank" href="http://www.tanuonline.com">探牛社區</a></li>
+      <li><a target="_blank" href="http://www.blockfo.com">Blockfo</a></li>
+      <li><a target="_blank" href="http://www.chainhr.com">鏈人</a></li>
+      <li><a target="_blank" href="https://www.bituniverse.org">蔽優</a></li>
+      <li><a target="_blank" href="https://bsai.io/blog/">BsaiBlog</a></li>
+      <li><a target="_blank" href="https://www.cryptowisser.com/exchange/bitrabbit/">CryptoWisser</a></li>
+      <li><a target="_blank" href="http://www.xnqb.com/">小牛情報</a></li>
+      <li><a target="_blank" href="https://mrbtc.org/">MrBTC.org</a></li>
+    </ul>
+  </div>
+
+  <footer>
+    <div class="footer-width">
+      <div id="docs">
+        <div class="doc">
+          <div class="title">團隊</div>
+          <ul class="links">
+            <li><a target="_blank" href="https://www.bunnypub.net/zh-tw/statement/topics/116197">關於我們</a></li>
+            <li><a target="_blank" href="https://pub.bitrabbit.com/zh-tw/statement/topics/106642">聯繫我們</a></li>
+            <li><a target="_blank" href="https://www.bunnypub.net/zh-tw/statement/topics/116198">人才招募</a></li>
+          </ul>
+        </div>
+        <div class="doc">
+          <div class="title">法律</div>
+          <ul class="links">
+            <li><a target="_blank" href="https://www.bunnypub.net/zh-tw/statement/topics/116202">使用條款</a></li>
+            <li><a target="_blank" href="https://www.bunnypub.net/zh-tw/statement/topics/116208">隱私政策</a></li>
+          </ul>
+        </div>
+        <div class="doc">
+          <div class="title">服務</div>
+          <ul class="links">
+            <li><a target="_blank" href="https://www.bunnypub.net/zh-tw/statement/topics/116217">費率說明</a></li>
+            <li><a target="_blank" href="https://www.bunnypub.net/zh-tw/statement/topics/116207">上幣申請</a></li>
+            <li><a target="_blank" href="/f/voting.html">投票上交易對</a></li>
+          </ul>
+        </div>
+        <div class="doc big">
+          <div class="title">公告中心</div>
+          <ul class="links">
+            <li><a target="_blank" href="https://bitrabbit.zendesk.com/hc/zh-tw/requests/new">提交請求</a></li>
+            <li><a target="_blank" href="https://www.bunnypub.net/zh-tw/statement/topics/116201">反洗錢政策</a></li>
+          </ul>
+        </div>
+        <div class="doc divide">
+          <div class="title">追蹤我們</div>
+          <ul class="links">
+            <li><a target="_blank" href="https://github.com/brickbitindex/">Github</a></li>
+            <li><a target="_blank" href="https://www.facebook.com/BitRabbitTeam/">Facebook</a></li>
+            <li><a target="_blank" href="https://twitter.com/Bitrabbit_Team">Twitter</a></li>
+            <li><a target="_blank" href="https://t.me/bitrabbit_zh">Telegram中文用戶群</a></li>
+            <li><a target="_blank" href="https://t.me/bitrabbit_en">Telegram英文用戶群</a></li>
+            <li><a target="_blank" href="https://t.me/bitrabbit_official">Telegram通告群</a></li>
+            <li><a target="_blank" href="https://www.reddit.com/user/BitRabbit_Team/">Reddit</a></li>
+          </ul>
+        </div>
+        <div class="doc small">
+          <div class="title">關注微信</div>
+          <div class="wechat">
+            <img src="https://assets.zjzsxhy.com/static/bbc1e3ac4c44e604e34e2777cc6b9dc9.jpg" alt="">
+          </div>
+          <div class="title">商務合作：biz@bitrabbit.com</div>
+        </div>
+      </div>
+      <div class="right">© 2018, BitRabbit Technology Pty Ltd, Registered in Australia</div>
+    </div>
+  </footer>
+
+  <div class="login-modal email" id="signin">
+    <div class="modal-content">
+      <span class="iconfont icon-close modal-close"></span>
+      <div class="modal-left">
+        <div class="modal-logo">
+          <div class="title"><img src="https://assets.zjzsxhy.com/static/60a0f37bfe02da9aa0ec835d3e8da9b7.svg" alt="BitRabbit"></div>
+        </div>
+        <div class="rabbit-logo">
+          <svg version="1.1" id="animeSvg" x="0px" y="0px" viewBox="0 0 700 700" style="enable-background:new 0 0 700 700;" xml:space="preserve">
+            <defs>
+		          <radialGradient id="rg" cx="249.9846" cy="1669.5" r="310.39" gradientTransform="matrix(-0.74 0 0 -0.16 539.0601 872.62)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-opacity="0.6" />
+		            <stop  offset="0" stop-opacity="0.6"/>
+		            <stop  offset="1" stop-opacity="0" />
+	            </radialGradient>
+            </defs>
+	          <ellipse class="st0" data-order="0" fill="url(#rg)" cx="355.2" cy="605.5" rx="312.2" ry="114.5"/>
+            <g>
+          	<polygon class="st1" data-order="1" fill="#7B7B7B" points="338.6,580.6 502.9,577.3 381.8,504.2 	"/>
+	          <polygon class="st2" data-order="2" fill="#F9F9F9" points="358.5,534.1 489.7,647 263.9,627.1 	"/>
+	          <polygon class="st3" data-order="3" fill="#FFFFFF" points="416.6,134.1 451.5,59.4 275.5,44.5 	"/>
+	          <polygon class="st4" data-order="4" fill="#F6F6F6" points="451.5,59.4 416.6,134.1 542.8,167.3 	"/>
+	          <polygon class="st5" data-order="5" fill="#C4C4C4" points="313.7,215.4 336.9,130.8 174.3,168.9 	"/>
+          	<polygon class="st6" data-order="6" fill="#DADADA" points="313.7,215.4 542.8,167.3 336.9,130.8 	"/>
+	          <polygon class="st7" data-order="7" fill="#FBFBFB" points="484.7,203.8 644,256.9 542.8,167.3 	"/>
+            <polygon class="st6" data-order="6" fill="#DADADA" points="640.7,308.4 547.8,326.6 644,256.9 	"/>
+	          <polygon class="st4" data-order="4" fill="#F6F6F6" points="644,256.9 547.8,326.6 484.7,203.8 	"/>
+	          <polygon class="st6" data-order="6" fill="#DADADA" points="547.8,326.6 471.4,286.8 484.7,203.8 	"/>
+           	<polygon class="st8" data-order="8" fill="#B1B1B1" points="488,446.1 547.8,326.6 471.4,286.8 	"/>
+	          <polygon class="st9" data-order="9" fill="#8F8F8F" points="488,446.1 546.1,491 517.9,386.4 	"/>
+          	<polygon class="st6" data-order="6" fill="#DADADA" points="438.2,486 174.3,532.5 471.4,286.8 	"/>
+          	<polygon class="st10" data-order="10" fill="#CFCFCF" points="244,429.5 131.1,427.9 132.8,351.5 	"/>
+	          <polygon class="st11" data-order="11" fill="#E0E0E0" points="209.1,424.6 194.2,311.7 230.7,363.2 	"/>
+	          <polygon class="st12" data-order="12" fill="#F2F2F2" points="210.8,422.9 132.8,359.8 194.2,311.7 	"/>
+	          <polygon class="st12" data-order="12" fill="#F2F2F2" points="174.3,532.5 240.7,311.7 471.4,286.8 	"/>
+	          <polygon class="st3" data-order="3" fill="#FFFFFF" points="132.8,359.8 109.5,325 194.2,311.7 	"/>
+	          <polygon class="st13" data-order="13" fill="#ACACAC" points="174.3,532.5 263.9,627.1 438.2,486 	"/>
+	          <polygon class="st2" data-order="2" fill="#F9F9F9" points="502.9,555.7 431.6,489.3 471.4,286.8 	"/>
+            </g>
+          </svg>
+
+        </div>
+      </div>
+
+      <div class="modal-m-logo">
+        <div class="title"><img src="https://assets.zjzsxhy.com/static/60a0f37bfe02da9aa0ec835d3e8da9b7.svg" alt="BitRabbit"></div>
+      </div>
+      
+      <div class="modal-right">
+        <div class="row choose">
+          <button class="active" data-type="email">使用郵箱登錄</button>
+          <button data-type="phone">使用手機號登錄</button>
+        </div>
+        <div class="row type-row" data-type="email">
+          <input type="text" id="signinEmail" placeholder="請輸入郵箱" enter="#signinPassword">
+        </div>
+        <div class="row type-row" data-type="phone">
+          <select id="signinArea" class="cur-select">
+          </select>
+        </div>
+        <div class="row type-row phone-with-prefix" data-type="phone">
+          <!--<input type="text" id="areaCode" class="w20 float-left" placeholder="86" enter="#signupPhone">-->
+          <span id="signinPhonePrefix" class="prefix"></span>
+          <input type="text" id="signinPhone" class="w55 float-right" placeholder="手機號碼" enter="#signinPassword">
+        </div>
+        <div class="row">
+          <input type="password" id="signinPassword" placeholder="請輸入密碼" enter="#signinRucaptcha">
+        </div>
+        <div class="row" id="signinGtCaptcha"></div>
+        <div class="row">
+          <button id="signinSubmit">登 錄</button>
+        </div>
+        <div class="row">
+          <a class="goto-signup">註冊賬號</a>
+          <a class="goto-forgetPassword">忘記密碼</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="modal" id="signup">
+    <div class="modal-content">
+      <span class="iconfont icon-close modal-close"></span>
+      <div class="modal-logo">
+        <div class="title"><img src="https://assets.zjzsxhy.com/static/60a0f37bfe02da9aa0ec835d3e8da9b7.svg" alt="BitRabbit"></div>
+      </div>
+      <div class="row choose">
+        <button class="active" data-type="phone">使用手機號註冊</button>
+        <button data-type="email" >使用郵箱註冊</button>
+      </div>
+      <div class="row email-row hidden">
+        <input type="text" id="signupEmail" placeholder="請輸入郵箱" enter="#signupPassword">
+      </div>
+      <div class="row phone-row">
+        <select id="signupArea" class="cur-select">
+        </select>
+      </div>
+      <div class="row phone-row phone-with-prefix">
+        <!--<input type="text" id="areaCode" class="w20 float-left" placeholder="86" enter="#signupPhone">-->
+        <span id="signupPhonePrefix" class="prefix"></span>
+        <input type="text" id="signupPhone" class="w55 float-right" placeholder="請輸入手機號" enter="#signupPhoneRucaptcha">
+      </div>
+      <div class="row phone-row">
+        <input type="text" id="signupPhoneRucaptcha" placeholder="手機驗證碼" class="float-left w65" enter="#signupPassword">
+        <button id="signupGetRucaptcha" class="float-right w30" >獲取驗證碼</button>
+        <button id="signupGetRucaptchaAgain" class="disabled hidden float-right w30">重發驗證碼（<span class="residual-time">60</span>）</button>
+      </div>
+      <div class="row">
+        <input type="password" id="signupPassword" placeholder="請輸入密碼" enter="#signupPassword2">
+      </div>
+      <div class="row">
+        <input type="password" id="signupPassword2" placeholder="請再次確認密碼" enter="#signupRucaptcha">
+      </div>
+      <div class="row" id="signupGtCaptcha"></div>
+      <div class="row check">
+        <input type="text" id="signupCode" class="has-code" placeholder="推薦碼(可選)" enter="#signupSubmit">
+      </div>
+      <div class="row check">
+        <input type="checkbox" name="allowSignup" id="allowSignup">
+        <label for="allowSignup">您同意<a target="_blank" href="https://bitrabbit.zendesk.com/hc/zh-cn/articles/360000695652">使用條款</a>和<a target="_blank" href="https://bitrabbit.zendesk.com/hc/zh-cn/articles/360000696032">隱私政策</a><span>,我不是美國公民或者美國納稅人</span></label>
+      </div>
+      <div class="row">
+        <button id="signupSubmit">註 冊</button>
+      </div>
+      <div class="row">
+        <a class="goto-signin float-right">使用已有賬號登錄</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal email" id="forgetPassword">
+    <div class="modal-content">
+      <span class="iconfont icon-close modal-close"></span>
+      <div class="modal-logo">
+        <div class="title"><img src="https://assets.zjzsxhy.com/static/60a0f37bfe02da9aa0ec835d3e8da9b7.svg" alt="BitRabbit"></div>
+      </div>
+      <div class="row choose">
+        <button class="active" data-type="email">郵箱重置密碼</button><button data-type="phone">手機重置密碼</button>
+      </div>
+      <div class="row type-row" data-type="email">
+        <input type="text" id="forgetPasswordEmail" placeholder="請輸入註冊時填寫的郵箱" enter="#forgetPasswordRucaptcha">
+      </div>
+      <div class="row" id="forgetPasswordGtCaptcha"></div>
+      <div class="row type-row" data-type="email">
+        <button id="forgetPasswordSubmit">發送重置密碼郵件或短信</button>
+      </div>
+      <div class="row type-row" data-type="phone">
+        <select id="forgetPasswordArea" class="cur-select">
+        </select>
+      </div>
+      <div class="row type-row phone-with-prefix" data-type="phone">
+        <span id="forgetPasswordPhonePrefix" class="prefix"></span>
+        <input type="text" id="forgetPasswordPhone" class="w55 float-right" placeholder="請輸入註冊時的手機號碼" enter="#forgetPhoneRucaptcha">
+      </div>
+      <div class="row type-row" data-type="phone">
+        <input type="text" id="forgetPhoneRucaptcha" placeholder="手機驗證碼" class="float-left w65" enter="#forgetPasswordPhonePass">
+        <button id="forgetGetRucaptcha" class="float-right w30" >獲取驗證碼</button>
+        <button id="forgetGetRucaptchaAgain" class="disabled hidden float-right w30">重發驗證碼（<span class="residual-time">60</span>）</button>
+      </div>
+      <div class="row type-row" data-type="phone">
+        <input type="password" id="forgetPasswordPhonePass" placeholder="新密碼" enter="#forgetPasswordPhonePassAgain" autocomplete="off">
+      </div>
+      <div class="row type-row" data-type="phone">
+        <input type="password" id="forgetPasswordPhoneAgain" placeholder="確認密碼" enter="#forgetPasswordPhoneRucaptcha" autocomplete="off">
+      </div>
+      <div class="row type-row" data-type="phone">
+        <button id="forgetPasswordPhoneSubmit">重置登錄密碼</button>
+      </div>
+      <div class="success-msg">
+        <span>已發送重置郵件，若長時間沒有收到，請在垃圾郵件或廣告郵件中尋找</span>
+      </div>
+      <div class="row text-right">
+        <a class="goto-signin">使用已有賬號登錄</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="resetPassword">
+    <div class="modal-content">
+      <span class="iconfont icon-close modal-close"></span>
+      <div class="modal-logo">
+        <div class="title">
+          <img src="https://assets.zjzsxhy.com/static/60a0f37bfe02da9aa0ec835d3e8da9b7.svg" alt="BitRabbit">
+        </div>
+      </div>
+      <div class="row">
+        <input type="password" id="resetPasswordNewPassword" placeholder="新密碼" enter="#resetPasswordNewPassword2">
+      </div>
+      <div class="row">
+        <input type="password" id="resetPasswordNewPassword2" placeholder="確認密碼" enter="#resetPasswordSubmit">
+      </div>
+      <div class="row">
+        <button id="resetPasswordSubmit">重置登錄密碼</button>
+      </div>
+      <div class="row text-right">
+        <a class="goto-signin">登 錄</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="qrcode link-wrap" >
+    <img src="https://assets.zjzsxhy.com/static/6d33eac373512ade6b10f5c9ea976f2c.png" alt="qrcode" />
+    <div class="qq-text">比特兔官方交流群</div>
+    <div>QQ群：712845415</div>
+  </div>
+  <div class="qq link-wrap">
+    <a class="qq-icon"><img src="https://assets.zjzsxhy.com/static/4147a6ece0438e71ffa7e3f640a70aa9.svg" alt="qq" /></a>
+  </div>
+  <div class="tg link-wrap">
+    <a href="https://t.me/bitrabbit_en" target="_blank"><img src="https://assets.zjzsxhy.com/static/d41d65e792e02c7f061f7fb19970974e.svg" alt="telegram" /></a>
+  </div>
+<script type="text/javascript" src="https://assets.zjzsxhy.com/static/home/c8cef731.js"></script></body>
 </html>
