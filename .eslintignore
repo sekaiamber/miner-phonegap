@@ -4,4 +4,4 @@ public
 postcss.config.js
 src/lib/*
 www
-assets
+vendors

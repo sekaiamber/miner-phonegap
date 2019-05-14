@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server --color --process --config webpack/webpack.config.js --open",
     "build": "webpack",
-    "production": "rm -rf www && webpack --mode production --config webpack/webpack.config.production.js && cp -rf assets www/"
+    "production": "rm -rf www && webpack --mode production --config webpack/webpack.config.production.js && cp -rf vendors/* www/"
   },
   "license": "ISC",
   "devDependencies": {
