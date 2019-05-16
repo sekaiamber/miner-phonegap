@@ -10,7 +10,7 @@ import NoMatchPage from '../dashboard/components/noMatchPage';
 
 function PrivateRoute({ component: Component, ...rest }) {
   // TODO: 获取用户
-  const currentUser = null;
+  const currentUser = localStorage.getItem('member_id');
   let render;
   if (!currentUser) {
     // 没登录，跳转到登录页

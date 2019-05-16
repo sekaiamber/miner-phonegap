@@ -7,19 +7,20 @@ import './style.scss';
 
 class MyHeader extends Component {
   render() {
+    const { currentPathConfig } = this.props;
+
     return (
-      <div className="my-header">
-        <div>
-          版本：
-          {__VERSION__}
-        </div>
-      </div>
+      <header>
+        <div className="title">{currentPathConfig.title}</div>
+      </header>
     );
   }
 }
 
 function mapStateToProps({ utils }) {
   return {
+    currentPath: utils.currentPath,
+    currentPathConfig: utils.currentPathConfig,
   };
 }
 

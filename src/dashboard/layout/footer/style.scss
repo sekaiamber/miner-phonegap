@@ -1,0 +1,28 @@
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  border-top: #EEEFF0 solid 1px;
+  display: flex;
+
+  .item {
+    width: 20%;
+    text-align: center;
+    padding: 0.12rem 0;
+
+    img {
+      height: 0.22rem;
+    }
+
+    .name {
+      color: #979797;
+      font-size: 0.12rem;
+      margin-top: 0.05rem;
+    }
+
+    &.active .name {
+      color: #FF9933;
+    }
+  }
+}

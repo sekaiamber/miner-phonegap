@@ -1,21 +1,37 @@
 import { routerRedux } from 'dva/router';
 import pathToRegexp from 'path-to-regexp';
 
+const pathConfigs = {
+  '/': {
+    title: null,
+    activeNav: 0,
+  },
+};
+
 export default {
   namespace: 'utils',
   state: {
-    test: '222'
+    test: '222',
+    currentPath: '',
+    currentPathConfig: {},
   },
   subscriptions: {
     setup({ dispatch, history }) {
-      // history.listen(({ pathname }) => {
-      //   const test = pathToRegexp(router.test).exec(pathname);
-      //   if (test) {
-      //     dispatch({
-      //       type: 'updateState',
-      //     });
-      //   }
-      // });
+      history.listen(({ pathname }) => {
+        dispatch({
+          type: 'updateState',
+          payload: {
+            currentPath: pathname,
+            currentPathConfig: pathConfigs[pathname] || {},
+          },
+        });
+        // const test = pathToRegexp(router.test).exec(pathname);
+        // if (test) {
+        //   dispatch({
+        //     type: 'updateState',
+        //   });
+        // }
+      });
     },
   },
   effects: {

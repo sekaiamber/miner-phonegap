@@ -6,13 +6,11 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
 import { withRouter } from 'dva/router';
-import { Layout } from "antd";
 import Header from '../header';
 import Footer from '../footer';
 
-const {
-  Content
-} = Layout;
+import './style.scss';
+
 
 class Main extends Component {
 

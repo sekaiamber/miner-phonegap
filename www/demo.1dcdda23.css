@@ -1,14 +1,65 @@
-.my-header {
-  color: #fff;
+header {
+  font-size: 0.18rem;
+  height: 0.44rem;
   display: -webkit-box;
   display: flex;
   -webkit-box-pack: justify;
-          justify-content: space-between; }
-  .my-header span {
-    margin-left: 10px; }
+          justify-content: space-between;
+  -webkit-box-align: center;
+          align-items: center;
+  background: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw; }
+  header .title {
+    width: 100%;
+    text-align: center;
+    color: #2A455A;
+    font-weight: 500; }
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  border-top: #EEEFF0 solid 1px;
+  display: -webkit-box;
+  display: flex; }
+  footer .item {
+    width: 20%;
+    text-align: center;
+    padding: 0.12rem 0; }
+    footer .item img {
+      height: 0.22rem; }
+    footer .item .name {
+      color: #979797;
+      font-size: 0.12rem;
+      margin-top: 0.05rem; }
+    footer .item.active .name {
+      color: #FF9933; }
+
+#main {
+  padding-top: 0.44rem; }
+
+#message {
+  position: fixed;
+  top: 0.12rem;
+  right: 0.12rem;
+  box-shadow: 0 0 0.1rem rgba(0, 0, 0, 0.5);
+  background: #fff;
+  padding: 0.12rem;
+  z-index: 10; }
+  #message img {
+    height: 0.3rem;
+    vertical-align: middle;
+    margin-right: 0.12rem; }
+  #message > * {
+    vertical-align: middle; }
 
 #login {
-  padding: 0 0.2rem; }
+  padding: 0 0.2rem;
+  padding-top: 0.44rem; }
   #login .logo-container {
     margin: 0.33rem 0;
     text-align: center; }
@@ -319,19 +370,4 @@ a {
   text-decoration: none;
   color: #D7B97E;
   font-weight: 400; }
-
-header {
-  font-size: 0.18rem;
-  height: 0.44rem;
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-          align-items: center; }
-  header .title {
-    width: 100%;
-    text-align: center;
-    color: #2A455A;
-    font-weight: 500; }
 

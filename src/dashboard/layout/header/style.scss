@@ -1,9 +1,19 @@
-.my-header {
-  color: #fff;
+header {
+  font-size: 0.18rem;
+  height: 0.44rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
 
-  span {
-    margin-left: 10px;
+  .title {
+    width: 100%;
+    text-align: center;
+    color: #2A455A;
+    font-weight: 500;
   }
 }

@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "webpack-dev-server --color --process --config webpack/webpack.config.js --open",
     "build": "webpack",
-    "production": "rm -rf www && webpack --mode production --config webpack/webpack.config.production.js && cp -rf vendors/* www/"
+    "production": "rm -rf www && webpack --mode production --config webpack/webpack.config.production.js && cp -rf vendors/* www/",
+    "debug": "rm -rf tmp && mkdir tmp && open -n /Applications/Google\\ Chrome.app --args --disable-web-security  --user-data-dir=./tmp"
   },
   "license": "ISC",
   "devDependencies": {
@@ -52,9 +53,12 @@
   },
   "dependencies": {
     "antd": "^3.11.0",
+    "classnames": "^2.2.6",
     "dva": "^2.4.1",
+    "jsonwebtoken": "^8.5.1",
     "noty": "^3.2.0-beta",
     "path-to-regexp": "^2.4.0",
+    "qs": "^6.7.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3"
   }
