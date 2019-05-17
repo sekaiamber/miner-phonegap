@@ -6,6 +6,7 @@ import {
 import Main from '../dashboard/layout/main'; // 主视图
 import Login from '../dashboard/components/login';
 import Index from '../dashboard/components/index';
+import Power from '../dashboard/components/power';
 import NoMatchPage from '../dashboard/components/noMatchPage';
 
 function PrivateRoute({ component: Component, ...rest }) {
@@ -31,6 +32,7 @@ function MyRouter(props) {
     <Router {...props}>
       <Switch>
         <PrivateRoute path="/" exact component={Index} />
+        <PrivateRoute path="/power" exact component={Power} />
         <Route path="/login" exact component={Login} />
         <Route component={NoMatchPage} />
       </Switch>

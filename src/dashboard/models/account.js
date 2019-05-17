@@ -11,6 +11,7 @@ const queryMy = () => fetch.private.get(QUERYS.QUERY_MY);
 const queryAccount = () => fetch.private.get(QUERYS.QUEYR_ACCOUNT);
 const queryAcitivies = () => fetch.private.get(QUERYS.QUERY_ACTIVITIES);
 const queryAcitiviesYesterday = () => fetch.private.get(QUERYS.QUERY_ACTIVITIES_YESTERDAY);
+const queryOrders = () => fetch.private.get(QUERYS.QUERY_ORDERS);
 
 export default {
   namespace: 'account',
@@ -20,12 +21,13 @@ export default {
     account: {},
     acitivies: [],
     acitiviesYesterday: 0,
+    orders: [],
   },
   subscriptions: {
     setup({ dispatch, history }) {
       history.listen(({ pathname }) => {
-        const test = pathToRegexp('/').exec(pathname);
-        if (test) {
+        const home = pathToRegexp('/').exec(pathname);
+        if (home) {
           dispatch({
             type: 'queryMy',
           });
@@ -34,6 +36,21 @@ export default {
           });
           dispatch({
             type: 'queryAcitivies',
+          });
+          dispatch({
+            type: 'queryAcitiviesYesterday',
+          });
+        }
+        const power = pathToRegexp('/power').exec(pathname);
+        if (power) {
+          dispatch({
+            type: 'queryMy',
+          });
+          dispatch({
+            type: 'queryAccount',
+          });
+          dispatch({
+            type: 'queryOrders',
           });
           dispatch({
             type: 'queryAcitiviesYesterday',
@@ -112,6 +129,17 @@ export default {
           type: 'updateState',
           payload: {
             acitiviesYesterday: data.amount,
+          },
+        });
+      }
+    },
+    * queryOrders(_, { call, put }) {
+      const data = yield call(queryOrders);
+      if (data.success) {
+        yield put({
+          type: 'updateState',
+          payload: {
+            orders: data.data,
           },
         });
       }

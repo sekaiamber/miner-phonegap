@@ -309,6 +309,158 @@ footer {
     -webkit-transform: scale(1);
             transform: scale(1); } }
 
+#totalPower {
+  border: #979797 solid 1px;
+  overflow: hidden;
+  border-radius: 7px;
+  position: relative; }
+  #totalPower .bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: #fd9f44;
+    background-image: -webkit-repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4) 15px, transparent 0, transparent 30px);
+    background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4) 15px, transparent 0, transparent 30px); }
+  #totalPower .content {
+    position: relative;
+    z-index: 2;
+    padding: 13px 20px;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+            align-items: center; }
+    #totalPower .content .lv,
+    #totalPower .content .icon {
+      flex-shrink: 0;
+      -webkit-box-flex: 0;
+              flex-grow: 0;
+      width: 45px; }
+    #totalPower .content .lv {
+      color: #fff;
+      font-weight: 600;
+      font-size: 30px; }
+      #totalPower .content .lv span {
+        font-size: 40px; }
+    #totalPower .content .center {
+      flex-shrink: 1;
+      -webkit-box-flex: 1;
+              flex-grow: 1;
+      text-align: center; }
+      #totalPower .content .center .title {
+        font-size: 18px;
+        font-weight: 600; }
+      #totalPower .content .center .data {
+        font-size: 32px;
+        font-weight: 600; }
+    #totalPower .content .icon img {
+      width: 100%; }
+
+#paidPower .paidpower {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  box-shadow: 0 8px 16px 0 rgba(34, 34, 44, 0.1);
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  min-height: 45px; }
+  #paidPower .paidpower:last-child {
+    margin-bottom: 0; }
+  #paidPower .paidpower .lv,
+  #paidPower .paidpower .price {
+    flex-shrink: 0;
+    -webkit-box-flex: 0;
+            flex-grow: 0; }
+  #paidPower .paidpower .lv {
+    height: 44px;
+    width: 44px;
+    text-align: center;
+    font-size: 12px;
+    position: relative;
+    margin-right: 12px; }
+    #paidPower .paidpower .lv .text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+          -ms-transform: translate(-50%, -50%);
+              transform: translate(-50%, -50%); }
+  #paidPower .paidpower .center {
+    flex-shrink: 1;
+    -webkit-box-flex: 1;
+            flex-grow: 1; }
+    #paidPower .paidpower .center .rate {
+      font-size: 12px;
+      color: #999; }
+    #paidPower .paidpower .center .data {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 8px; }
+  #paidPower .paidpower .price {
+    margin-left: 12px; }
+
+.demo2 {
+  -webkit-transform-origin: 22px 22px;
+      -ms-transform-origin: 22px 22px;
+          transform-origin: 22px 22px;
+  -webkit-transform: rotate(-90deg);
+      -ms-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  -webkit-transition: stroke-dasharray .3s ease-in;
+  transition: stroke-dasharray .3s ease-in; }
+
+#yesterdayPower .yesterdaypower {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  box-shadow: 0 8px 16px 0 rgba(34, 34, 44, 0.1);
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  min-height: 45px; }
+  #yesterdayPower .yesterdaypower:last-child {
+    margin-bottom: 0; }
+  #yesterdayPower .yesterdaypower .icon,
+  #yesterdayPower .yesterdaypower .reward {
+    flex-shrink: 0;
+    -webkit-box-flex: 0;
+            flex-grow: 0; }
+  #yesterdayPower .yesterdaypower .icon {
+    width: 44px;
+    margin-right: 12px; }
+    #yesterdayPower .yesterdaypower .icon img {
+      width: 100%; }
+  #yesterdayPower .yesterdaypower .center {
+    flex-shrink: 1;
+    -webkit-box-flex: 1;
+            flex-grow: 1; }
+    #yesterdayPower .yesterdaypower .center .data {
+      font-size: 14px;
+      font-weight: 500; }
+  #yesterdayPower .yesterdaypower .reward {
+    margin-left: 12px; }
+
+.demo2 {
+  -webkit-transform-origin: 22px 22px;
+      -ms-transform-origin: 22px 22px;
+          transform-origin: 22px 22px;
+  -webkit-transform: rotate(-90deg);
+      -ms-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  -webkit-transition: stroke-dasharray .3s ease-in;
+  transition: stroke-dasharray .3s ease-in; }
+
+#power {
+  padding-top: 0.44rem; }
+  #power .page-title {
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 30px;
+    margin-bottom: 18px; }
+
 #loading {
   position: fixed;
   top: 0;

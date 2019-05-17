@@ -19,6 +19,14 @@ const pathConfigs = {
       activeNav: 0,
     },
   },
+  '/power': {
+    header: {
+      title: '算力',
+    },
+    footer: {
+      activeNav: 1,
+    },
+  },
 };
 
 export default {

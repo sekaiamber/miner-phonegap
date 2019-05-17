@@ -55,7 +55,7 @@ class Index extends Component {
   }
 }
 
-function mapStateToProps({ utils, market, account }) {
+function mapStateToProps({ market, account }) {
   const {
     userInfo, account: accountInfo, acitiviesYesterday, acitivies,
   } = account;
@@ -68,7 +68,6 @@ function mapStateToProps({ utils, market, account }) {
   };
 
   return {
-    test: utils.test,
     prices: market.prices,
     block: market.block,
     boardData,
