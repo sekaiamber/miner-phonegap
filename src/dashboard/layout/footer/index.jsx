@@ -20,8 +20,8 @@ import './style.scss';
 
 class Footer extends Component {
   render() {
-    const { currentPathConfig } = this.props;
-    const { activeNav } = currentPathConfig;
+    const { config } = this.props;
+    const { activeNav } = config;
 
     return (
       <footer>
@@ -73,7 +73,7 @@ class Footer extends Component {
 function mapStateToProps({ utils }) {
   return {
     currentPath: utils.currentPath,
-    currentPathConfig: utils.currentPathConfig,
+    config: utils.currentPathConfig.footer || {},
   };
 }
 

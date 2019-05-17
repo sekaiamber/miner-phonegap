@@ -3,8 +3,21 @@ import pathToRegexp from 'path-to-regexp';
 
 const pathConfigs = {
   '/': {
-    title: null,
-    activeNav: 0,
+    header: {
+      title: '首頁',
+      style: {
+        backgroundColor: 'transparent',
+        color: '#fff',
+        position: 'absolute',
+      },
+      icon: {
+        left: 'notices',
+        right: 'activitiesDone',
+      },
+    },
+    footer: {
+      activeNav: 0,
+    },
   },
 };
 

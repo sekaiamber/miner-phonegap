@@ -12,6 +12,7 @@ function render() {
   });
   app.router(router);
   app.start('#root');
+  window._APP_ = app;
 }
 
 render();

@@ -5,6 +5,8 @@ footer {
   width: 100vw;
   border-top: #EEEFF0 solid 1px;
   display: flex;
+  background: #fff;
+  z-index: 2;
 
   .item {
     width: 20%;

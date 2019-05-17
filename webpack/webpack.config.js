@@ -34,8 +34,8 @@ module.exports = {
       __VERSION__: JSON.stringify(packageJson.version),
       __CONFIG__: JSON.stringify(config),
     }),
-    new webpack.HotModuleReplacementPlugin(),
-    new WriteFilePlugin()
+    new webpack.HotModuleReplacementPlugin()
+    // new WriteFilePlugin()
   ].concat(plugins),
   module: {
     rules: [{

@@ -13,6 +13,12 @@ function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;
   }
+  if (window._APP_ && response.status === 401) {
+    window._APP_._store.dispatch({
+      type: 'utils/goto',
+      goto: '/login',
+    });
+  }
   const { status, statusText } = response;
   throw new Error(`[${status}] ${statusText}`);
 }
@@ -37,6 +43,92 @@ function catchError(error) {
 
 const fetchlib = window.fetch;
 
+function getPriveteHeader() {
+  return {
+    'X-App-Key': jwt.getKey(),
+    'X-App-Auth': jwt.getPrivateToken(),
+    'Content-Type': 'application/json',
+  };
+}
+
+const fetchPrivate = {
+  post(url, data, options = {}, form = false) {
+    let body;
+    if (form) {
+      data.append('locale', window.locale);
+      body = data;
+    } else {
+      body = JSON.stringify({
+        // utf8: '✓',
+        locale: window.locale,
+        ...data,
+      });
+    }
+    return fetchlib(url, {
+      headers: getPriveteHeader(),
+      ...options,
+      body,
+      method: 'POST',
+      credentials: 'include',
+    })
+      .then(checkStatus)
+      .then(parseJSON)
+      .then(processData)
+      .catch(catchError);
+  },
+  put(url, data, options = {}, form = false) {
+    let body;
+    if (form) {
+      data.append('locale', window.locale);
+      body = data;
+    } else {
+      body = JSON.stringify({
+        // utf8: '✓',
+        ...data,
+        locale: window.locale,
+      });
+    }
+    return fetchlib(url, {
+      headers: getPriveteHeader(),
+      ...options,
+      body,
+      method: 'PUT',
+      credentials: 'include',
+    })
+      .then(checkStatus)
+      .then(parseJSON)
+      .then(processData)
+      .catch(catchError);
+  },
+  delete(url, options = {}) {
+    return fetchlib(url, {
+      headers: getPriveteHeader(),
+      ...options,
+      method: 'DELETE',
+      credentials: 'include',
+    })
+      .then(checkStatus)
+      .then(parseJSON)
+      .then(processData)
+      .catch(catchError);
+  },
+  get(url, data, options = {}) {
+    let queryUrl = url;
+    const params = data ? qs.stringify({ ...data, locale: window.locale }) : qs.stringify({ locale: window.locale });
+    queryUrl += '?' + params;
+    return fetchlib(queryUrl, {
+      headers: getPriveteHeader(),
+      credentials: 'include',
+      ...options,
+      method: 'GET',
+    })
+      .then(checkStatus)
+      .then(parseJSON)
+      .then(processData)
+      .catch(catchError);
+  },
+};
+
 function getHeader() {
   return {
     'X-App-Key': jwt.getKey(),
@@ -46,6 +138,7 @@ function getHeader() {
 }
 
 const fetch = {
+  private: fetchPrivate,
   post(url, data, options = {}, form = false) {
     let body;
     if (form) {

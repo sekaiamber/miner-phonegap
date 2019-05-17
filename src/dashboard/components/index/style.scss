@@ -1,0 +1,229 @@
+#markets {
+  .item {
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+
+    &:last-child .info {
+      border-bottom: none;
+    }
+
+    .icon {
+      height: 0.4rem;
+      width: 0.4rem;
+      flex-grow: 0;
+      flex-shrink: 0;
+      margin-right: 0.13rem;
+
+      img {
+        height: 0.4rem;
+      }
+    }
+    .info {
+      flex-grow: 1;
+      flex-shrink: 1;
+      display: flex;
+      align-items: center;
+      padding: 0.16rem 0;
+      border-bottom: #d3d3d3 solid 1px;
+    }
+    .name {
+      width: 0.65rem;
+      flex-grow: 0;
+      flex-shrink: 0;
+      font-size: 0.16rem;
+    }
+    .price {
+      flex-grow: 1;
+      flex-shrink: 1;
+      .cny {
+        font-size: 0.12rem;
+        color: #6788A2;
+      }
+    }
+    .change {
+      width: 0.7rem;
+      text-align: center;
+      padding: 0.04rem 0;
+      background: #04C087;
+      color: #fff;
+      border-radius: 0.03rem;
+
+      &.down {
+        background: #F04D64;
+      }
+    }
+  }
+}
+
+#home {
+  padding-top: 0.44rem;
+  padding-bottom: 1rem;
+  background:
+    url(../../../assets/home_bg.png) no-repeat,
+    linear-gradient(135deg, #FF7F22 0%, #FFB646 100%);
+  background-size: contain, 100%;
+  background-position: center 3rem, center;
+  position: relative;
+  color: #fff;
+
+  .block-info {
+    position: absolute;
+    top: 0.55rem;
+    right: 0;
+    text-align: right;
+    color: #fff;
+    z-index: 2;
+    pointer-events: none;
+
+    img {
+      height: 0.22rem;
+      margin-right: 0.08rem;
+    }
+
+    span {
+      vertical-align: middle;
+    }
+
+    .wrapper {
+      background: rgba($color: #fff, $alpha: 0.4);
+      padding: 0.09rem 0.15rem;
+      display: inline-block;
+      height: 0.44rem;
+      border-radius: 0.22rem 0 0 0.22rem;
+    }
+
+    div {
+      margin-bottom: 0.09rem;
+    }
+  }
+
+  .opt {
+    display: flex;
+    align-items: center;
+
+    .switch {
+      width: 1.1rem;
+      font-size: 0.12rem;
+      padding: 0.05rem;
+      background: #ededed;
+      border-radius: 0.24rem;
+      color: #C8C8C8;
+      transform: scale(0.75);
+      transition: all ease 0.3s;
+      transform-origin: left center;
+      flex-grow: 0;
+      flex-grow: 0;
+
+      span {
+        height: 0.32rem;
+        width: 0.7rem;
+        line-height: 0.32rem;
+        display: inline-block;
+        background: #fff;
+        text-align: center;
+        border-radius: 0.16rem;
+        margin-left: 0;
+        transition: all ease 0.3s;
+      }
+
+      &.on {
+        background: #6db2df;
+
+        span {
+          margin-left: 0.3rem;
+          color: #6db2df;
+        }
+      }
+
+    }
+
+    img {
+      flex-grow: 0;
+      flex-grow: 0;
+      margin-left: 0.12rem;
+      height: 0.42rem;
+    }
+
+    .center {
+      flex-grow: 1;
+      flex-grow: 1;
+    }
+  }
+
+  .desc {
+    font-size: 0.12rem;
+    font-weight: 400;
+    margin-top: 0.15rem;
+  }
+}
+
+#board {
+  height: 1.8rem;
+  margin-top: -0.9rem;
+  margin-left: 0.15rem;
+  margin-right: 0.15rem;
+  position: relative;
+  background: #fff;
+  border-radius: 0.07rem;
+  box-shadow: rgba($color: #D7D7D7, $alpha: 0.5) 0 0 0.1rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  box-sizing: border-box;
+  padding: 0.12rem 0;
+
+  &>div {
+    display: flex;
+  }
+
+  .value {
+    font-size: 0.18rem;
+    font-weight: 400;
+    color: #000;
+  }
+  .name {
+    font-size: 0.14rem;
+    font-weight: 400;
+    color: #7f7f7f;
+  }
+  .item {
+    text-align: center;
+    width: 50%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    position: relative;
+
+    &:first-child::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 50%;
+      height: 0.22rem;
+      width: 1px;
+      background: #979797;
+      transform: translate(0, -50%);
+    }
+  }
+}
+
+#activities {
+  height: 4rem;
+  color: #fff;
+  position: relative;
+
+  .activity {
+    position: absolute;
+    text-align: center;
+    animation: show-activity 0.3s ease;
+  }
+}
+
+@keyframes show-activity {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

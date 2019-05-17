@@ -2,18 +2,28 @@ header {
   font-size: 0.18rem;
   height: 0.44rem;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   background: #fff;
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
+  z-index: 2;
+  color: #2A455A;
 
   .title {
     width: 100%;
     text-align: center;
-    color: #2A455A;
     font-weight: 500;
+    flex-grow: 1;
+    flex-shrink: 1;
+  }
+
+  .icon-container {
+    width: 0.2rem;
+    flex-grow: 0;
+    flex-shrink: 0;
+    text-align: center;
+    line-height: 1;
   }
 }
