@@ -1,0 +1,46 @@
+#subuser {
+  margin-top: 0.56rem;
+
+  .item {
+    display: flex;
+    align-items: center;
+    box-shadow: 0 8px 16px 0 rgba($color: #22222C, $alpha: 0.1);
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    min-height: 45px;
+    justify-content: space-between;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+
+    .lv,
+    .price {
+      flex-shrink: 0;
+      flex-grow: 0;
+    }
+
+    .lv {
+      height: 44px;
+      width: 44px;
+      text-align: center;
+      font-size: 12px;
+      position: relative;
+      margin-right: 12px;
+
+      .text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-weight: 400;
+      }
+    }
+
+    .price {
+      font-size: 24px;
+    }
+  }
+}

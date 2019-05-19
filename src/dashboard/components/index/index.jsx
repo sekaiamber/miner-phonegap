@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import { connect } from 'dva';
+import { Link } from 'dva/router';
 import Markets from './markets';
 import Board from './board';
 import Activities from './activities';
@@ -43,8 +44,8 @@ class Index extends Component {
               <span>自動領取</span>
             </div>
             <div className="center" />
-            <img src={optBuyPowerImg} alt="" />
-            <img src={optAddPowerImg} alt="" />
+            <Link to="/buy"><img src={optBuyPowerImg} alt="" /></Link>
+            <Link to="/invite"><img src={optAddPowerImg} alt="" /></Link>
           </div>
           <div className="container desc">注：超過72小時未領取的幣將被銷毀</div>
         </div>

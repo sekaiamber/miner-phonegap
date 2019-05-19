@@ -10,8 +10,14 @@ const login = data => fetch.post(QUERYS.LOGIN, data);
 const queryMy = () => fetch.private.get(QUERYS.QUERY_MY);
 const queryAccount = () => fetch.private.get(QUERYS.QUEYR_ACCOUNT);
 const queryAcitivies = () => fetch.private.get(QUERYS.QUERY_ACTIVITIES);
+const queryAcitiviesDone = () => fetch.private.get(QUERYS.QUERY_ACTIVITIES_DONE);
+const queryAcitiviesAll = () => fetch.private.get(QUERYS.QUERY_ACTIVITIES_ALL);
 const queryAcitiviesYesterday = () => fetch.private.get(QUERYS.QUERY_ACTIVITIES_YESTERDAY);
+const queryAcitiviesTotal = () => fetch.private.get(QUERYS.QUERY_ACTIVITIES_TOTAL);
 const queryOrders = () => fetch.private.get(QUERYS.QUERY_ORDERS);
+const queryDeposits = () => fetch.private.get(QUERYS.QUERY_DEPOSITS);
+const queryWithdraws = () => fetch.private.get(QUERYS.QUERY_WITHDRAWS);
+const querySubUser = () => fetch.private.get(QUERYS.QUERY_SUB_USER);
 
 export default {
   namespace: 'account',
@@ -20,8 +26,13 @@ export default {
     userInfo: {},
     account: {},
     acitivies: [],
+    acitiviesDone: [],
+    acitiviesAll: [],
     acitiviesYesterday: 0,
+    acitiviesTotal: 0,
     orders: [],
+    history: [],
+    subuser: [],
   },
   subscriptions: {
     setup({ dispatch, history }) {
@@ -54,6 +65,51 @@ export default {
           });
           dispatch({
             type: 'queryAcitiviesYesterday',
+          });
+        }
+        const wallet = pathToRegexp('/wallet').exec(pathname);
+        if (wallet) {
+          dispatch({
+            type: 'queryMy',
+          });
+          dispatch({
+            type: 'queryAccount',
+          });
+          dispatch({
+            type: 'queryHistory',
+          });
+        }
+        const me = pathToRegexp('/me').exec(pathname);
+        if (me) {
+          dispatch({
+            type: 'queryMy',
+          });
+        }
+        const invite = pathToRegexp('/invite').exec(pathname);
+        if (invite) {
+          dispatch({
+            type: 'queryMy',
+          });
+        }
+        const activities = pathToRegexp('/activities').exec(pathname);
+        if (activities) {
+          dispatch({
+            type: 'queryAcitiviesDone',
+          });
+        }
+        const subuser = pathToRegexp('/subuser').exec(pathname);
+        if (subuser) {
+          dispatch({
+            type: 'querySubUser',
+          });
+        }
+        const miners = pathToRegexp('/miners').exec(pathname);
+        if (miners) {
+          dispatch({
+            type: 'queryAcitiviesAll',
+          });
+          dispatch({
+            type: 'queryAcitiviesTotal',
           });
         }
       });
@@ -105,6 +161,12 @@ export default {
       }
     },
     * queryAcitivies(_, { call, put }) {
+      yield put({
+        type: 'updateState',
+        payload: {
+          acitivies: [],
+        },
+      });
       const data = yield call(queryAcitivies);
       if (data.success) {
         const acitivies = data.data.map(item => ({
@@ -122,6 +184,28 @@ export default {
         });
       }
     },
+    * queryAcitiviesDone(_, { call, put }) {
+      const data = yield call(queryAcitiviesDone);
+      if (data.success) {
+        yield put({
+          type: 'updateState',
+          payload: {
+            acitiviesDone: data.data,
+          },
+        });
+      }
+    },
+    * queryAcitiviesAll(_, { call, put }) {
+      const data = yield call(queryAcitiviesAll);
+      if (data.success) {
+        yield put({
+          type: 'updateState',
+          payload: {
+            acitiviesAll: data.data,
+          },
+        });
+      }
+    },
     * queryAcitiviesYesterday(_, { call, put }) {
       const data = yield call(queryAcitiviesYesterday);
       if (data.success) {
@@ -133,6 +217,17 @@ export default {
         });
       }
     },
+    * queryAcitiviesTotal(_, { call, put }) {
+      const data = yield call(queryAcitiviesTotal);
+      if (data.success) {
+        yield put({
+          type: 'updateState',
+          payload: {
+            acitiviesTotal: data.amount,
+          },
+        });
+      }
+    },
     * queryOrders(_, { call, put }) {
       const data = yield call(queryOrders);
       if (data.success) {
@@ -140,6 +235,39 @@ export default {
           type: 'updateState',
           payload: {
             orders: data.data,
+          },
+        });
+      }
+    },
+    * queryHistory(_, { call, put }) {
+      const withdraws = yield call(queryWithdraws);
+      const deposits = yield call(queryDeposits);
+      if (withdraws.success && deposits.success) {
+        const wit = withdraws.data.map(d => ({
+          ...d,
+          type: 'withdraw',
+        }));
+        const dep = deposits.data.map(d => ({
+          ...d,
+          type: 'deposits',
+        }));
+        const history = wit.concat(dep);
+        history.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+        yield put({
+          type: 'updateState',
+          payload: {
+            history,
+          },
+        });
+      }
+    },
+    * querySubUser(_, { call, put }) {
+      const data = yield call(querySubUser);
+      if (data.success) {
+        yield put({
+          type: 'updateState',
+          payload: {
+            subuser: data.data,
           },
         });
       }

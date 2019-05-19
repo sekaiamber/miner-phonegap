@@ -24,7 +24,7 @@ class Footer extends Component {
     const { activeNav } = config;
 
     return (
-      <footer>
+      <footer className={classnames({ hide: activeNav === undefined })}>
         <div className={classnames('item', { active: activeNav === 0 })}>
           <Link to="/">
             <div>

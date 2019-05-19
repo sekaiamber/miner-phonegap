@@ -37,7 +37,7 @@ function PaidPower({ list }) {
             <div className="data">{p.power} ph/s</div>
             <div className="rate">預計收益率{p.rate}/天，{p.days}天</div>
           </div>
-          <div className="price">¥{p.price}</div>
+          <div className="price">{p.price}</div>
         </div>
       )))}
     </div>

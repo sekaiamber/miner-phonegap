@@ -1,0 +1,41 @@
+#myActivities {
+  margin-top: 0.56rem;
+  
+  .item {
+    display: flex;
+    align-items: center;
+    box-shadow: 0 8px 16px 0 rgba($color: #22222C, $alpha: 0.1);
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    min-height: 45px;
+
+    .logo {
+      flex-grow: 0;
+      flex-shrink: 0;
+    }
+
+    .center {
+      font-size: 0.14rem;
+      flex-shrink: 1;
+      flex-grow: 1;
+      overflow: hidden;
+      margin: 0 0.1rem;
+    }
+
+    .amount {
+      flex-grow: 0;
+      flex-shrink: 0;
+    }
+
+    .txid {
+      font-weight: 400;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .time {
+      color: rgba($color: #000, $alpha: 0.4);
+    }
+  }
+}

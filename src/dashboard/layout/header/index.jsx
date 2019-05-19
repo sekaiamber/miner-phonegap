@@ -1,35 +1,62 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { Component } from 'react';
 import { connect } from 'dva';
+import { Link } from 'dva/router';
 
 import './style.scss';
 
 // images
 import noticeImg from '../../../assets/header_notice.svg';
 import activitiesDoneImg from '../../../assets/header_menu.svg';
+import backImg from '../../../assets/header_back.svg';
 
 const iconMap = {
   notices: noticeImg,
   activitiesDone: activitiesDoneImg,
+  back: backImg,
+};
+
+const iconLinks = {
+  notices: '/notice',
+  activitiesDone: '/activities',
 };
 
 class MyHeader extends Component {
+  getIcon(tag) {
+    if (tag === 'back') {
+      return (
+        <img src={iconMap[tag]} alt="" onClick={this.handleBack} />
+      );
+    }
+
+    return (
+      <Link to={iconLinks[tag]}>
+        <img src={iconMap[tag]} alt="" />
+      </Link>
+    );
+  }
+
+  handleBack = () => {
+    const { dispatch } = this.props;
+
+    dispatch({
+      type: 'utils/goBack',
+    });
+  }
+
   render() {
     const { config } = this.props;
 
     return (
       <header style={config.style} className="container">
         <div className="icon-container">
-          {config.icon && config.icon.left && (
-            <img src={iconMap[config.icon.left]} alt="" />
-          )}
+          {config.icon && config.icon.left && this.getIcon(config.icon.left)}
         </div>
         <div className="title">{config.title}</div>
         <div className="icon-container">
-          {config.icon && config.icon.right && (
-            <img src={iconMap[config.icon.right]} alt="" />
-          )}
+          {config.icon && config.icon.right && this.getIcon(config.icon.right)}
         </div>
       </header>
     );

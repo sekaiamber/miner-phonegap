@@ -7,6 +7,14 @@ import Main from '../dashboard/layout/main'; // 主视图
 import Login from '../dashboard/components/login';
 import Index from '../dashboard/components/index';
 import Power from '../dashboard/components/power';
+import Buy from '../dashboard/components/buy';
+import Wallet from '../dashboard/components/wallet';
+import Me from '../dashboard/components/me';
+import Notice from '../dashboard/components/notice';
+import Activities from '../dashboard/components/activities';
+import Invite from '../dashboard/components/invite';
+import Miners from '../dashboard/components/miners';
+import Subuser from '../dashboard/components/subuser';
 import NoMatchPage from '../dashboard/components/noMatchPage';
 
 function PrivateRoute({ component: Component, ...rest }) {
@@ -33,6 +41,14 @@ function MyRouter(props) {
       <Switch>
         <PrivateRoute path="/" exact component={Index} />
         <PrivateRoute path="/power" exact component={Power} />
+        <PrivateRoute path="/buy" exact component={Buy} />
+        <PrivateRoute path="/wallet" exact component={Wallet} />
+        <PrivateRoute path="/me" exact component={Me} />
+        <PrivateRoute path="/notice" exact component={Notice} />
+        <PrivateRoute path="/activities" exact component={Activities} />
+        <PrivateRoute path="/invite" exact component={Invite} />
+        <PrivateRoute path="/miners" exact component={Miners} />
+        <PrivateRoute path="/subuser" exact component={Subuser} />
         <Route path="/login" exact component={Login} />
         <Route component={NoMatchPage} />
       </Switch>

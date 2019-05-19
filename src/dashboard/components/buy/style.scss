@@ -1,0 +1,68 @@
+#buy {
+  padding-top: 0.44rem;
+
+  .list {
+    padding-top: 0.12rem;
+  }
+
+  .list .item {
+    display: flex;
+    align-items: center;
+    box-shadow: 0 8px 16px 0 rgba($color: #22222C, $alpha: 0.1);
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    min-height: 45px;
+    border: transparent 1px solid;
+    transition: all ease 0.3s;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &.selected {
+      border-color: #fd9840;
+    }
+
+    .lv,
+    .price {
+      flex-shrink: 0;
+      flex-grow: 0;
+    }
+
+    .lv {
+      height: 44px;
+      width: 44px;
+      text-align: center;
+      font-size: 12px;
+      position: relative;
+      margin-right: 12px;
+
+      .text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    .center {
+      flex-shrink: 1;
+      flex-grow: 1;
+
+      .rate {
+        font-size: 12px;
+        color: #999;
+      }
+      .data {
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 8px;
+      }
+    }
+
+    .price {
+      margin-left: 12px;
+    }
+  }
+}

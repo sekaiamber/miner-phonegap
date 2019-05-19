@@ -114,8 +114,10 @@ const fetchPrivate = {
   },
   get(url, data, options = {}) {
     let queryUrl = url;
-    const params = data ? qs.stringify({ ...data, locale: window.locale }) : qs.stringify({ locale: window.locale });
-    queryUrl += '?' + params;
+    if (data) {
+      const params = qs.stringify({ ...data, locale: window.locale });
+      queryUrl += '?' + params;
+    }
     return fetchlib(queryUrl, {
       headers: getPriveteHeader(),
       credentials: 'include',
@@ -201,8 +203,10 @@ const fetch = {
   },
   get(url, data, options = {}) {
     let queryUrl = url;
-    const params = data ? qs.stringify({ ...data, locale: window.locale }) : qs.stringify({ locale: window.locale });
-    queryUrl += '?' + params;
+    if (data) {
+      const params = qs.stringify({ ...data, locale: window.locale });
+      queryUrl += '?' + params;
+    }
     return fetchlib(queryUrl, {
       headers: getHeader(),
       credentials: 'include',
