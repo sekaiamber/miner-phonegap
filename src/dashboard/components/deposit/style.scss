@@ -1,0 +1,47 @@
+#deposit {
+  margin-top: 0.56rem;
+
+  .banner {
+    display: flex;
+    align-items: center;
+    box-shadow: 0 8px 16px 0 rgba($color: #22222C, $alpha: 0.1);
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    min-height: 45px;
+    justify-content: space-between;
+
+    .logo {
+      flex-grow: 0;
+      flex-shrink: 0;
+    }
+
+    .amount {
+      flex-grow: 0;
+      flex-shrink: 0;
+    }
+  }
+
+  .qrcode-container {
+    box-shadow: 0 8px 16px 0 rgba($color: #22222C, $alpha: 0.1);
+    padding: 12px;
+    border-radius: 6px;
+    text-align: center;
+
+    img {
+      width: 1.25rem;
+    }
+
+    .btn {
+      color: #fff;
+      background: linear-gradient(15deg, #FF7F22 0%, #FFB645 100%);
+      font-size: 0.16rem;
+      font-weight: 400;
+      padding: 0.06rem 0.15rem;
+      height: 0.36rem;
+      border-radius: 0.27rem;
+      margin: 0 auto;
+      width: 1.25rem;
+    }
+  }
+}

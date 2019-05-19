@@ -91,6 +91,14 @@ const pathConfigs = {
       },
     },
   },
+  '/deposit': {
+    header: {
+      title: '充值',
+      icon: {
+        left: 'back',
+      },
+    },
+  },
 };
 
 export default {

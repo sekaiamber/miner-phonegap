@@ -91,6 +91,12 @@ export default {
             type: 'queryMy',
           });
         }
+        const deposit = pathToRegexp('/deposit').exec(pathname);
+        if (deposit) {
+          dispatch({
+            type: 'queryMy',
+          });
+        }
         const activities = pathToRegexp('/activities').exec(pathname);
         if (activities) {
           dispatch({

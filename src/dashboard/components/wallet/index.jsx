@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import { connect } from 'dva';
+import { Link } from 'dva/router';
 
 import './style.scss';
 
@@ -32,10 +33,10 @@ class Wallet extends Component {
           <div className="amount">{parseFloat(accountInfo.balance).toFixed(2)}</div>
         </div>
         <div className="opt">
-          <div className="opt-btn">
+          <Link className="opt-btn" to="/deposit">
             <img src={walletDepImg} alt="" />
             <span>充值</span>
-          </div>
+          </Link>
           <div className="opt-btn">
             <img src={walletWitImg} alt="" />
             <span>提現</span>

@@ -15,6 +15,7 @@ import Activities from '../dashboard/components/activities';
 import Invite from '../dashboard/components/invite';
 import Miners from '../dashboard/components/miners';
 import Subuser from '../dashboard/components/subuser';
+import Deposit from '../dashboard/components/deposit';
 import NoMatchPage from '../dashboard/components/noMatchPage';
 
 function PrivateRoute({ component: Component, ...rest }) {
@@ -49,6 +50,7 @@ function MyRouter(props) {
         <PrivateRoute path="/invite" exact component={Invite} />
         <PrivateRoute path="/miners" exact component={Miners} />
         <PrivateRoute path="/subuser" exact component={Subuser} />
+        <PrivateRoute path="/deposit" exact component={Deposit} />
         <Route path="/login" exact component={Login} />
         <Route component={NoMatchPage} />
       </Switch>
