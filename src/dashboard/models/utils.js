@@ -99,6 +99,14 @@ const pathConfigs = {
       },
     },
   },
+  '/withdraw': {
+    header: {
+      title: '提現',
+      icon: {
+        left: 'back',
+      },
+    },
+  },
 };
 
 export default {

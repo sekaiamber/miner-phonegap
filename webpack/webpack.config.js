@@ -35,7 +35,7 @@ module.exports = {
       __CONFIG__: JSON.stringify(config),
     }),
     new webpack.HotModuleReplacementPlugin(),
-    new WriteFilePlugin()
+    // new WriteFilePlugin()
   ].concat(plugins),
   module: {
     rules: [{

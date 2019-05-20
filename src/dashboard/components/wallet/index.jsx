@@ -37,10 +37,10 @@ class Wallet extends Component {
             <img src={walletDepImg} alt="" />
             <span>充值</span>
           </Link>
-          <div className="opt-btn">
+          <Link className="opt-btn" to="/withdraw">
             <img src={walletWitImg} alt="" />
             <span>提現</span>
-          </div>
+          </Link>
         </div>
         <div className="page-title">充提歷史</div>
         <div className="history">

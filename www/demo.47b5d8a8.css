@@ -72,23 +72,7 @@ footer {
       width: 0.8rem; }
   #login .form .item {
     padding: 0.12rem 0;
-    border-bottom: #F2F2F2 solid 1px;
     margin-bottom: 0.24rem; }
-    #login .form .item input {
-      border: none;
-      width: 100%;
-      line-height: 2;
-      padding: 0; }
-      #login .form .item input::-webkit-input-placeholder {
-        color: #6788A2; }
-      #login .form .item input::-moz-placeholder {
-        color: #6788A2; }
-      #login .form .item input:-ms-input-placeholder {
-        color: #6788A2; }
-      #login .form .item input::-ms-input-placeholder {
-        color: #6788A2; }
-      #login .form .item input::placeholder {
-        color: #6788A2; }
   #login .submit {
     padding: 0.24rem 0.1rem; }
     #login .submit button {
@@ -854,6 +838,51 @@ footer {
     margin-top: 0.24rem;
     margin-bottom: 0.24rem; }
 
+#withdraw {
+  margin-top: 0.56rem; }
+  #withdraw .banner {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: justify;
+            justify-content: space-between;
+    margin-bottom: 0.24rem;
+    padding-top: 0.12rem; }
+    #withdraw .banner div:last-child {
+      color: #6788A2; }
+  #withdraw .form .scan-btn {
+    width: 0.2rem;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    -webkit-transform: translate(0, -50%);
+        -ms-transform: translate(0, -50%);
+            transform: translate(0, -50%); }
+  #withdraw .form .form-info {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: justify;
+            justify-content: space-between;
+    height: 0.28rem; }
+    #withdraw .form .form-info div:last-child {
+      color: #6788A2; }
+  #withdraw .btn {
+    color: #fff;
+    background: -webkit-linear-gradient(75deg, #FF7F22 0%, #FFB645 100%);
+    background: linear-gradient(15deg, #FF7F22 0%, #FFB645 100%);
+    font-size: 0.16rem;
+    font-weight: 400;
+    padding: 0.06rem 0.15rem;
+    border-radius: 0.27rem;
+    margin-top: 0.12rem;
+    text-align: center;
+    width: 100%;
+    -webkit-transition: all ease 0.3s;
+    transition: all ease 0.3s; }
+    #withdraw .btn[disabled] {
+      opacity: 0.5; }
+  #withdraw .submit {
+    margin-top: 0.24rem; }
+
 #loading {
   position: fixed;
   top: 0;
@@ -1164,4 +1193,25 @@ a {
   font-weight: 500;
   margin-top: 30px;
   margin-bottom: 18px; }
+
+.form .item {
+  padding: 0.06rem 0;
+  border-bottom: #F2F2F2 solid 1px;
+  margin-bottom: 0.06rem;
+  position: relative; }
+  .form .item input {
+    border: none;
+    width: 100%;
+    line-height: 2;
+    padding: 0; }
+    .form .item input::-webkit-input-placeholder {
+      color: #6788A2; }
+    .form .item input::-moz-placeholder {
+      color: #6788A2; }
+    .form .item input:-ms-input-placeholder {
+      color: #6788A2; }
+    .form .item input::-ms-input-placeholder {
+      color: #6788A2; }
+    .form .item input::placeholder {
+      color: #6788A2; }
 

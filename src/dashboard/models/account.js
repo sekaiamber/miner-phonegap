@@ -97,6 +97,12 @@ export default {
             type: 'queryMy',
           });
         }
+        const withdraw = pathToRegexp('/withdraw').exec(pathname);
+        if (withdraw) {
+          dispatch({
+            type: 'queryAccount',
+          });
+        }
         const activities = pathToRegexp('/activities').exec(pathname);
         if (activities) {
           dispatch({
