@@ -43,6 +43,9 @@ class Me extends Component {
             <div>&gt;</div>
           </Link>
         </div>
+        <div className="logout">
+          <a>退出登錄</a>
+        </div>
       </div>
     );
   }

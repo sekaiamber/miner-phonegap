@@ -129,8 +129,11 @@ export default {
   },
   effects: {
     * login({ payload }, { call, put }) {
+      message.info(3);
       loading('登錄中');
+      message.info(6);
       const data = yield call(login, payload);
+      message.info(7);
       if (data.success) {
         const token = data.data.member;
         const v = jwt.verify(token);

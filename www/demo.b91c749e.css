@@ -632,6 +632,11 @@ footer {
       font-weight: 300; }
       #me .link-list .link div:first-child {
         color: #000; }
+  #me .logout {
+    margin: 0.24rem 0;
+    text-align: center; }
+    #me .logout a {
+      color: #ff2a2a; }
 
 #notice {
   margin-top: 0.56rem; }
