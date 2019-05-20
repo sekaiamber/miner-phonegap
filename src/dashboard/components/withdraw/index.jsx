@@ -65,6 +65,17 @@ class Withdraw extends Component {
     }
     scaner.scan(this.handleScanSuccess);
     scaner.show();
+    this.handleHideView();
+  }
+
+  handleHideView() {
+    const html = document.querySelector('html');
+    html.style.opacity = '0';
+  }
+
+  handleShowView() {
+    const html = document.querySelector('html');
+    html.style.opacity = '1';
   }
 
   handleScanSuccess(err, text) {
@@ -75,6 +86,7 @@ class Withdraw extends Component {
         to: text,
       });
     }
+    this.handleShowView();
   }
 
   canSubmit() {
