@@ -58,35 +58,27 @@ class Withdraw extends Component {
   }
 
   handleScan = () => {
-    const scaner = window.QRScanner;
-    if (!scaner) {
-      message.error('初始化相機失敗，請手工輸入');
-      return;
-    }
-    scaner.scan(this.handleScanSuccess);
-    scaner.show();
-    this.handleHideView();
-  }
-
-  handleHideView() {
-    const html = document.querySelector('html');
-    html.style.opacity = '0';
-  }
-
-  handleShowView() {
-    const html = document.querySelector('html');
-    html.style.opacity = '1';
-  }
-
-  handleScanSuccess(err, text) {
-    if (err) {
-      // an error occurred, or the scan was canceled (error code `6`)
-    } else {
-      this.setState({
-        to: text,
+    const { cordova } = window;
+    if (cordova && cordova.plugins.barcodeScanner) {
+      cordova.plugins.barcodeScanner.scan(this.handleScanSuccess, (error) => {
+        message.error(error);
+      }, {
+        formats: 'QR_CODE',
       });
+    } else {
+      message.error('初始化相機失敗，請手工輸入');
     }
-    this.handleShowView();
+  }
+
+  handleScanSuccess = (result) => {
+    // message.success('We got a barcode\n'
+    //   + 'Result: ' + result.text + '\n'
+    //   + 'Format: ' + result.format + '\n'
+    //   + 'Cancelled: ' + result.cancelled);
+    const to = result.text || '';
+    this.setState({
+      to,
+    });
   }
 
   canSubmit() {
