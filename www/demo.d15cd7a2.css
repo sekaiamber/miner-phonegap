@@ -823,6 +823,16 @@ footer {
       -webkit-box-flex: 0;
               flex-grow: 0;
       flex-shrink: 0; }
+  #deposit .btn {
+    color: #fff;
+    background: -webkit-linear-gradient(75deg, #FF7F22 0%, #FFB645 100%);
+    background: linear-gradient(15deg, #FF7F22 0%, #FFB645 100%);
+    font-size: 0.16rem;
+    font-weight: 400;
+    padding: 0.06rem 0.15rem;
+    border-radius: 0.27rem;
+    margin-top: 0.12rem;
+    text-align: center; }
   #deposit .qrcode-container {
     box-shadow: 0 8px 16px 0 rgba(34, 34, 44, 0.1);
     padding: 12px;
@@ -831,16 +841,18 @@ footer {
     #deposit .qrcode-container img {
       width: 1.25rem; }
     #deposit .qrcode-container .btn {
-      color: #fff;
-      background: -webkit-linear-gradient(75deg, #FF7F22 0%, #FFB645 100%);
-      background: linear-gradient(15deg, #FF7F22 0%, #FFB645 100%);
-      font-size: 0.16rem;
-      font-weight: 400;
-      padding: 0.06rem 0.15rem;
-      height: 0.36rem;
-      border-radius: 0.27rem;
       margin: 0 auto;
-      width: 1.25rem; }
+      width: 1.25rem;
+      height: 0.36rem; }
+    #deposit .qrcode-container .desc {
+      color: #22222C;
+      margin-top: 0.12rem; }
+    #deposit .qrcode-container .address {
+      font-size: 0.12rem; }
+  #deposit .bitrabbit {
+    text-align: center;
+    margin-top: 0.24rem;
+    margin-bottom: 0.24rem; }
 
 #loading {
   position: fixed;
