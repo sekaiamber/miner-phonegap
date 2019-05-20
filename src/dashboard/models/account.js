@@ -37,6 +37,8 @@ export default {
   subscriptions: {
     setup({ dispatch, history }) {
       history.listen(({ pathname }) => {
+        const currentUser = localStorage.getItem('member_id');
+        if (!currentUser) return;
         const home = pathToRegexp('/').exec(pathname);
         if (home) {
           dispatch({

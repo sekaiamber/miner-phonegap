@@ -20,8 +20,11 @@ const exp = {
   },
 
   getPrivateToken() {
-    const member_id = localStorage.getItem('member_id') || '';
-    const member_token = localStorage.getItem('member_token') || '';
+    const member_id = localStorage.getItem('member_id');
+    const member_token = localStorage.getItem('member_token');
+    if (!member_id || !member_token) {
+      return '__NO_LOGIN__';
+    }
     const sig = jwt.sign({}, member_token);
     return jwt.sign({
       timestamp: parseInt(new Date().getTime() / 1000, 10),
