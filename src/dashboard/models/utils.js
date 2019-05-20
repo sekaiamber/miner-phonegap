@@ -6,7 +6,6 @@ const pathConfigs = {
     header: {
       title: '首頁',
       style: {
-        backgroundColor: 'transparent',
         color: '#fff',
         position: 'absolute',
       },

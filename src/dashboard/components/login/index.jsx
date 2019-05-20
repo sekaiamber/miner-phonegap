@@ -25,7 +25,6 @@ class NormalLoginForm extends Component {
   }
 
   handleSubmit = () => {
-    message.info(1);
     const { dispatch } = this.props;
     const { login, password } = this.state;
     if (login.length === 0) {
@@ -36,7 +35,6 @@ class NormalLoginForm extends Component {
       message.error('請輸入密碼');
       return;
     }
-    message.info(2);
     dispatch({
       type: 'account/login',
       payload: {

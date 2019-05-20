@@ -6,22 +6,23 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
 import { withRouter } from 'dva/router';
-import Header from '../header';
-import Footer from '../footer';
+import { CSSTransition } from 'react-transition-group';
 
 import './style.scss';
 
 
 class Main extends Component {
-
   render() {
-    const { children } = this.props;
+    const { children, match } = this.props;
     return (
-      <div id="app">
-        <Header />
-        <div id="main">{children}</div>
-        <Footer />
-      </div>
+      <CSSTransition
+        in={match != null}
+        timeout={300}
+        classNames="page"
+        unmountOnExit
+      >
+        <div id="main" className="page">{children}</div>
+      </CSSTransition>
     );
   }
 }

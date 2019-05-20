@@ -30,7 +30,7 @@ class Deposit extends Component {
     saveImage(url, () => {
       message.success('已成功保存到相冊');
     }, () => {
-      message.error('自動保存失敗，請手動截屏');
+      message.error('您的手機不支持自動保存到相冊，請手動截屏');
     });
   }
 

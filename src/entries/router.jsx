@@ -4,6 +4,8 @@ import {
   Router, Route, Switch, Redirect,
 } from 'dva/router';
 import Main from '../dashboard/layout/main'; // 主视图
+import Header from '../dashboard/layout/header'; // 主视图
+import Footer from '../dashboard/layout/footer'; // 主视图
 import Login from '../dashboard/components/login';
 import Index from '../dashboard/components/index';
 import Power from '../dashboard/components/power';
@@ -17,7 +19,7 @@ import Miners from '../dashboard/components/miners';
 import Subuser from '../dashboard/components/subuser';
 import Deposit from '../dashboard/components/deposit';
 import Withdraw from '../dashboard/components/withdraw';
-import NoMatchPage from '../dashboard/components/noMatchPage';
+// import NoMatchPage from '../dashboard/components/noMatchPage';
 
 function PrivateRoute({ component: Component, ...rest }) {
   // TODO: 获取用户
@@ -27,20 +29,20 @@ function PrivateRoute({ component: Component, ...rest }) {
     // 没登录，跳转到登录页
     render = props => <Redirect to={{ pathname: '/login', state: { from: props.location } }} />;
   } else {
-    render = props => <Main><Component {...props} /></Main>;
+    render = ({ match, ...restProps }) => <Main match={match}><Component {...restProps} /></Main>;
   }
   return (
-    <Route
-      {...rest}
-      render={render}
-    />
+    <Route {...rest}>
+      {render}
+    </Route>
   );
 }
 
 function MyRouter(props) {
   return (
     <Router {...props}>
-      <Switch>
+      <div id="app">
+        <Header />
         <PrivateRoute path="/" exact component={Index} />
         <PrivateRoute path="/power" exact component={Power} />
         <PrivateRoute path="/buy" exact component={Buy} />
@@ -54,8 +56,9 @@ function MyRouter(props) {
         <PrivateRoute path="/deposit" exact component={Deposit} />
         <PrivateRoute path="/withdraw" exact component={Withdraw} />
         <Route path="/login" exact component={Login} />
-        <Route component={NoMatchPage} />
-      </Switch>
+        {/* <Route component={NoMatchPage} /> */}
+        <Footer />
+      </div>
     </Router>
   );
 }
