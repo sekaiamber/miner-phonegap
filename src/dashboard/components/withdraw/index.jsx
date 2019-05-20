@@ -58,8 +58,10 @@ class Withdraw extends Component {
   }
 
   handleScan = () => {
+    message.info('T: 點擊');
     const { cordova } = window;
     if (cordova && cordova.plugins.barcodeScanner) {
+      message.info('T2');
       cordova.plugins.barcodeScanner.scan(this.handleScanSuccess, (error) => {
         message.error(error);
       }, {
@@ -75,6 +77,7 @@ class Withdraw extends Component {
     //   + 'Result: ' + result.text + '\n'
     //   + 'Format: ' + result.format + '\n'
     //   + 'Cancelled: ' + result.cancelled);
+    message.info('T3');
     const to = result.text || '';
     this.setState({
       to,
