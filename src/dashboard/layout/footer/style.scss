@@ -6,9 +6,10 @@ footer {
   border-top: #EEEFF0 solid 1px;
   display: flex;
   background: #fff;
-  z-index: 2;
+  z-index: 3;
   transform: translate(0, 0);
   transition: all ease 0.3s;
+  height: 0.72rem;
 
   .item {
     width: 20%;

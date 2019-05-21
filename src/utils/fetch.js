@@ -76,6 +76,30 @@ const fetchPrivate = {
       .then(processData)
       .catch(catchError);
   },
+  patch(url, data, options = {}, form = false) {
+    let body;
+    if (form) {
+      data.append('locale', window.locale);
+      body = data;
+    } else {
+      body = JSON.stringify({
+        // utf8: '✓',
+        locale: window.locale,
+        ...data,
+      });
+    }
+    return fetchlib(url, {
+      headers: getPriveteHeader(),
+      ...options,
+      body,
+      method: 'PATCH',
+      credentials: 'include',
+    })
+      .then(checkStatus)
+      .then(parseJSON)
+      .then(processData)
+      .catch(catchError);
+  },
   put(url, data, options = {}, form = false) {
     let body;
     if (form) {
@@ -158,6 +182,30 @@ const fetch = {
       ...options,
       body,
       method: 'POST',
+      credentials: 'include',
+    })
+      .then(checkStatus)
+      .then(parseJSON)
+      .then(processData)
+      .catch(catchError);
+  },
+  patch(url, data, options = {}, form = false) {
+    let body;
+    if (form) {
+      data.append('locale', window.locale);
+      body = data;
+    } else {
+      body = JSON.stringify({
+        // utf8: '✓',
+        locale: window.locale,
+        ...data,
+      });
+    }
+    return fetchlib(url, {
+      headers: getHeader(),
+      ...options,
+      body,
+      method: 'PATCH',
       credentials: 'include',
     })
       .then(checkStatus)

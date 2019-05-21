@@ -13,10 +13,13 @@ export default {
   subscriptions: {
     setup({ dispatch, history }) {
       history.listen(({ pathname }) => {
-        const test = pathToRegexp('/buy').exec(pathname);
-        if (test) {
+        const buy = pathToRegexp('/buy').exec(pathname);
+        if (buy) {
           dispatch({
             type: 'queryProducts',
+          });
+          dispatch({
+            type: 'account/queryAccount',
           });
         }
       });

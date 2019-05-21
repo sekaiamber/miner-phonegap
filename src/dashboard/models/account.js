@@ -18,6 +18,7 @@ const queryOrders = () => fetch.private.get(QUERYS.QUERY_ORDERS);
 const queryDeposits = () => fetch.private.get(QUERYS.QUERY_DEPOSITS);
 const queryWithdraws = () => fetch.private.get(QUERYS.QUERY_WITHDRAWS);
 const querySubUser = () => fetch.private.get(QUERYS.QUERY_SUB_USER);
+const changeAutoReceive = data => fetch.private.post(QUERYS.QUERY_MY, { auto_receive: data });
 
 export default {
   namespace: 'account',
@@ -283,6 +284,14 @@ export default {
           payload: {
             subuser: data.data,
           },
+        });
+      }
+    },
+    * changeAutoReceive({ payload }, { call, put }) {
+      const data = yield call(changeAutoReceive, payload);
+      if (data.success) {
+        yield put({
+          type: 'queryMy',
         });
       }
     },

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import { connect } from 'dva';
@@ -16,6 +17,14 @@ import optAddPowerImg from '../../../assets/opt_add_power.svg';
 
 
 class Index extends Component {
+  handleAutoReceive = () => {
+    const { autoReceive, dispatch } = this.props;
+    dispatch({
+      type: 'account/changeAutoReceive',
+      payload: !autoReceive,
+    });
+  }
+
   render() {
     const {
       prices, block, boardData, acitivies, autoReceive,
@@ -40,7 +49,7 @@ class Index extends Component {
           </div>
           <Activities data={acitivies} />
           <div className="opt container">
-            <div className={classnames('switch', { on: autoReceive })}>
+            <div className={classnames('switch', { on: autoReceive })} onClick={this.handleAutoReceive}>
               <span>自動領取</span>
             </div>
             <div className="center" />

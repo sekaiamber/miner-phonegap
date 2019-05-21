@@ -65,4 +65,108 @@
       margin-left: 12px;
     }
   }
+
+  .footer {
+    position: fixed;
+    display: flex;
+    bottom: 0.72rem;
+    z-index: 1;
+    height: 0.5rem;
+    align-items: stretch;
+    justify-content: space-between;
+    width: 100%;
+    animation: buy-footer-show 0.3s ease;
+    transform: translate(0, 0);
+
+    .info {
+      font-size: 0.12rem;
+      padding-left: 0.12rem;
+
+      .cost {
+        font-weight: 400;
+      }
+      .discount {
+        color: #6788A2;
+      }
+    }
+
+    .btn {
+      padding: 0 0.12rem;
+      color: #fff;
+      font-weight: 400;
+    }
+
+    .info-container {
+      flex-grow: 1;
+      flex-shrink: 1;
+      border-top: #EEEFF0 solid 1px;
+    }
+
+    .btn-container {
+      flex-grow: 0;
+      flex-shrink: 0;
+      background: linear-gradient(15deg, #FF7F22 0%, #FFB645 100%);
+    }
+
+    .info-container,
+    .btn-container {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .order {
+    &-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      width: 100%;
+      height: 100vh;
+      background: rgba($color: #000000, $alpha: 0.2);
+      font-size: 0.12rem;
+    }
+    &-container {
+      background: #fff;
+      padding: 0.2rem;
+      border-radius: 0.05rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 80%;
+      transform: translate(-50%, -50%);
+
+      .item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.06rem;
+
+        &>div:first-child {
+          color: #6788A2;
+        }
+      }
+    }
+    &-submit {
+      margin-top: 0.24rem;
+      font-size: 0.14rem;
+
+      .btn {
+        padding: 0.06rem 0;
+        background: linear-gradient(15deg, #FF7F22 0%, #FFB645 100%);
+        color: #fff;
+        text-align: center;
+        border-radius: 0.3rem;
+      }
+    }
+  }
+}
+
+@keyframes buy-footer-show {
+  0% {
+    transform: translate(0, 100%);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
 }
