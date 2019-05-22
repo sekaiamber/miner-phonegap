@@ -1,12 +1,12 @@
 import { routerRedux } from 'dva/router';
 import pathToRegexp from 'path-to-regexp';
 import message from '../../utils/message';
-import { loading, removeLoading } from '../../utils/loading';
 import fetch from '../../utils/fetch';
 import jwt from '../../utils/jwt';
 import QUERYS from '../querys';
 
 const login = data => fetch.post(QUERYS.LOGIN, data);
+const logout = () => fetch.private.delete(QUERYS.LOGIN);
 const queryMy = () => fetch.private.get(QUERYS.QUERY_MY);
 const queryAccount = () => fetch.private.get(QUERYS.QUEYR_ACCOUNT);
 const queryAcitivies = () => fetch.private.get(QUERYS.QUERY_ACTIVITIES);
@@ -19,6 +19,7 @@ const queryDeposits = () => fetch.private.get(QUERYS.QUERY_DEPOSITS);
 const queryWithdraws = () => fetch.private.get(QUERYS.QUERY_WITHDRAWS);
 const querySubUser = () => fetch.private.get(QUERYS.QUERY_SUB_USER);
 const changeAutoReceive = data => fetch.private.post(QUERYS.QUERY_MY, { auto_receive: data });
+const submitWithdraw = data => fetch.private.post(QUERYS.QUERY_WITHDRAWS, data);
 
 export default {
   namespace: 'account',
@@ -132,7 +133,12 @@ export default {
   },
   effects: {
     * login({ payload }, { call, put }) {
-      loading('登錄中');
+      yield put({
+        type: 'utils/loading',
+        loading: {
+          text: '登錄中',
+        },
+      });
       const data = yield call(login, payload);
       if (data.success) {
         const token = data.data.member;
@@ -151,7 +157,20 @@ export default {
           goto: '/',
         });
       }
-      removeLoading();
+      yield put({
+        type: 'utils/loading',
+        loading: null,
+      });
+    },
+    * logout(_, { call, put }) {
+      const data = yield call(logout);
+      if (data.success) {
+        message.success('退出成功');
+        yield put({
+          type: 'utils/goto',
+          goto: '/login',
+        });
+      }
     },
     * queryMy(_, { call, put }) {
       const data = yield call(queryMy);
@@ -292,6 +311,15 @@ export default {
       if (data.success) {
         yield put({
           type: 'queryMy',
+        });
+      }
+    },
+    * submitWithdraw({ payload }, { call, put }) {
+      const data = yield call(submitWithdraw, payload);
+      if (data.success) {
+        message.success('申請提現成功');
+        yield put({
+          type: 'queryAccount',
         });
       }
     },

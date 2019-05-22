@@ -125,6 +125,7 @@
       height: 100vh;
       background: rgba($color: #000000, $alpha: 0.2);
       font-size: 0.12rem;
+      animation: buy-modal-show 0.3s ease;
     }
     &-container {
       background: #fff;
@@ -168,5 +169,14 @@
   }
   100% {
     transform: translate(0, 0);
+  }
+}
+
+@keyframes buy-modal-show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

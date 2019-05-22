@@ -81,6 +81,19 @@ class Withdraw extends Component {
     });
   }
 
+  handleSubmit = () => {
+    const { to, amount } = this.state;
+    const { dispatch } = this.props;
+    const payload = {
+      to,
+      amount,
+    };
+    dispatch({
+      type: 'account/withdraw',
+      payload,
+    });
+  }
+
   canSubmit() {
     const { amount, to } = this.state;
     return !(to !== '' && amount !== '' && new Decimal(amount).greaterThan(new Decimal('20')));
@@ -89,7 +102,6 @@ class Withdraw extends Component {
   render() {
     const { to, amount } = this.state;
     const { data } = this.props;
-    console.log(data);
 
     return (
       <div id="withdraw" className="container">
@@ -119,7 +131,7 @@ class Withdraw extends Component {
           </div>
         </div>
         <div className="submit">
-          <button className="btn" disabled={this.canSubmit()}>確認提現</button>
+          <button className="btn" disabled={this.canSubmit()} onClick={this.handleSubmit}>確認提現</button>
         </div>
       </div>
     );

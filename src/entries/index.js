@@ -6,6 +6,14 @@ import models from '../dashboard/models';
 import message from '../utils/message';
 import './index.scss';
 
+// 置localStorage初始值
+if (!localStorage.getItem('member_id')) {
+  localStorage.setItem('member_id', '__EMPTY__');
+}
+if (!localStorage.getItem('member_token')) {
+  localStorage.setItem('member_token', '__EMPTY__');
+}
+
 window.clipboard = new Clipboard('.clipboard-target');
 window.clipboard.on('success', (e) => {
   message.success('複製成功');

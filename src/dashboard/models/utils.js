@@ -114,6 +114,7 @@ export default {
     history: null,
     currentPath: '',
     currentPathConfig: {},
+    loading: null,
   },
   subscriptions: {
     setup({ dispatch, history }) {
@@ -145,8 +146,18 @@ export default {
       const history = yield select(({ utils }) => utils.history);
       history.goBack();
     },
-    * goto({ goto }, { put }) {
+    * goto({ goto }, { select, put }) {
+      const history = yield select(({ utils }) => utils.history);
+      if (history.location.pathname === goto) return;
       yield put(routerRedux.push(goto));
+    },
+    * loading({ loading }, { put }) {
+      yield put({
+        type: 'updateState',
+        payload: {
+          loading,
+        },
+      });
     },
   },
   reducers: {

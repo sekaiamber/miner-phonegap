@@ -24,13 +24,15 @@ import Withdraw from '../dashboard/components/withdraw';
 function PrivateRoute({ component: Component, ...rest }) {
   // TODO: 获取用户
   const currentUser = localStorage.getItem('member_id');
-  let render;
-  if (!currentUser) {
+  if (currentUser === '__EMPTY__' && window._APP_) {
     // 没登录，跳转到登录页
-    render = props => <Redirect to={{ pathname: '/login', state: { from: props.location } }} />;
-  } else {
-    render = ({ match, ...restProps }) => <Main match={match}><Component {...restProps} /></Main>;
+    // render = props => <Redirect to={{ pathname: '/login', state: { from: props.location } }} />;
+    window._APP_._store.dispatch({
+      type: 'utils/goto',
+      goto: '/login',
+    });
   }
+  const render = ({ match, ...restProps }) => <Main match={match}><Component {...restProps} /></Main>;
   return (
     <Route {...rest}>
       {render}

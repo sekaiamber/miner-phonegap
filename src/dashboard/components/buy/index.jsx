@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import classnames from 'classnames';
 import Decimal from 'decimal.js-light';
 import { connect } from 'dva';
+import message from '../../../utils/message';
 
 import './style.scss';
 
@@ -41,6 +42,28 @@ class Buy extends Component {
   handleShowOrder = () => {
     this.setState({
       showOrder: true,
+    });
+  }
+
+  handleCloseModal = (e) => {
+    if (e.currentTarget === e.target) {
+      this.setState({
+        showOrder: false,
+      });
+    }
+  }
+
+  handleSubmitOrder = () => {
+    const { selected } = this.state;
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'product/buy',
+      payload: {
+        product_id: selected.id,
+      },
+      onSuccess: () => {
+        message.success('購買成功');
+      },
     });
   }
 
@@ -98,7 +121,7 @@ class Buy extends Component {
           </div>
         )}
         {showOrder && (
-          <div className="order-modal">
+          <div className="order-modal" onClick={this.handleCloseModal}>
             <div className="order-container">
               <div className="item">
                 <div>訂單金額：</div>
@@ -113,7 +136,7 @@ class Buy extends Component {
                 <div>{orderCost.cost}</div>
               </div>
               <div className="order-submit">
-                <div className="btn">提交訂單</div>
+                <div className="btn" onClick={this.handleSubmitOrder}>提交訂單</div>
               </div>
             </div>
           </div>

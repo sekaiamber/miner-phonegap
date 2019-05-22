@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { Component } from 'react';
 import classnames from 'classnames';
@@ -10,6 +11,13 @@ import './style.scss';
 import avatarImg from '../../../assets/me_avatar.svg';
 
 class Me extends Component {
+  handleLogout = () => {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'account/logout',
+    });
+  }
+
   render() {
     const { userInfo } = this.props;
     return (
@@ -44,7 +52,7 @@ class Me extends Component {
           </Link>
         </div>
         <div className="logout">
-          <a>退出登錄</a>
+          <a onClick={this.handleLogout}>退出登錄</a>
         </div>
       </div>
     );

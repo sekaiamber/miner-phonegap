@@ -542,7 +542,9 @@ footer {
     width: 100%;
     height: 100vh;
     background: rgba(0, 0, 0, 0.2);
-    font-size: 0.12rem; }
+    font-size: 0.12rem;
+    -webkit-animation: buy-modal-show 0.3s ease;
+            animation: buy-modal-show 0.3s ease; }
   #buy .order-container {
     background: #fff;
     padding: 0.2rem;
@@ -590,6 +592,18 @@ footer {
   100% {
     -webkit-transform: translate(0, 0);
             transform: translate(0, 0); } }
+
+@-webkit-keyframes buy-modal-show {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes buy-modal-show {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
 
 #wallet {
   padding-top: 0.56rem; }
@@ -990,25 +1004,6 @@ footer {
       opacity: 0.5; }
   #withdraw .submit {
     margin-top: 0.24rem; }
-
-#loading {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 5; }
-  #loading span {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    background: #fff;
-    padding: 0.04rem 0.08rem;
-    border-radius: 0.03rem;
-    -webkit-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%); }
 
 .noty_layout_mixin, #noty_layout__top, #noty_layout__topLeft, #noty_layout__topCenter, #noty_layout__topRight, #noty_layout__bottom, #noty_layout__bottomLeft, #noty_layout__bottomCenter, #noty_layout__bottomRight, #noty_layout__center, #noty_layout__centerLeft, #noty_layout__centerRight {
   position: fixed;

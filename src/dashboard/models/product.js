@@ -3,6 +3,7 @@ import fetch from '../../utils/fetch';
 import QUERYS from '../querys';
 
 const queryProducts = () => fetch.get(QUERYS.QUERY_PRODUCTS);
+const buy = data => fetch.private.post(QUERYS.QUERY_ORDERS, data);
 
 export default {
   namespace: 'product',
@@ -13,8 +14,8 @@ export default {
   subscriptions: {
     setup({ dispatch, history }) {
       history.listen(({ pathname }) => {
-        const buy = pathToRegexp('/buy').exec(pathname);
-        if (buy) {
+        const buyPage = pathToRegexp('/buy').exec(pathname);
+        if (buyPage) {
           dispatch({
             type: 'queryProducts',
           });
@@ -35,6 +36,15 @@ export default {
             products: data.data.products,
             canBuy: data.data.can_buy,
           },
+        });
+      }
+    },
+    * buy({ payload, onSuccess }, { call, put }) {
+      const data = yield call(buy, payload);
+      if (data.success) {
+        if (onSuccess) onSuccess();
+        yield put({
+          type: 'account/queryAccount',
         });
       }
     },
