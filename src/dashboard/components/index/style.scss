@@ -216,6 +216,11 @@
     position: absolute;
     text-align: center;
     animation: show-activity 0.3s ease;
+
+    .content {
+      animation: index-activity-flow 6s cubic-bezier(0.5, 0, 0.5, 1) alternate-reverse infinite;
+      animation-delay: -3s;
+    }
   }
 }
 
@@ -225,5 +230,17 @@
   }
   100% {
     transform: scale(1);
+  }
+}
+
+@keyframes index-activity-flow {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(0, 50%);
+  }
+  100% {
+    transform: translate(0, 0%);
   }
 }

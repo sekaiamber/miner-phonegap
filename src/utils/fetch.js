@@ -31,6 +31,15 @@ function processData(data) {
   if (data.success === false) {
     data.errors.forEach(e => message.error(e.message ? e.message : e));
   }
+  // 判斷升級
+  if (data.upgrade && data.upgrade.force_upgrade) {
+    window._APP_._store.dispatch({
+      type: 'utils/updateState',
+      payload: {
+        needUpgrade: data.upgrade,
+      },
+    });
+  }
   return data;
 }
 

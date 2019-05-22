@@ -5,8 +5,12 @@ import {
 } from 'dva/router';
 import Main from '../dashboard/layout/main'; // 主视图
 import Header from '../dashboard/layout/header'; // 主视图
+import Upgrade from '../dashboard/layout/upgrade'; // 主视图
+import Loading from '../dashboard/layout/loading'; // 主视图
 import Footer from '../dashboard/layout/footer'; // 主视图
 import Login from '../dashboard/components/login';
+import Signup from '../dashboard/components/signup';
+import ForgetPassword from '../dashboard/components/forgetPassword';
 import Index from '../dashboard/components/index';
 import Power from '../dashboard/components/power';
 import Buy from '../dashboard/components/buy';
@@ -58,8 +62,12 @@ function MyRouter(props) {
         <PrivateRoute path="/deposit" exact component={Deposit} />
         <PrivateRoute path="/withdraw" exact component={Withdraw} />
         <Route path="/login" exact component={Login} />
+        <Route path="/signup" exact component={Signup} />
+        <Route path="/forgetPassword" exact component={ForgetPassword} />
         {/* <Route component={NoMatchPage} /> */}
         <Footer />
+        <Upgrade />
+        <Loading />
       </div>
     </Router>
   );

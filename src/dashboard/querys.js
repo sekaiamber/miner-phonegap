@@ -15,10 +15,20 @@ const QUERYS = {
   QUERY_WITHDRAWS: '/api/v1/withdraws.json',
   QUERY_NOTICE: '/api/v1/notices.json',
   QUERY_SUB_USER: '/api/v1/my/sub_users.json',
+  COLLECT: id => `/api/v1/activities/${id}/collect.json`,
+  SEND_SMS: '/api/v1/sms.json',
+  SEND_FORGET_SMS: '/api/v1/sms/reset_password.json',
+  SIGNUP: '/api/v1/users.json',
+  RESET_PASSWORD: '/api/v1/reset_password.json',
 };
 
 Object.keys(QUERYS).forEach((key) => {
-  QUERYS[key] = 'https://www.basepool.net' + QUERYS[key];
+  if (typeof QUERYS[key] === 'string') {
+    QUERYS[key] = 'https://www.basepool.net' + QUERYS[key];
+  } else if (typeof QUERYS[key] === 'function') {
+    const tmp = QUERYS[key];
+    QUERYS[key] = (...args) => 'https://www.basepool.net' + tmp(...args);
+  }
 });
 
 export default QUERYS;

@@ -96,3 +96,23 @@ a {
   transition: opacity 300ms, transform 300ms;
 }
 
+.my-modal-conainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 20;
+  background: rgba($color: #000000, $alpha: 0.3);
+
+  .my-modal {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border-radius: 0.06rem;
+    padding: 0.2rem;
+    box-shadow: 0 0 7px 0px rgba($color: #000000, $alpha: 0.3);
+  }
+}

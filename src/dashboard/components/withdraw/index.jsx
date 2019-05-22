@@ -89,7 +89,7 @@ class Withdraw extends Component {
       amount,
     };
     dispatch({
-      type: 'account/withdraw',
+      type: 'account/submitWithdraw',
       payload,
     });
   }

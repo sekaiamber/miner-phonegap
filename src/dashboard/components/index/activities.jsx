@@ -1,20 +1,36 @@
-import React from 'react';
-
+import React, { Component } from 'react';
+import { connect } from 'dva';
 import baseImg from '../../../assets/base_shine.svg';
 
-export default function Activities(props) {
-  const { data } = props;
-  const list = data.slice(0, 10);
-  return (
-    <div id="activities">
-      {list.map(item => (
-        <div className="activity" key={item.id} style={{ top: item.position.top * 100 + '%', left: item.position.left * 100 + '%', animationDelay: item.animationDelay }}>
-          <div className="content">
-            <div><img src={baseImg} alt="" /></div>
-            <div>{parseFloat(item.amount).toFixed(2)}</div>
+class Activities extends Component {
+  handleCollect(item) {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'account/collect',
+      payload: item.id,
+    });
+  }
+
+  render() {
+    const { data } = this.props;
+    const list = data.slice(0, 10);
+    return (
+      <div id="activities">
+        {list.map(item => (
+          <div className="activity" key={item.id.toString()} style={{ top: item.position.top * 100 + '%', left: item.position.left * 100 + '%', animationDelay: item.animationDelay }} onClick={this.handleCollect.bind(this, item)}>
+            <div className="content" style={{ animationDelay: item.animation.delay }}>
+              <div><img src={baseImg} alt="" /></div>
+              <div>{parseFloat(item.amount).toFixed(2)}</div>
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
-  );
+        ))}
+      </div>
+    );
+  }
 }
+
+function mapStateToProps() {
+  return {};
+}
+
+export default connect(mapStateToProps)(Activities);

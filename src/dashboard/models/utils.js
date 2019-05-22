@@ -1,5 +1,13 @@
 import { routerRedux } from 'dva/router';
 import pathToRegexp from 'path-to-regexp';
+import message from '../../utils/message';
+import fetch from '../../utils/fetch';
+import QUERYS from '../querys';
+
+const sendSms = data => fetch.post(QUERYS.SEND_SMS, data);
+const sendResetSms = data => fetch.post(QUERYS.SEND_FORGET_SMS, data);
+const signup = data => fetch.post(QUERYS.SIGNUP, data);
+const resetPassword = data => fetch.post(QUERYS.RESET_PASSWORD, data);
 
 const pathConfigs = {
   '/': {
@@ -106,6 +114,27 @@ const pathConfigs = {
       },
     },
   },
+  '/signup': {
+    header: {
+      title: '註冊',
+      icon: {
+        left: 'back',
+      },
+    },
+  },
+  '/login': {
+    header: {
+      title: '登錄賬戶',
+    },
+  },
+  '/forgetPassword': {
+    header: {
+      title: '重置密碼',
+      icon: {
+        left: 'back',
+      },
+    },
+  },
 };
 
 export default {
@@ -115,6 +144,7 @@ export default {
     currentPath: '',
     currentPathConfig: {},
     loading: null,
+    needUpgrade: null,
   },
   subscriptions: {
     setup({ dispatch, history }) {
@@ -158,6 +188,40 @@ export default {
           loading,
         },
       });
+    },
+    * sendSms({ payload, onSuccess }, { call }) {
+      const data = yield call(sendSms, payload);
+      if (data.success) {
+        message.success('已發送，請查看手機');
+        if (onSuccess) onSuccess();
+      }
+    },
+    * sendResetSms({ payload, onSuccess }, { call }) {
+      const data = yield call(sendResetSms, payload);
+      if (data.success) {
+        message.success('已發送，請查看手機');
+        if (onSuccess) onSuccess();
+      }
+    },
+    * signup({ payload }, { call, put }) {
+      const data = yield call(signup, payload);
+      if (data.success) {
+        message.success('註冊成功，請登錄');
+        yield put({
+          type: 'utils/goto',
+          goto: '/login',
+        });
+      }
+    },
+    * resetPassword({ payload }, { call, put }) {
+      const data = yield call(resetPassword, payload);
+      if (data.success) {
+        message.success('重置密碼成功，請登錄');
+        yield put({
+          type: 'utils/goto',
+          goto: '/login',
+        });
+      }
     },
   },
   reducers: {

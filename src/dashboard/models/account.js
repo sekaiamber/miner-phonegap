@@ -20,6 +20,11 @@ const queryWithdraws = () => fetch.private.get(QUERYS.QUERY_WITHDRAWS);
 const querySubUser = () => fetch.private.get(QUERYS.QUERY_SUB_USER);
 const changeAutoReceive = data => fetch.private.post(QUERYS.QUERY_MY, { auto_receive: data });
 const submitWithdraw = data => fetch.private.post(QUERYS.QUERY_WITHDRAWS, data);
+const collect = id => fetch.private.post(QUERYS.COLLECT(id));
+
+function sedoRandom(seed) {
+  return ('0.' + Math.sin(seed).toString().substr(6));
+}
 
 export default {
   namespace: 'account',
@@ -194,20 +199,25 @@ export default {
         });
       }
     },
-    * queryAcitivies(_, { call, put }) {
-      yield put({
-        type: 'updateState',
-        payload: {
-          acitivies: [],
-        },
-      });
+    * queryAcitivies({ remainOld }, { call, put }) {
+      if (!remainOld) {
+        yield put({
+          type: 'updateState',
+          payload: {
+            acitivies: [],
+          },
+        });
+      }
       const data = yield call(queryAcitivies);
       if (data.success) {
         const acitivies = data.data.map(item => ({
           ...item,
           position: {
-            left: 0.05 + Math.random() * 0.8,
-            top: 0.05 + Math.random() * 0.75,
+            left: 0.05 + sedoRandom(item.id) * 0.8,
+            top: 0.05 + sedoRandom(item.id + 1) * 0.75,
+          },
+          animation: {
+            delay: sedoRandom(item.id) * -6 + 's',
           },
         }));
         yield put({
@@ -320,6 +330,16 @@ export default {
         message.success('申請提現成功');
         yield put({
           type: 'queryAccount',
+        });
+      }
+    },
+    * collect({ payload }, { call, put }) {
+      const data = yield call(collect, payload);
+      if (data.success) {
+        message.success('領取成功');
+        yield put({
+          type: 'queryAcitivies',
+          remainOld: true,
         });
       }
     },

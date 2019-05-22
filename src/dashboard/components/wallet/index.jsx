@@ -14,6 +14,14 @@ import walletDepImg from '../../../assets/wallet_deposit.svg';
 import walletWitImg from '../../../assets/wallet_withdraw.svg';
 
 class Wallet extends Component {
+  handleGotoDeposit = () => {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'utils/goto',
+      goto: '/deposit',
+    });
+  }
+
   render() {
     const { userInfo, accountInfo, history } = this.props;
 
@@ -26,7 +34,7 @@ class Wallet extends Component {
               <div className="currency">BASE</div>
               <div className="text">
                 <span>{userInfo.payment_address}</span>
-                <img src={walletQrImg} alt="" />
+                <img src={walletQrImg} alt="" onClick={this.handleGotoDeposit} />
               </div>
             </div>
           </div>

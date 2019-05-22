@@ -44,14 +44,19 @@ class NormalLoginForm extends Component {
     });
   }
 
+  handleGoto(goto) {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'utils/goto',
+      goto,
+    });
+  }
+
   render() {
     const { login, password } = this.state;
 
     return (
-      <div id="login">
-        <header className="no-login">
-          <div className="title">賬戶登錄</div>
-        </header>
+      <div id="login" className="container">
         <div className="logo-container"><img src={logoImg} alt="" /></div>
         <div className="form">
           <div className="item">
@@ -65,8 +70,8 @@ class NormalLoginForm extends Component {
           <button onClick={this.handleSubmit}>登 錄</button>
         </div>
         <div className="opts">
-          <div><a href="#">忘記密碼</a></div>
-          <div>還沒有賬戶？<a href="#">註冊</a></div>
+          <div><a onClick={this.handleGoto.bind(this, '/forgetPassword')}>忘記密碼</a></div>
+          <div>還沒有賬戶？<a onClick={this.handleGoto.bind(this, '/signup')}>註冊</a></div>
         </div>
       </div>
     );
