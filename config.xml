@@ -1,15 +1,16 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.phonegap.helloworld" version="1.0.19" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>pg-test</name>
+<widget id="com.phonegap.helloworld" version="1.0.20" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>BasePool</name>
     <description>
-        Hello World sample application that responds to the deviceready event.
+        BasePool Official
     </description>
     <author email="support@phonegap.com" href="http://phonegap.com">
-        PhoneGap Team
+        BasePool Team
     </author>
     <content src="index.html" />
     <preference name="phonegap-version" value="cli-8.1.1" />
     <preference name="DisallowOverscroll" value="true" />
+    <preference name="SplashMaintainAspectRatio" value="true" />
     <plugin name="cordova-plugin-battery-status" source="npm" spec="~1.1.1" />
     <plugin name="cordova-plugin-camera" source="npm" spec="~2.1.1" />
     <plugin name="cordova-plugin-media-capture" source="npm" spec="~1.2.0" />
@@ -31,12 +32,12 @@
     <plugin name="cordova-plugin-vibration" source="npm" spec="~2.1.0" />
     <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1" />
     <platform name="android">
-        <icon density="ldpi" src="www/res/icon/android/drawable-ldpi-icon.png" />
-        <icon density="mdpi" src="www/res/icon/android/drawable-mdpi-icon.png" />
-        <icon density="hdpi" src="www/res/icon/android/drawable-hdpi-icon.png" />
-        <icon density="xhdpi" src="www/res/icon/android/drawable-xhdpi-icon.png" />
-        <icon density="xxhdpi" src="www/res/icon/android/drawable-xxhdpi-icon.png" />
-        <icon density="xxxhdpi" src="www/res/icon/android/drawable-xxxhdpi-icon.png" />
+        <icon density="ldpi" src="vendors/res/icon/android/drawable-ldpi-icon.png" />
+        <icon density="mdpi" src="vendors/res/icon/android/drawable-mdpi-icon.png" />
+        <icon density="hdpi" src="vendors/res/icon/android/drawable-hdpi-icon.png" />
+        <icon density="xhdpi" src="vendors/res/icon/android/drawable-xhdpi-icon.png" />
+        <icon density="xxhdpi" src="vendors/res/icon/android/drawable-xxhdpi-icon.png" />
+        <icon density="xxxhdpi" src="vendors/res/icon/android/drawable-xxxhdpi-icon.png" />
         <splash density="land-ldpi" src="www/res/screen/android/drawable-land-ldpi-screen.png" />
         <splash density="land-mdpi" src="www/res/screen/android/drawable-land-mdpi-screen.png" />
         <splash density="land-hdpi" src="www/res/screen/android/drawable-land-hdpi-screen.png" />
