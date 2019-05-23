@@ -26,6 +26,9 @@ export default class PullRefresh extends Component {
 
   componentWillUnmount() {
     document.removeEventListener('scroll', this.handlePageScroll);
+    document.removeEventListener('touchstart', this.handleTouchStart);
+    document.removeEventListener('touchend', this.handleTouchEnd);
+    document.removeEventListener('touchmove', this.handleTouchMove);
   }
 
   getDistance() {
