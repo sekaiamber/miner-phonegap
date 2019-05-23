@@ -11,9 +11,11 @@ header {
   color: #2A455A;
   background-color: rgba($color: #fff, $alpha: 0);
   transition: all ease 0.3s;
+  border-bottom: transparent solid 1px;
 
   &.top {
-    background-color: rgba($color: #fff, $alpha: 0.8);
+    background-color: rgba($color: #fff, $alpha: 1);
+    border-bottom-color: #EEEFF0;
   }
 
   .title {

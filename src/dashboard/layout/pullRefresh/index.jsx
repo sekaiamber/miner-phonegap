@@ -4,9 +4,11 @@ import { Spin } from 'antd';
 
 import './style.scss';
 
-const html = document.querySelector('html');
-
 const LOADING_DISTANCE = 100;
+
+const { $ } = window;
+// const $doc = $(document);
+const $win = $(window);
 
 export default class PullRefresh extends Component {
   state = {
@@ -40,9 +42,10 @@ export default class PullRefresh extends Component {
 
   handlePageScroll = () => {
     const { top } = this.state;
-    if (html.scrollTop === 0 && !top) {
+    const scrollTop = $win.scrollTop();
+    if (scrollTop === 0 && !top) {
       this.setState({ top: true });
-    } else if (html.scrollTop > 0 && top) {
+    } else if (scrollTop > 0 && top) {
       this.setState({ top: false });
     }
   }

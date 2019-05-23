@@ -24,7 +24,9 @@ const iconLinks = {
   activitiesDone: '/activities',
 };
 
-const html = document.querySelector('html');
+const { $ } = window;
+// const $doc = $(document);
+const $win = $(window);
 
 class MyHeader extends Component {
   state = {
@@ -63,11 +65,14 @@ class MyHeader extends Component {
 
   handlePageScroll = () => {
     const { top } = this.state;
-    if (html.scrollTop > 50 && !top) {
+    const scrollTop = $win.scrollTop();
+    // const scrollHeight = $doc.height();
+    // const scrollPosition = $win.height() + $win.scrollTop();
+    if (scrollTop > 50 && !top) {
       this.setState({
         top: true,
       });
-    } else if (html.scrollTop < 50 && top) {
+    } else if (scrollTop < 50 && top) {
       this.setState({
         top: false,
       });

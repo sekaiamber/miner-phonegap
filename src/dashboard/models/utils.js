@@ -17,6 +17,7 @@ const pathConfigs = {
         color: '#fff',
         position: 'absolute',
         backgroundColor: 'transparent',
+        borderBottomColor: 'transparent',
       },
       icon: {
         left: 'notices',

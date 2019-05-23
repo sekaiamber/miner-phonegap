@@ -16,9 +16,11 @@ header {
   color: #2A455A;
   background-color: rgba(255, 255, 255, 0);
   -webkit-transition: all ease 0.3s;
-  transition: all ease 0.3s; }
+  transition: all ease 0.3s;
+  border-bottom: transparent solid 1px; }
   header.top {
-    background-color: rgba(255, 255, 255, 0.8); }
+    background-color: white;
+    border-bottom-color: #EEEFF0; }
   header .title {
     width: 100%;
     text-align: center;
