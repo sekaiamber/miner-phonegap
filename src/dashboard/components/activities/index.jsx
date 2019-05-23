@@ -4,14 +4,50 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import { connect } from 'dva';
+import { Spin } from 'antd';
 
 import './style.scss';
 
 import walletBaseImg from '../../../assets/wallet_base.svg';
 
-// images
+const html = document.querySelector('html');
+
 class Activities extends Component {
+  state = {
+    page: 1,
+    loading: false,
+  }
+
+  componentDidMount() {
+    document.addEventListener('scroll', this.handlePageScroll);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('scroll', this.handlePageScroll);
+  }
+
+  handlePageScroll = () => {
+    const { loading, page } = this.state;
+    const { dispatch } = this.props;
+    if (loading) return;
+    if ((html.scrollTop + window.innerHeight + 10) < html.scrollHeight) return;
+    this.setState({
+      loading: true,
+    }, () => {
+      dispatch({
+        type: 'account/queryAcitiviesDone',
+        payload: page + 1,
+        onSuccess: () => {
+          this.setState({
+            loading: false,
+          });
+        },
+      });
+    });
+  }
+
   render() {
+    const { loading } = this.state;
     const { list } = this.props;
 
     return (
@@ -26,6 +62,9 @@ class Activities extends Component {
             <div className="amount">{item.amount}</div>
           </div>
         ))}
+        {loading && (
+          <div className="my-loading"><Spin /></div>
+        )}
       </div>
     );
   }

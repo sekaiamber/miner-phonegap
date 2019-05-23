@@ -6,7 +6,7 @@ const QUERYS = {
   QUEYR_ACCOUNT: '/api/v1/accounts.json',
   QUERY_ACTIVITIES_YESTERDAY: '/api/v1/activities/yesterday.json?page=1&state=submitted',
   QUERY_ACTIVITIES: '/api/v1/activities.json?page=1&state=submitted',
-  QUERY_ACTIVITIES_DONE: '/api/v1/activities.json?page=1&state=done',
+  QUERY_ACTIVITIES_DONE: page => `/api/v1/activities.json?page=${page}&state=done`,
   QUERY_ACTIVITIES_ALL: '/api/v1/activities.json?page=1',
   QUERY_ACTIVITIES_TOTAL: '/api/v1/activities/total.json',
   QUERY_ORDERS: '/api/v1/orders.json',

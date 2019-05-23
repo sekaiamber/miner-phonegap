@@ -12,10 +12,13 @@ header {
   top: 0;
   left: 0;
   width: 100vw;
-  z-index: 2;
+  z-index: 5;
   color: #2A455A;
+  background-color: rgba(255, 255, 255, 0);
   -webkit-transition: all ease 0.3s;
   transition: all ease 0.3s; }
+  header.top {
+    background-color: rgba(255, 255, 255, 0.8); }
   header .title {
     width: 100%;
     text-align: center;
@@ -54,8 +57,6 @@ header {
   padding: 0.2rem 0.2rem 0.12rem; }
   #loading .loading-modal .text {
     margin-top: 0.12rem; }
-  #loading .loading-modal .ant-spin-dot-item {
-    background-color: #FF7F22; }
 
 footer {
   position: fixed;
@@ -235,7 +236,12 @@ footer {
       display: inline-block;
       height: 0.44rem;
       border-radius: 0.22rem 0 0 0.22rem; }
-    #home .block-info div {
+      #home .block-info .wrapper > div {
+        display: -webkit-box;
+        display: flex;
+        -webkit-box-align: center;
+                align-items: center; }
+    #home .block-info .item {
       margin-bottom: 0.09rem; }
   #home .opt {
     display: -webkit-box;
@@ -900,6 +906,9 @@ footer {
       text-overflow: ellipsis; }
     #myActivities .item .time {
       color: rgba(0, 0, 0, 0.4); }
+  #myActivities .my-loading {
+    margin-top: 0.2rem;
+    text-align: center; }
 
 #invite {
   margin-top: 0.56rem;
@@ -1476,4 +1485,118 @@ a {
     border-radius: 0.06rem;
     padding: 0.2rem;
     box-shadow: 0 0 7px 0px rgba(0, 0, 0, 0.3); }
+
+#app .ant-spin-dot-item {
+  background-color: #FF7F22; }
+
+.ptr-element {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  color: #aaa;
+  z-index: 4;
+  text-align: center;
+  height: 50px;
+  pointer-events: none; }
+
+.ptr-element .genericon {
+  opacity: .6;
+  font-size: 34px;
+  width: auto;
+  height: auto;
+  -webkit-transition: all .25s ease;
+  transition: all .25s ease;
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+      transform: rotate(90deg);
+  margin-top: 5px; }
+
+.ptr-refresh .ptr-element .genericon {
+  -webkit-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+      transform: rotate(270deg); }
+
+.ptr-loading .ptr-element .genericon,
+.ptr-reset .ptr-element .genericon {
+  display: none; }
+
+.spin-loading {
+  position: absolute;
+  top: 0.5rem;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+      -ms-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  background: #fff;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 0.2rem;
+  padding-top: 0.1rem;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: all ease 0.3s;
+  transition: all ease 0.3s; }
+
+.ptr-loading .spin-loading {
+  opacity: 1; }
+
+.loading span {
+  display: inline-block;
+  vertical-align: middle;
+  width: 10px;
+  height: 10px;
+  margin-right: 3px;
+  -webkit-transform: scale(0.3);
+  -ms-transform: scale(0.3);
+      transform: scale(0.3);
+  border-radius: 50%;
+  -webkit-animation: ptr-loading 0.4s infinite alternate;
+  animation: ptr-loading 0.4s infinite alternate; }
+
+.loading-ptr-1 {
+  -webkit-animation-delay: 0;
+  animation-delay: 0 !important; }
+
+.loading-ptr-2 {
+  -webkit-animation-delay: 0.2s;
+  animation-delay: 0.2s !important; }
+
+.loading-ptr-3 {
+  -webkit-animation-delay: 0.4s;
+  animation-delay: 0.4s !important; }
+
+@-webkit-keyframes ptr-loading {
+  0% {
+    -webkit-transform: translateY(0) scale(0.3);
+    transform: translateY(0) scale(0.3);
+    opacity: 0; }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    background-color: #333;
+    opacity: 1; } }
+
+@keyframes ptr-loading {
+  0% {
+    -webkit-transform: translateY(0) scale(0.3);
+    transform: translateY(0) scale(0.3);
+    opacity: 0; }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    background-color: #333;
+    opacity: 1; } }
+
+.ptr-loading .refresh-view, .ptr-reset .refresh-view,
+.ptr-loading .ptr-element, .ptr-reset .ptr-element {
+  -webkit-transition: all .25s ease;
+  transition: all .25s ease; }
+
+.ptr-reset .refresh-view {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0); }
+
+/* react-pull-to-refresh CSS */
 

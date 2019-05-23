@@ -16,6 +16,7 @@ const pathConfigs = {
       style: {
         color: '#fff',
         position: 'absolute',
+        backgroundColor: 'transparent',
       },
       icon: {
         left: 'notices',
@@ -25,6 +26,19 @@ const pathConfigs = {
     footer: {
       activeNav: 0,
     },
+    refresh: [{
+      type: 'account/queryMy',
+    }, {
+      type: 'account/queryAccount',
+    }, {
+      type: 'account/queryAcitivies',
+    }, {
+      type: 'account/queryAcitiviesYesterday',
+    }, {
+      type: 'market/queryMarket',
+    }, {
+      type: 'market/queryBlock',
+    }],
   },
   '/power': {
     header: {
@@ -33,6 +47,15 @@ const pathConfigs = {
     footer: {
       activeNav: 1,
     },
+    refresh: [{
+      type: 'account/queryMy',
+    }, {
+      type: 'account/queryAccount',
+    }, {
+      type: 'account/queryOrders',
+    }, {
+      type: 'account/queryAcitiviesYesterday',
+    }],
   },
   '/buy': {
     header: {
@@ -41,6 +64,11 @@ const pathConfigs = {
     footer: {
       activeNav: 2,
     },
+    refresh: [{
+      type: 'product/queryProducts',
+    }, {
+      type: 'account/queryAccount',
+    }],
   },
   '/wallet': {
     header: {
@@ -49,6 +77,13 @@ const pathConfigs = {
     footer: {
       activeNav: 3,
     },
+    refresh: [{
+      type: 'account/queryMy',
+    }, {
+      type: 'account/queryAccount',
+    }, {
+      type: 'account/queryHistory',
+    }],
   },
   '/me': {
     header: {
@@ -57,6 +92,9 @@ const pathConfigs = {
     footer: {
       activeNav: 4,
     },
+    refresh: [{
+      type: 'account/queryMy',
+    }],
   },
   '/notice': {
     header: {
@@ -65,6 +103,9 @@ const pathConfigs = {
         left: 'back',
       },
     },
+    refresh: [{
+      type: 'notice/queryNotices',
+    }],
   },
   '/activities': {
     header: {
@@ -73,6 +114,10 @@ const pathConfigs = {
         left: 'back',
       },
     },
+    refresh: [{
+      type: 'account/queryAcitiviesDone',
+      payload: 1,
+    }],
   },
   '/invite': {
     header: {
@@ -81,6 +126,9 @@ const pathConfigs = {
         left: 'back',
       },
     },
+    refresh: [{
+      type: 'account/queryMy',
+    }],
   },
   '/miners': {
     header: {
@@ -89,6 +137,11 @@ const pathConfigs = {
         left: 'back',
       },
     },
+    refresh: [{
+      type: 'account/queryAcitiviesAll',
+    }, {
+      type: 'account/queryAcitiviesTotal',
+    }],
   },
   '/subuser': {
     header: {
@@ -97,6 +150,9 @@ const pathConfigs = {
         left: 'back',
       },
     },
+    refresh: [{
+      type: 'account/querySubUser',
+    }],
   },
   '/deposit': {
     header: {
@@ -105,6 +161,9 @@ const pathConfigs = {
         left: 'back',
       },
     },
+    refresh: [{
+      type: 'account/queryMy',
+    }],
   },
   '/withdraw': {
     header: {
@@ -113,6 +172,9 @@ const pathConfigs = {
         left: 'back',
       },
     },
+    refresh: [{
+      type: 'account/queryAccount',
+    }],
   },
   '/signup': {
     header: {
@@ -137,6 +199,8 @@ const pathConfigs = {
   },
 };
 
+let originDispatch;
+
 export default {
   namespace: 'utils',
   state: {
@@ -148,6 +212,7 @@ export default {
   },
   subscriptions: {
     setup({ dispatch, history }) {
+      originDispatch = dispatch;
       dispatch({
         type: 'updateState',
         payload: {
@@ -161,6 +226,10 @@ export default {
             currentPath: pathname,
             currentPathConfig: pathConfigs[pathname] || {},
           },
+        });
+        dispatch({
+          type: 'refreshPage',
+          pathname,
         });
         // const test = pathToRegexp(router.test).exec(pathname);
         // if (test) {
@@ -222,6 +291,29 @@ export default {
           goto: '/login',
         });
       }
+    },
+    * refreshPage({ pathname, onSuccess }, { select, put }) {
+      let p = pathname;
+      if (!p) {
+        p = yield select(({ utils }) => utils.currentPath);
+      }
+      const pathes = Object.keys(pathConfigs);
+      for (let i = 0; i < pathes.length; i += 1) {
+        const path = pathes[i];
+        const test = pathToRegexp(path).exec(p);
+        if (test) {
+          const config = pathConfigs[path];
+          if (!config) return;
+          const { refresh } = config;
+          if (refresh) {
+            for (let j = 0; j < refresh.length; j += 1) {
+              const params = refresh[j];
+              yield put(params);
+            }
+          }
+        }
+      }
+      if (onSuccess) onSuccess();
     },
   },
   reducers: {

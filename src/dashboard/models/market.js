@@ -39,21 +39,7 @@ export default {
       power: 0,
     },
   },
-  subscriptions: {
-    setup({ dispatch, history }) {
-      history.listen(({ pathname }) => {
-        const test = pathToRegexp('/').exec(pathname);
-        if (test) {
-          dispatch({
-            type: 'queryMarket',
-          });
-          dispatch({
-            type: 'queryBlock',
-          });
-        }
-      });
-    },
-  },
+  subscriptions: {},
   effects: {
     * queryMarket(_, { call, put }) {
       const data = yield call(queryMarket);

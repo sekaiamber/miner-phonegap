@@ -10,7 +10,7 @@ const logout = () => fetch.private.delete(QUERYS.LOGIN);
 const queryMy = () => fetch.private.get(QUERYS.QUERY_MY);
 const queryAccount = () => fetch.private.get(QUERYS.QUEYR_ACCOUNT);
 const queryAcitivies = () => fetch.private.get(QUERYS.QUERY_ACTIVITIES);
-const queryAcitiviesDone = () => fetch.private.get(QUERYS.QUERY_ACTIVITIES_DONE);
+const queryAcitiviesDone = page => fetch.private.get(QUERYS.QUERY_ACTIVITIES_DONE(page));
 const queryAcitiviesAll = () => fetch.private.get(QUERYS.QUERY_ACTIVITIES_ALL);
 const queryAcitiviesYesterday = () => fetch.private.get(QUERYS.QUERY_ACTIVITIES_YESTERDAY);
 const queryAcitiviesTotal = () => fetch.private.get(QUERYS.QUERY_ACTIVITIES_TOTAL);
@@ -41,101 +41,7 @@ export default {
     history: [],
     subuser: [],
   },
-  subscriptions: {
-    setup({ dispatch, history }) {
-      history.listen(({ pathname }) => {
-        const currentUser = localStorage.getItem('member_id');
-        if (!currentUser) return;
-        const home = pathToRegexp('/').exec(pathname);
-        if (home) {
-          dispatch({
-            type: 'queryMy',
-          });
-          dispatch({
-            type: 'queryAccount',
-          });
-          dispatch({
-            type: 'queryAcitivies',
-          });
-          dispatch({
-            type: 'queryAcitiviesYesterday',
-          });
-        }
-        const power = pathToRegexp('/power').exec(pathname);
-        if (power) {
-          dispatch({
-            type: 'queryMy',
-          });
-          dispatch({
-            type: 'queryAccount',
-          });
-          dispatch({
-            type: 'queryOrders',
-          });
-          dispatch({
-            type: 'queryAcitiviesYesterday',
-          });
-        }
-        const wallet = pathToRegexp('/wallet').exec(pathname);
-        if (wallet) {
-          dispatch({
-            type: 'queryMy',
-          });
-          dispatch({
-            type: 'queryAccount',
-          });
-          dispatch({
-            type: 'queryHistory',
-          });
-        }
-        const me = pathToRegexp('/me').exec(pathname);
-        if (me) {
-          dispatch({
-            type: 'queryMy',
-          });
-        }
-        const invite = pathToRegexp('/invite').exec(pathname);
-        if (invite) {
-          dispatch({
-            type: 'queryMy',
-          });
-        }
-        const deposit = pathToRegexp('/deposit').exec(pathname);
-        if (deposit) {
-          dispatch({
-            type: 'queryMy',
-          });
-        }
-        const withdraw = pathToRegexp('/withdraw').exec(pathname);
-        if (withdraw) {
-          dispatch({
-            type: 'queryAccount',
-          });
-        }
-        const activities = pathToRegexp('/activities').exec(pathname);
-        if (activities) {
-          dispatch({
-            type: 'queryAcitiviesDone',
-          });
-        }
-        const subuser = pathToRegexp('/subuser').exec(pathname);
-        if (subuser) {
-          dispatch({
-            type: 'querySubUser',
-          });
-        }
-        const miners = pathToRegexp('/miners').exec(pathname);
-        if (miners) {
-          dispatch({
-            type: 'queryAcitiviesAll',
-          });
-          dispatch({
-            type: 'queryAcitiviesTotal',
-          });
-        }
-      });
-    },
-  },
+  subscriptions: {},
   effects: {
     * login({ payload }, { call, put }) {
       yield put({
@@ -228,15 +134,25 @@ export default {
         });
       }
     },
-    * queryAcitiviesDone(_, { call, put }) {
-      const data = yield call(queryAcitiviesDone);
-      if (data.success) {
+    * queryAcitiviesDone({ payload, onSuccess }, { select, call, put }) {
+      if (payload === 1) {
         yield put({
           type: 'updateState',
           payload: {
-            acitiviesDone: data.data,
+            acitiviesDone: [],
           },
         });
+      }
+      const data = yield call(queryAcitiviesDone, payload);
+      if (data.success) {
+        const acitiviesDone = yield select(({ account }) => account.acitiviesDone);
+        yield put({
+          type: 'updateState',
+          payload: {
+            acitiviesDone: acitiviesDone.concat(data.data),
+          },
+        });
+        if (onSuccess) onSuccess();
       }
     },
     * queryAcitiviesAll(_, { call, put }) {

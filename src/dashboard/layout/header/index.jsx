@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { Component } from 'react';
+import classnames from 'classnames';
 import { connect } from 'dva';
 import { Link } from 'dva/router';
 
@@ -23,7 +24,21 @@ const iconLinks = {
   activitiesDone: '/activities',
 };
 
+const html = document.querySelector('html');
+
 class MyHeader extends Component {
+  state = {
+    top: false,
+  }
+
+  componentDidMount() {
+    document.addEventListener('scroll', this.handlePageScroll);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('scroll', this.handlePageScroll);
+  }
+
   getIcon(tag) {
     if (tag === 'back') {
       return (
@@ -46,11 +61,25 @@ class MyHeader extends Component {
     });
   }
 
+  handlePageScroll = () => {
+    const { top } = this.state;
+    if (html.scrollTop > 50 && !top) {
+      this.setState({
+        top: true,
+      });
+    } else if (html.scrollTop < 50 && top) {
+      this.setState({
+        top: false,
+      });
+    }
+  }
+
   render() {
+    const { top } = this.state;
     const { config } = this.props;
 
     return (
-      <header style={config.style} className="container">
+      <header style={config.style} className={classnames('container', { top })}>
         <div className="icon-container">
           {config.icon && config.icon.left && this.getIcon(config.icon.left)}
         </div>

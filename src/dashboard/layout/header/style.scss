@@ -7,9 +7,14 @@ header {
   top: 0;
   left: 0;
   width: 100vw;
-  z-index: 2;
+  z-index: 5;
   color: #2A455A;
+  background-color: rgba($color: #fff, $alpha: 0);
   transition: all ease 0.3s;
+
+  &.top {
+    background-color: rgba($color: #fff, $alpha: 0.8);
+  }
 
   .title {
     width: 100%;

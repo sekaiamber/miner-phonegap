@@ -1,8 +1,11 @@
 /* eslint-disable react/destructuring-assignment */
-import React from 'react';
+import React, { Component } from 'react';
 import {
   Router, Route, Switch, Redirect,
 } from 'dva/router';
+import { connect } from 'dva';
+import ReactPullToRefresh from 'react-pull-to-refresh';
+import { Spin } from 'antd';
 import Main from '../dashboard/layout/main'; // 主视图
 import Header from '../dashboard/layout/header'; // 主视图
 import Upgrade from '../dashboard/layout/upgrade'; // 主视图
@@ -25,7 +28,7 @@ import Deposit from '../dashboard/components/deposit';
 import Withdraw from '../dashboard/components/withdraw';
 // import NoMatchPage from '../dashboard/components/noMatchPage';
 
-function PrivateRoute({ component: Component, ...rest }) {
+function PrivateRoute({ component: C, ...rest }) {
   // TODO: 获取用户
   const currentUser = localStorage.getItem('member_id');
   if (currentUser === '__EMPTY__' && window._APP_) {
@@ -36,7 +39,7 @@ function PrivateRoute({ component: Component, ...rest }) {
       goto: '/login',
     });
   }
-  const render = ({ match, ...restProps }) => <Main match={match}><Component {...restProps} /></Main>;
+  const render = ({ match, ...restProps }) => <Main match={match}><C {...restProps} /></Main>;
   return (
     <Route {...rest}>
       {render}
@@ -44,38 +47,64 @@ function PrivateRoute({ component: Component, ...rest }) {
   );
 }
 
-function MyRouter(props) {
-  return (
-    <Router {...props}>
-      <div id="app">
-        <Header />
-        <PrivateRoute path="/" exact component={Index} />
-        <PrivateRoute path="/power" exact component={Power} />
-        <PrivateRoute path="/buy" exact component={Buy} />
-        <PrivateRoute path="/wallet" exact component={Wallet} />
-        <PrivateRoute path="/me" exact component={Me} />
-        <PrivateRoute path="/notice" exact component={Notice} />
-        <PrivateRoute path="/activities" exact component={Activities} />
-        <PrivateRoute path="/invite" exact component={Invite} />
-        <PrivateRoute path="/miners" exact component={Miners} />
-        <PrivateRoute path="/subuser" exact component={Subuser} />
-        <PrivateRoute path="/deposit" exact component={Deposit} />
-        <PrivateRoute path="/withdraw" exact component={Withdraw} />
-        <Route path="/login" exact component={Login} />
-        <Route path="/signup" exact component={Signup} />
-        <Route path="/forgetPassword" exact component={ForgetPassword} />
-        {/* <Route component={NoMatchPage} /> */}
-        <Footer />
-        <Upgrade />
-        <Loading />
-      </div>
-    </Router>
-  );
+class MyRouter extends Component {
+  handleRefresh = (resolve) => {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'utils/refreshPage',
+      onSuccess: resolve,
+    });
+  }
+
+  render() {
+    const { props } = this;
+    return (
+      <Router {...props}>
+        <div id="app">
+          <Header />
+          <ReactPullToRefresh
+            onRefresh={this.handleRefresh}
+            loading={(
+              <div className="spin-loading">
+                <Spin />
+              </div>
+            )}
+          >
+            <PrivateRoute path="/" exact component={Index} />
+            <PrivateRoute path="/power" exact component={Power} />
+            <PrivateRoute path="/buy" exact component={Buy} />
+            <PrivateRoute path="/wallet" exact component={Wallet} />
+            <PrivateRoute path="/me" exact component={Me} />
+            <PrivateRoute path="/notice" exact component={Notice} />
+            <PrivateRoute path="/activities" exact component={Activities} />
+            <PrivateRoute path="/invite" exact component={Invite} />
+            <PrivateRoute path="/miners" exact component={Miners} />
+            <PrivateRoute path="/subuser" exact component={Subuser} />
+            <PrivateRoute path="/deposit" exact component={Deposit} />
+            <PrivateRoute path="/withdraw" exact component={Withdraw} />
+            <Route path="/login" exact component={Login} />
+            <Route path="/signup" exact component={Signup} />
+            <Route path="/forgetPassword" exact component={ForgetPassword} />
+            {/* <Route component={NoMatchPage} /> */}
+          </ReactPullToRefresh>
+          <Footer />
+          <Upgrade />
+          <Loading />
+        </div>
+      </Router>
+    );
+  }
 }
+
+function mapStateToProps() {
+  return {};
+}
+
+const MyRouterWrapper = connect(mapStateToProps)(MyRouter);
 
 function RouterConfig({ history }) {
   return (
-    <MyRouter history={history} />
+    <MyRouterWrapper history={history} />
   );
 }
 

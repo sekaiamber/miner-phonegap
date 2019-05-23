@@ -11,21 +11,7 @@ export default {
     products: [],
     canBuy: false,
   },
-  subscriptions: {
-    setup({ dispatch, history }) {
-      history.listen(({ pathname }) => {
-        const buyPage = pathToRegexp('/buy').exec(pathname);
-        if (buyPage) {
-          dispatch({
-            type: 'queryProducts',
-          });
-          dispatch({
-            type: 'account/queryAccount',
-          });
-        }
-      });
-    },
-  },
+  subscriptions: {},
   effects: {
     * queryProducts(_, { call, put }) {
       const data = yield call(queryProducts);

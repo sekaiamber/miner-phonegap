@@ -88,6 +88,7 @@
     "qs": "^6.7.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
+    "react-pull-to-refresh": "^1.1.2",
     "react-transition-group": "^4.0.1"
   },
   "cordova": {

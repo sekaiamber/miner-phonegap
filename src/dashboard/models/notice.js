@@ -9,18 +9,7 @@ export default {
   state: {
     notices: [],
   },
-  subscriptions: {
-    setup({ dispatch, history }) {
-      history.listen(({ pathname }) => {
-        const notice = pathToRegexp('/notice').exec(pathname);
-        if (notice) {
-          dispatch({
-            type: 'queryNotices',
-          });
-        }
-      });
-    },
-  },
+  subscriptions: {},
   effects: {
     * queryNotices(_, { call, put }) {
       const data = yield call(queryNotices);

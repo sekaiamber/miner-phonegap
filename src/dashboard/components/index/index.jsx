@@ -34,17 +34,21 @@ class Index extends Component {
       <div>
         <div id="home">
           <div className="block-info">
-            <div>
-              <span className="wrapper">
-                <span><img src={blockHeightImg} alt="" /></span>
-                <span>{block.height}</span>
-              </span>
+            <div className="item">
+              <div className="wrapper">
+                <div>
+                  <div><img src={blockHeightImg} alt="" /></div>
+                  <div>{block.height}</div>
+                </div>
+              </div>
             </div>
-            <div>
-              <span className="wrapper">
-                <span><img src={blockPowerImg} alt="" /></span>
-                <span>{block.power}</span>
-              </span>
+            <div className="item">
+              <div className="wrapper">
+                <div>
+                  <div><img src={blockPowerImg} alt="" /></div>
+                  <div>{block.power}</div>
+                </div>
+              </div>
             </div>
           </div>
           <Activities data={acitivies} />
