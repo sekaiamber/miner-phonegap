@@ -4,13 +4,11 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import { connect } from 'dva';
-import { Spin } from 'antd';
+import { Spin, message } from 'antd';
 
 import './style.scss';
 
 import walletBaseImg from '../../../assets/wallet_base.svg';
-
-const html = document.querySelector('html');
 
 class Activities extends Component {
   state = {
@@ -22,7 +20,6 @@ class Activities extends Component {
     const { loading, page } = this.state;
     const { dispatch } = this.props;
     if (loading) return;
-    if ((html.scrollTop + window.innerHeight + 10) < html.scrollHeight) return;
     this.setState({
       loading: true,
     }, () => {
