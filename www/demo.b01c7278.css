@@ -931,6 +931,14 @@ footer {
   #myActivities .my-loading {
     margin-top: 0.2rem;
     text-align: center; }
+  #myActivities .btn {
+    -webkit-box-align: center;
+            align-items: center;
+    box-shadow: 0 8px 16px 0 rgba(34, 34, 44, 0.1);
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    text-align: center; }
 
 #invite {
   margin-top: 0.56rem;

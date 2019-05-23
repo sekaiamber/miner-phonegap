@@ -18,15 +18,7 @@ class Activities extends Component {
     loading: false,
   }
 
-  componentDidMount() {
-    document.addEventListener('scroll', this.handlePageScroll);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('scroll', this.handlePageScroll);
-  }
-
-  handlePageScroll = () => {
+  handleShowNextPage = () => {
     const { loading, page } = this.state;
     const { dispatch } = this.props;
     if (loading) return;
@@ -63,8 +55,10 @@ class Activities extends Component {
             <div className="amount">{item.amount}</div>
           </div>
         ))}
-        {loading && (
+        {loading ? (
           <div className="my-loading"><Spin /></div>
+        ) : (
+          <div className="btn" onClick={this.handleShowNextPage}>显示更多</div>
         )}
       </div>
     );
