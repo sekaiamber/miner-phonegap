@@ -4,13 +4,14 @@ import {
   Router, Route, Switch, Redirect,
 } from 'dva/router';
 import { connect } from 'dva';
-import ReactPullToRefresh from 'react-pull-to-refresh';
+// import ReactPullToRefresh from 'react-pull2refresh';
 import { Spin } from 'antd';
 import Main from '../dashboard/layout/main'; // 主视图
 import Header from '../dashboard/layout/header'; // 主视图
 import Upgrade from '../dashboard/layout/upgrade'; // 主视图
 import Loading from '../dashboard/layout/loading'; // 主视图
 import Footer from '../dashboard/layout/footer'; // 主视图
+import PullRefresh from '../dashboard/layout/pullRefresh'; // 主视图
 import Login from '../dashboard/components/login';
 import Signup from '../dashboard/components/signup';
 import ForgetPassword from '../dashboard/components/forgetPassword';
@@ -62,31 +63,23 @@ class MyRouter extends Component {
       <Router {...props}>
         <div id="app">
           <Header />
-          <ReactPullToRefresh
-            onRefresh={this.handleRefresh}
-            loading={(
-              <div className="spin-loading">
-                <Spin />
-              </div>
-            )}
-          >
-            <PrivateRoute path="/" exact component={Index} />
-            <PrivateRoute path="/power" exact component={Power} />
-            <PrivateRoute path="/buy" exact component={Buy} />
-            <PrivateRoute path="/wallet" exact component={Wallet} />
-            <PrivateRoute path="/me" exact component={Me} />
-            <PrivateRoute path="/notice" exact component={Notice} />
-            <PrivateRoute path="/activities" exact component={Activities} />
-            <PrivateRoute path="/invite" exact component={Invite} />
-            <PrivateRoute path="/miners" exact component={Miners} />
-            <PrivateRoute path="/subuser" exact component={Subuser} />
-            <PrivateRoute path="/deposit" exact component={Deposit} />
-            <PrivateRoute path="/withdraw" exact component={Withdraw} />
-            <Route path="/login" exact component={Login} />
-            <Route path="/signup" exact component={Signup} />
-            <Route path="/forgetPassword" exact component={ForgetPassword} />
-            {/* <Route component={NoMatchPage} /> */}
-          </ReactPullToRefresh>
+          <PullRefresh onRefresh={this.handleRefresh} />
+          <PrivateRoute path="/" exact component={Index} />
+          <PrivateRoute path="/power" exact component={Power} />
+          <PrivateRoute path="/buy" exact component={Buy} />
+          <PrivateRoute path="/wallet" exact component={Wallet} />
+          <PrivateRoute path="/me" exact component={Me} />
+          <PrivateRoute path="/notice" exact component={Notice} />
+          <PrivateRoute path="/activities" exact component={Activities} />
+          <PrivateRoute path="/invite" exact component={Invite} />
+          <PrivateRoute path="/miners" exact component={Miners} />
+          <PrivateRoute path="/subuser" exact component={Subuser} />
+          <PrivateRoute path="/deposit" exact component={Deposit} />
+          <PrivateRoute path="/withdraw" exact component={Withdraw} />
+          <Route path="/login" exact component={Login} />
+          <Route path="/signup" exact component={Signup} />
+          <Route path="/forgetPassword" exact component={ForgetPassword} />
+          {/* <Route component={NoMatchPage} /> */}
           <Footer />
           <Upgrade />
           <Loading />
