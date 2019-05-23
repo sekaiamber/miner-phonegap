@@ -14,6 +14,7 @@ export default class PullRefresh extends Component {
     dragging: false,
     distanceStart: 0,
     distanceEnd: 0,
+    loading: false,
   }
 
   componentDidMount() {
@@ -44,6 +45,8 @@ export default class PullRefresh extends Component {
   }
 
   handleTouchStart = (e) => {
+    const { loading } = this.state;
+    if (loading) return;
     const targetTouch = e.targetTouches[0];
     const y = targetTouch.screenY;
     this.setState({
@@ -54,6 +57,8 @@ export default class PullRefresh extends Component {
   }
 
   handleTouchEnd = () => {
+    const { loading } = this.state;
+    if (loading) return;
     this.setState({
       dragging: false,
     }, () => {
@@ -62,6 +67,7 @@ export default class PullRefresh extends Component {
         this.setState({
           distanceStart: 0,
           distanceEnd: 100,
+          loading: true,
         }, () => {
           const { onRefresh } = this.props;
           if (onRefresh) {
@@ -70,6 +76,7 @@ export default class PullRefresh extends Component {
                 this.setState({
                   distanceStart: 0,
                   distanceEnd: 0,
+                  loading: false,
                 });
               }, 500);
             });
@@ -85,8 +92,9 @@ export default class PullRefresh extends Component {
   }
 
   handleTouchMove = (e) => {
-    const { top, dragging: start } = this.state;
-    if (!start) return;
+    const { top, dragging } = this.state;
+    const { loading } = this.state;
+    if (loading || !dragging) return;
     const targetTouch = e.targetTouches[0];
     const y = targetTouch.screenY;
     if (top) {
@@ -103,7 +111,7 @@ export default class PullRefresh extends Component {
   }
 
   render() {
-    const { top, dragging } = this.state;
+    const { dragging } = this.state;
     // console.log();
     const distance = this.getDistance();
     return (

@@ -40,6 +40,7 @@ class Activities extends Component {
         onSuccess: () => {
           this.setState({
             loading: false,
+            page: page + 1,
           });
         },
       });
