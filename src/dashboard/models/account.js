@@ -233,10 +233,18 @@ export default {
       }
     },
     * changeAutoReceive({ payload }, { call, put }) {
+      yield put({
+        type: 'utils/loading',
+        loading: {},
+      });
       const data = yield call(changeAutoReceive, payload);
       if (data.success) {
         yield put({
           type: 'queryMy',
+        });
+        yield put({
+          type: 'utils/loading',
+          loading: null,
         });
       }
     },
