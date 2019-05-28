@@ -25,6 +25,9 @@ window.clipboard.on('error', () => {
 });
 
 function render() {
+  if (localStorage.getItem('member_id') === '__EMPTY__') {
+    window.location.hash = '/login';
+  }
   const app = dva();
   Object.keys(models).forEach((key) => {
     app.model(models[key]);

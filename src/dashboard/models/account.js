@@ -77,6 +77,8 @@ export default {
       const data = yield call(logout);
       if (data.success) {
         message.success('退出成功');
+        localStorage.setItem('member_id', '__EMPTY__');
+        localStorage.setItem('member_token', '__EMPTY__');
         yield put({
           type: 'utils/goto',
           goto: '/login',

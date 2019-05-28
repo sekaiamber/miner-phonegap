@@ -39,5 +39,16 @@
 // export default obj;
 import { message } from 'antd';
 
-export default message;
+const ret = {};
+const lastContent = {};
 
+['error', 'info', 'loading', 'success', 'warn', 'warning'].forEach((key) => {
+  lastContent[key] = '';
+  ret[key] = (content, ...rest) => {
+    if (lastContent[key] === content) return;
+    lastContent[key] = content;
+    message[key](content, ...rest);
+  };
+});
+
+export default ret;

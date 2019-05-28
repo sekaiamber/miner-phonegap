@@ -14,6 +14,7 @@ function checkStatus(response) {
     return response;
   }
   if (window._APP_ && response.status === 401) {
+    message.info('登錄過期，請重新登錄');
     window._APP_._store.dispatch({
       type: 'utils/goto',
       goto: '/login',
@@ -60,8 +61,31 @@ function getPriveteHeader() {
   };
 }
 
+function privateBroke() {
+  const currentUser = localStorage.getItem('member_id');
+  const broke = currentUser === '__EMPTY__';
+  if (broke) {
+    setImmediate(() => {
+      if (window._APP_) {
+        window._APP_._store.dispatch({
+          type: 'utils/goto',
+          goto: '/login',
+        });
+      }
+    });
+  }
+  return broke;
+}
+
 const fetchPrivate = {
   post(url, data, options = {}, form = false) {
+    if (privateBroke()) {
+      return new Promise((resolve) => {
+        resolve({
+          success: false,
+        });
+      });
+    }
     let body;
     if (form) {
       data.append('locale', window.locale);
@@ -86,6 +110,13 @@ const fetchPrivate = {
       .catch(catchError);
   },
   patch(url, data, options = {}, form = false) {
+    if (privateBroke()) {
+      return new Promise((resolve) => {
+        resolve({
+          success: false,
+        });
+      });
+    }
     let body;
     if (form) {
       data.append('locale', window.locale);
@@ -110,6 +141,13 @@ const fetchPrivate = {
       .catch(catchError);
   },
   put(url, data, options = {}, form = false) {
+    if (privateBroke()) {
+      return new Promise((resolve) => {
+        resolve({
+          success: false,
+        });
+      });
+    }
     let body;
     if (form) {
       data.append('locale', window.locale);
@@ -134,6 +172,13 @@ const fetchPrivate = {
       .catch(catchError);
   },
   delete(url, options = {}) {
+    if (privateBroke()) {
+      return new Promise((resolve) => {
+        resolve({
+          success: false,
+        });
+      });
+    }
     return fetchlib(url, {
       headers: getPriveteHeader(),
       ...options,
@@ -146,6 +191,13 @@ const fetchPrivate = {
       .catch(catchError);
   },
   get(url, data, options = {}) {
+    if (privateBroke()) {
+      return new Promise((resolve) => {
+        resolve({
+          success: false,
+        });
+      });
+    }
     let queryUrl = url;
     if (data) {
       const params = qs.stringify({ ...data, locale: window.locale });
