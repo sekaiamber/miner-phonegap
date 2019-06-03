@@ -248,6 +248,7 @@ export default {
     },
     * goto({ goto }, { select, put }) {
       const history = yield select(({ utils }) => utils.history);
+      console.log(history.location.pathname, goto);
       if (history.location.pathname === goto) return;
       yield put(routerRedux.push(goto));
     },

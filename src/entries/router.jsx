@@ -32,15 +32,12 @@ import Withdraw from '../dashboard/components/withdraw';
 function PrivateRoute({ component: C, ...rest }) {
   // TODO: 获取用户
   const currentUser = localStorage.getItem('member_id');
+  let render;
   if (currentUser === '__EMPTY__' && window._APP_) {
     // 没登录，跳转到登录页
-    // render = props => <Redirect to={{ pathname: '/login', state: { from: props.location } }} />;
-    window._APP_._store.dispatch({
-      type: 'utils/goto',
-      goto: '/login',
-    });
+    render = props => <Redirect to={{ pathname: '/login', state: { from: props.location } }} />;
   }
-  const render = ({ match, ...restProps }) => <Main match={match}><C {...restProps} /></Main>;
+  render = ({ match, ...restProps }) => <Main match={match}><C {...restProps} /></Main>;
   return (
     <Route {...rest}>
       {render}
@@ -64,6 +61,9 @@ class MyRouter extends Component {
         <div id="app">
           <Header />
           <PullRefresh onRefresh={this.handleRefresh} />
+          <Route path="/login" exact component={Login} />
+          <Route path="/signup" exact component={Signup} />
+          <Route path="/forgetPassword" exact component={ForgetPassword} />
           <PrivateRoute path="/" exact component={Index} />
           <PrivateRoute path="/power" exact component={Power} />
           <PrivateRoute path="/buy" exact component={Buy} />
@@ -76,9 +76,6 @@ class MyRouter extends Component {
           <PrivateRoute path="/subuser" exact component={Subuser} />
           <PrivateRoute path="/deposit" exact component={Deposit} />
           <PrivateRoute path="/withdraw" exact component={Withdraw} />
-          <Route path="/login" exact component={Login} />
-          <Route path="/signup" exact component={Signup} />
-          <Route path="/forgetPassword" exact component={ForgetPassword} />
           {/* <Route component={NoMatchPage} /> */}
           <Footer />
           <Upgrade />
