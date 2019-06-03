@@ -29,15 +29,8 @@ import Deposit from '../dashboard/components/deposit';
 import Withdraw from '../dashboard/components/withdraw';
 // import NoMatchPage from '../dashboard/components/noMatchPage';
 
-function PrivateRoute({ component: C, ...rest }) {
-  // TODO: 获取用户
-  const currentUser = localStorage.getItem('member_id');
-  let render;
-  if (currentUser === '__EMPTY__' && window._APP_) {
-    // 没登录，跳转到登录页
-    render = props => <Redirect to={{ pathname: '/login', state: { from: props.location } }} />;
-  }
-  render = ({ match, ...restProps }) => <Main match={match}><C {...restProps} /></Main>;
+function AnimeRoute({ component: C, ...rest }) {
+  const render = ({ match, ...restProps }) => <Main match={match}><C {...restProps} /></Main>;
   return (
     <Route {...rest}>
       {render}
@@ -61,21 +54,21 @@ class MyRouter extends Component {
         <div id="app">
           <Header />
           <PullRefresh onRefresh={this.handleRefresh} />
-          <Route path="/login" exact component={Login} />
-          <Route path="/signup" exact component={Signup} />
-          <Route path="/forgetPassword" exact component={ForgetPassword} />
-          <PrivateRoute path="/" exact component={Index} />
-          <PrivateRoute path="/power" exact component={Power} />
-          <PrivateRoute path="/buy" exact component={Buy} />
-          <PrivateRoute path="/wallet" exact component={Wallet} />
-          <PrivateRoute path="/me" exact component={Me} />
-          <PrivateRoute path="/notice" exact component={Notice} />
-          <PrivateRoute path="/activities" exact component={Activities} />
-          <PrivateRoute path="/invite" exact component={Invite} />
-          <PrivateRoute path="/miners" exact component={Miners} />
-          <PrivateRoute path="/subuser" exact component={Subuser} />
-          <PrivateRoute path="/deposit" exact component={Deposit} />
-          <PrivateRoute path="/withdraw" exact component={Withdraw} />
+          <AnimeRoute path="/login" exact component={Login} />
+          <AnimeRoute path="/signup" exact component={Signup} />
+          <AnimeRoute path="/forgetPassword" exact component={ForgetPassword} />
+          <AnimeRoute path="/" exact component={Index} />
+          <AnimeRoute path="/power" exact component={Power} />
+          <AnimeRoute path="/buy" exact component={Buy} />
+          <AnimeRoute path="/wallet" exact component={Wallet} />
+          <AnimeRoute path="/me" exact component={Me} />
+          <AnimeRoute path="/notice" exact component={Notice} />
+          <AnimeRoute path="/activities" exact component={Activities} />
+          <AnimeRoute path="/invite" exact component={Invite} />
+          <AnimeRoute path="/miners" exact component={Miners} />
+          <AnimeRoute path="/subuser" exact component={Subuser} />
+          <AnimeRoute path="/deposit" exact component={Deposit} />
+          <AnimeRoute path="/withdraw" exact component={Withdraw} />
           {/* <Route component={NoMatchPage} /> */}
           <Footer />
           <Upgrade />
