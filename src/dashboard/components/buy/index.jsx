@@ -8,7 +8,7 @@ import message from '../../../utils/message';
 import './style.scss';
 
 // images
-import blockHeightImg from '../../../assets/block_height.svg';
+// import blockHeightImg from '../../../assets/block_height.svg';
 
 class Buy extends Component {
   state = {
@@ -129,7 +129,7 @@ class Buy extends Component {
               </div>
               <div className="item">
                 <div>抵扣</div>
-                <div>{orderCost.discount}</div>
+                <div>-{orderCost.discount}</div>
               </div>
               <div className="item">
                 <div>合計</div>
