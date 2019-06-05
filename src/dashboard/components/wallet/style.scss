@@ -7,6 +7,10 @@
     background: linear-gradient(45deg, #FF7F22 0%, #FFB645 100%);
     color: #fff;
 
+    &.usdt {
+      background: linear-gradient(45deg, #26a07b 0%, #23e0a7 100%);
+    }
+
     .top {
       display: flex;
       align-items: center;
@@ -83,6 +87,7 @@
       .logo {
         flex-grow: 0;
         flex-shrink: 0;
+        width: 40px;
       }
 
       .center {

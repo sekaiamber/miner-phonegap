@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { Component } from 'react';
 import classnames from 'classnames';
@@ -14,15 +15,21 @@ class Buy extends Component {
   state = {
     selected: undefined,
     showOrder: false,
+    use: 'usdt',
   }
 
   getOrderCost() {
     const { accountInfo } = this.props;
-    const { selected } = this.state;
+    const { selected, use } = this.state;
     if (!selected) {
       return {
         discount: '0',
         cost: '0',
+      };
+    }
+    if (use === 'usdt') {
+      return {
+        cost: selected.usdt_price,
       };
     }
     const activityBalance = new Decimal(accountInfo.activity_balance);
@@ -54,12 +61,13 @@ class Buy extends Component {
   }
 
   handleSubmitOrder = () => {
-    const { selected } = this.state;
+    const { selected, use } = this.state;
     const { dispatch } = this.props;
     dispatch({
       type: 'product/buy',
       payload: {
         product_id: selected.id,
+        currency: use.toUpperCase(),
       },
       onSuccess: () => {
         message.success('購買成功');
@@ -73,14 +81,27 @@ class Buy extends Component {
     });
   }
 
+  handleChangeUse(use) {
+    this.setState({
+      use,
+    });
+  }
+
   render() {
     const { list } = this.props;
-    const { selected, showOrder } = this.state;
+    const { selected, showOrder, use } = this.state;
     const orderCost = this.getOrderCost();
     const selectId = selected ? selected.id : undefined;
+    const unit = use === 'usdt' ? 'USDT' : 'BASE';
 
     return (
       <div id="buy">
+        <div className="top-select">
+          <span>
+            <span className={classnames('option', { active: use === 'usdt' })} onClick={this.handleChangeUse.bind(this, 'usdt')}>使用USDT购买</span>
+            <span className={classnames('option', { active: use === 'base' })} onClick={this.handleChangeUse.bind(this, 'base')}>使用BASE购买</span>
+          </span>
+        </div>
         <div className="list container">
           {list.map(item => (
             <div className={classnames('item', { selected: item.id === selectId })} key={item.id} onClick={this.handleSelect.bind(this, item)}>
@@ -103,7 +124,10 @@ class Buy extends Component {
                 <div className="data">{item.power} ph/s</div>
                 <div className="rate">預計收益率{item.rate}/天，{item.days}天</div>
               </div>
-              <div className="price">{item.price}</div>
+              <div className="price">
+                <div>{use === 'usdt' ? item.usdt_price : item.price}</div>
+                <div className="unit">{unit}</div>
+              </div>
             </div>
           ))}
         </div>
@@ -111,8 +135,10 @@ class Buy extends Component {
           <div className="footer">
             <div className="info-container">
               <div className="info">
-                <div className="cost">合計：{orderCost.cost}</div>
-                <div className="discount">可抵扣：{orderCost.discount}</div>
+                <div className="cost">合計：{orderCost.cost} {unit}</div>
+                { use === 'base' && (
+                  <div className="discount">可抵扣：{orderCost.discount} {unit}</div>
+                )}
               </div>
             </div>
             <div className="btn-container">
@@ -125,15 +151,21 @@ class Buy extends Component {
             <div className="order-container">
               <div className="item">
                 <div>訂單金額：</div>
-                <div>{selected ? selected.price : '0'}</div>
+                <div>
+                  {selected ? (
+                    use === 'usdt' ? selected.usdt_price : selected.price
+                  ) : '0'} {unit}
+                </div>
               </div>
-              <div className="item">
-                <div>抵扣</div>
-                <div>-{orderCost.discount}</div>
-              </div>
+              { use === 'base' && (
+                <div className="item">
+                  <div>抵扣</div>
+                  <div>-{orderCost.discount} {unit}</div>
+                </div>
+              )}
               <div className="item">
                 <div>合計</div>
-                <div>{orderCost.cost}</div>
+                <div>{orderCost.cost} {unit}</div>
               </div>
               <div className="order-submit">
                 <div className="btn" onClick={this.handleSubmitOrder}>提交訂單</div>

@@ -14,6 +14,7 @@
     .logo {
       flex-grow: 0;
       flex-shrink: 0;
+      width: 40px;
     }
 
     .amount {
@@ -63,5 +64,11 @@
     text-align: center;
     margin-top: 0.24rem;
     margin-bottom: 0.24rem;
+  }
+
+  &.usdt {
+    .btn {
+      background: linear-gradient(15deg, #26a07b 0%, #23e0a7 100%);
+    }
   }
 }

@@ -15,8 +15,8 @@ const queryAcitiviesAll = () => fetch.private.get(QUERYS.QUERY_ACTIVITIES_ALL);
 const queryAcitiviesYesterday = () => fetch.private.get(QUERYS.QUERY_ACTIVITIES_YESTERDAY);
 const queryAcitiviesTotal = () => fetch.private.get(QUERYS.QUERY_ACTIVITIES_TOTAL);
 const queryOrders = () => fetch.private.get(QUERYS.QUERY_ORDERS);
-const queryDeposits = () => fetch.private.get(QUERYS.QUERY_DEPOSITS);
-const queryWithdraws = () => fetch.private.get(QUERYS.QUERY_WITHDRAWS);
+const queryDeposits = data => fetch.private.get(QUERYS.QUERY_DEPOSITS, data);
+const queryWithdraws = data => fetch.private.get(QUERYS.QUERY_WITHDRAWS, data);
 const querySubUser = () => fetch.private.get(QUERYS.QUERY_SUB_USER);
 const changeAutoReceive = data => fetch.private.post(QUERYS.QUERY_MY, { auto_receive: data });
 const submitWithdraw = data => fetch.private.post(QUERYS.QUERY_WITHDRAWS, data);
@@ -201,9 +201,16 @@ export default {
         });
       }
     },
-    * queryHistory(_, { call, put }) {
-      const withdraws = yield call(queryWithdraws);
-      const deposits = yield call(queryDeposits);
+    * queryHistory({ payload }, { call, put }) {
+      yield put({
+        type: 'updateState',
+        payload: {
+          history: [],
+        },
+      });
+      const currency = payload || 'BASE';
+      const withdraws = yield call(queryWithdraws, { currency });
+      const deposits = yield call(queryDeposits, { currency });
       if (withdraws.success && deposits.success) {
         const wit = withdraws.data.map(d => ({
           ...d,
