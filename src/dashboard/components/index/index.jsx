@@ -59,6 +59,10 @@ class Index extends Component {
             <div className="center" />
             <Link to="/buy"><img src={optBuyPowerImg} alt="" /></Link>
             <Link to="/invite"><img src={optAddPowerImg} alt="" /></Link>
+            <div className="block-level container">
+              <div>矿池利润</div>
+              <div>{block.level}</div>
+            </div>
           </div>
           <div className="container desc">注：超過72小時未領取的幣將被銷毀</div>
         </div>

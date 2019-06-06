@@ -54,6 +54,9 @@ class Me extends Component {
         <div className="logout">
           <a onClick={this.handleLogout}>退出登錄</a>
         </div>
+        <div className="version">
+          {__VERSION__}
+        </div>
       </div>
     );
   }
