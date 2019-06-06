@@ -271,7 +271,15 @@ footer {
     display: -webkit-box;
     display: flex;
     -webkit-box-align: center;
-            align-items: center; }
+            align-items: center;
+    position: relative; }
+    #home .opt .block-level {
+      position: absolute;
+      bottom: 100%;
+      right: 0;
+      text-align: right;
+      font-weight: 400;
+      padding-bottom: 0.12rem; }
     #home .opt .switch {
       width: 1.1rem;
       font-size: 0.12rem;
@@ -510,7 +518,11 @@ footer {
       font-weight: 500;
       margin-bottom: 8px; }
   #paidPower .paidpower .price {
-    margin-left: 12px; }
+    margin-left: 12px;
+    text-align: right; }
+    #paidPower .paidpower .price .unit {
+      font-size: 12px;
+      opacity: 0.5; }
 
 .demo2 {
   -webkit-transform-origin: 22px 22px;
@@ -619,7 +631,11 @@ footer {
         font-weight: 500;
         margin-bottom: 8px; }
     #buy .list .item .price {
-      margin-left: 12px; }
+      margin-left: 12px;
+      text-align: right; }
+      #buy .list .item .price .unit {
+        font-size: 12px;
+        opacity: 0.5; }
   #buy .footer {
     position: fixed;
     display: -webkit-box;
@@ -744,6 +760,9 @@ footer {
     background: -webkit-linear-gradient(45deg, #FF7F22 0%, #FFB645 100%);
     background: linear-gradient(45deg, #FF7F22 0%, #FFB645 100%);
     color: #fff; }
+    #wallet .card.usdt {
+      background: -webkit-linear-gradient(45deg, #26a07b 0%, #23e0a7 100%);
+      background: linear-gradient(45deg, #26a07b 0%, #23e0a7 100%); }
     #wallet .card .top {
       display: -webkit-box;
       display: flex;
@@ -806,7 +825,8 @@ footer {
     #wallet .history .item .logo {
       -webkit-box-flex: 0;
               flex-grow: 0;
-      flex-shrink: 0; }
+      flex-shrink: 0;
+      width: 40px; }
     #wallet .history .item .center {
       font-size: 0.14rem;
       flex-shrink: 1;
@@ -881,10 +901,14 @@ footer {
       #me .link-list .link div:first-child {
         color: #000; }
   #me .logout {
-    margin: 0.24rem 0;
+    margin: 0.24rem 0 0.12rem;
     text-align: center; }
     #me .logout a {
       color: #ff2a2a; }
+  #me .version {
+    margin: 0.12rem 0 0.24rem;
+    text-align: center;
+    opacity: 0.5; }
 
 #notice {
   margin-top: 0.56rem; }
@@ -1066,7 +1090,8 @@ footer {
     #deposit .banner .logo {
       -webkit-box-flex: 0;
               flex-grow: 0;
-      flex-shrink: 0; }
+      flex-shrink: 0;
+      width: 40px; }
     #deposit .banner .amount {
       -webkit-box-flex: 0;
               flex-grow: 0;
@@ -1101,6 +1126,9 @@ footer {
     text-align: center;
     margin-top: 0.24rem;
     margin-bottom: 0.24rem; }
+  #deposit.usdt .btn {
+    background: -webkit-linear-gradient(75deg, #26a07b 0%, #23e0a7 100%);
+    background: linear-gradient(15deg, #26a07b 0%, #23e0a7 100%); }
 
 #withdraw {
   margin-top: 0.56rem; }
@@ -1146,6 +1174,9 @@ footer {
       opacity: 0.5; }
   #withdraw .submit {
     margin-top: 0.24rem; }
+  #withdraw.usdt .btn {
+    background: -webkit-linear-gradient(75deg, #26a07b 0%, #23e0a7 100%);
+    background: linear-gradient(15deg, #26a07b 0%, #23e0a7 100%); }
 
 .noty_layout_mixin, #noty_layout__top, #noty_layout__topLeft, #noty_layout__topCenter, #noty_layout__topRight, #noty_layout__bottom, #noty_layout__bottomLeft, #noty_layout__bottomCenter, #noty_layout__bottomRight, #noty_layout__center, #noty_layout__centerLeft, #noty_layout__centerRight {
   position: fixed;
@@ -1517,6 +1548,29 @@ a {
     border-radius: 0.06rem;
     padding: 0.2rem;
     box-shadow: 0 0 7px 0px rgba(0, 0, 0, 0.3); }
+
+.top-select {
+  padding-bottom: 12px;
+  text-align: center; }
+  .top-select > span {
+    box-shadow: 0 8px 16px 0 rgba(34, 34, 44, 0.1);
+    padding: 12px;
+    border-radius: 6px;
+    min-height: 45px;
+    border: transparent 1px solid;
+    -webkit-transition: all ease 0.3s;
+    transition: all ease 0.3s;
+    display: inline-block; }
+  .top-select .option {
+    display: inline-block;
+    width: 130px;
+    -webkit-transition: all ease 0.3s;
+    transition: all ease 0.3s;
+    opacity: 0.5; }
+    .top-select .option.active {
+      color: #FF7F22;
+      font-weight: 500;
+      opacity: 1; }
 
 #app .ant-spin-dot-item {
   background-color: #FF7F22; }
