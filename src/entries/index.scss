@@ -117,6 +117,34 @@ a {
   }
 }
 
+.top-select {
+  padding-bottom: 12px;
+  text-align: center;
+
+  &>span {
+    box-shadow: 0 8px 16px 0 rgba($color: #22222C, $alpha: 0.1);
+    padding: 12px;
+    border-radius: 6px;
+    min-height: 45px;
+    border: transparent 1px solid;
+    transition: all ease 0.3s;
+    display: inline-block;
+  }
+
+  .option {
+    display: inline-block;
+    width: 130px;
+    transition: all ease 0.3s;
+    opacity: 0.5;
+
+    &.active {
+      color: #FF7F22;
+      font-weight: 500;
+      opacity: 1;
+    }
+  }
+}
+
 // antd
 #app {
   .ant-spin-dot-item {

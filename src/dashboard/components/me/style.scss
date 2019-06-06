@@ -64,11 +64,17 @@
   }
 
   .logout {
-    margin: 0.24rem 0;
+    margin: 0.24rem 0 0.12rem;
     text-align: center;
 
     a {
       color: #ff2a2a;
     }
+  }
+
+  .version {
+    margin: 0.12rem 0 0.24rem;
+    text-align: center;
+    opacity: 0.5;
   }
 }

@@ -37,6 +37,7 @@ export default {
     block: {
       height: 0,
       power: 0,
+      level: 0,
     },
   },
   subscriptions: {},
@@ -67,6 +68,7 @@ export default {
             block: {
               height: data.block_number,
               power: data.power,
+              level: data.reward_level,
             },
           },
         });

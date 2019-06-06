@@ -1,3 +1,5 @@
+import config from '../config';
+
 const QUERYS = {
   LOGIN: '/api/v1/sessions.json',
   QUERY_MARKET: '/api/v1/markets.json',
@@ -22,12 +24,14 @@ const QUERYS = {
   RESET_PASSWORD: '/api/v1/reset_password.json',
 };
 
+const { DOMAIN: domain } = config;
+
 Object.keys(QUERYS).forEach((key) => {
   if (typeof QUERYS[key] === 'string') {
-    QUERYS[key] = 'https://www.basepool.net' + QUERYS[key];
+    QUERYS[key] = domain + QUERYS[key];
   } else if (typeof QUERYS[key] === 'function') {
     const tmp = QUERYS[key];
-    QUERYS[key] = (...args) => 'https://www.basepool.net' + tmp(...args);
+    QUERYS[key] = (...args) => domain + tmp(...args);
   }
 });
 

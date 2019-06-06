@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable array-callback-return */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -18,7 +19,31 @@ class Withdraw extends Component {
     amount: '',
   }
 
+  getUseWallet() {
+    const { match, data } = this.props;
+    let currency = 'base';
+    if (match && match.params) {
+      currency = match.params.currency;
+    }
+    const info = {
+      unit: currency.toUpperCase(),
+      balance: '',
+    };
+    if (currency === 'usdt') {
+      info.balance = data.usdt_balance;
+    } else {
+      info.balance = data.balance;
+    }
+    return info;
+  }
+
   getFee() {
+    const { match } = this.props;
+    let currency = 'base';
+    if (match && match.params) {
+      currency = match.params.currency;
+    }
+    if (currency === 'usdt') return '5';
     const { amount } = this.state;
     let fee = '0';
     if (amount !== '') {
@@ -33,9 +58,16 @@ class Withdraw extends Component {
   }
 
   getFinal() {
+    const { match } = this.props;
+    let currency = 'base';
+    if (match && match.params) {
+      currency = match.params.currency;
+    }
     const { amount } = this.state;
     let final = '0';
-    if (amount !== '' && new Decimal(amount).greaterThan(new Decimal('20'))) {
+    if (currency === 'usdt' && amount !== '' && new Decimal(amount).greaterThan(new Decimal('5'))) {
+      final = new Decimal(amount).minus('5').toString();
+    } else if (amount !== '' && new Decimal(amount).greaterThan(new Decimal('20'))) {
       let fee = new Decimal(amount).mul(new Decimal('0.02'));
       if (fee.lessThan(new Decimal('20'))) {
         fee = new Decimal('20');
@@ -83,10 +115,16 @@ class Withdraw extends Component {
 
   handleSubmit = () => {
     const { to, amount } = this.state;
-    const { dispatch } = this.props;
+    const { dispatch, match } = this.props;
+    let currency;
+    if (match && match.params) {
+      currency = match.params.currency;
+    }
+    if (!currency) return;
     const payload = {
       to,
       amount,
+      currency: currency.toUpperCase(),
     };
     dispatch({
       type: 'account/submitWithdraw',
@@ -96,18 +134,26 @@ class Withdraw extends Component {
 
   canSubmit() {
     const { amount, to } = this.state;
+    const { match } = this.props;
+    let currency = 'base';
+    if (match && match.params) {
+      currency = match.params.currency;
+    }
+    if (currency) {
+      return !(to !== '' && amount !== '' && new Decimal(amount).greaterThan(new Decimal('5')));
+    }
     return !(to !== '' && amount !== '' && new Decimal(amount).greaterThan(new Decimal('20')));
   }
 
   render() {
     const { to, amount } = this.state;
-    const { data } = this.props;
+    const useWallet = this.getUseWallet();
 
     return (
-      <div id="withdraw" className="container">
+      <div id="withdraw" className={classnames('container', { usdt: useWallet.unit === 'USDT' })}>
         <div className="banner">
           <div>可提現餘額</div>
-          <div>{data.balance}</div>
+          <div>{useWallet.balance} {useWallet.unit}</div>
         </div>
         <div className="form">
           <div className="item">
@@ -120,13 +166,13 @@ class Withdraw extends Component {
           <div className="item">
             <div className="form-info">
               <div>手續費</div>
-              <div>{this.getFee()} BASE</div>
+              <div>{this.getFee()} {useWallet.unit}</div>
             </div>
           </div>
           <div className="item">
             <div className="form-info">
               <div>到賬金額</div>
-              <div>{this.getFinal()} BASE</div>
+              <div>{this.getFinal()} {useWallet.unit}</div>
             </div>
           </div>
         </div>

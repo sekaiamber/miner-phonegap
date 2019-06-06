@@ -82,8 +82,6 @@ const pathConfigs = {
       type: 'account/queryMy',
     }, {
       type: 'account/queryAccount',
-    }, {
-      type: 'account/queryHistory',
     }],
   },
   '/me': {
@@ -155,7 +153,7 @@ const pathConfigs = {
       type: 'account/querySubUser',
     }],
   },
-  '/deposit': {
+  '/deposit/:currency': {
     header: {
       title: '充值',
       icon: {
@@ -166,7 +164,7 @@ const pathConfigs = {
       type: 'account/queryMy',
     }],
   },
-  '/withdraw': {
+  '/withdraw/:currency': {
     header: {
       title: '提現',
       icon: {
@@ -221,11 +219,12 @@ export default {
         },
       });
       history.listen(({ pathname }) => {
+        const c = Object.keys(pathConfigs).find(key => pathToRegexp(key).exec(pathname));
         dispatch({
           type: 'updateState',
           payload: {
             currentPath: pathname,
-            currentPathConfig: pathConfigs[pathname] || {},
+            currentPathConfig: pathConfigs[c] || {},
           },
         });
         dispatch({

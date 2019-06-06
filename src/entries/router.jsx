@@ -30,7 +30,7 @@ import Withdraw from '../dashboard/components/withdraw';
 // import NoMatchPage from '../dashboard/components/noMatchPage';
 
 function AnimeRoute({ component: C, ...rest }) {
-  const render = ({ match, ...restProps }) => <Main match={match}><C {...restProps} /></Main>;
+  const render = ({ match, ...restProps }) => <Main match={match}><C {...restProps} match={match} /></Main>;
   return (
     <Route {...rest}>
       {render}
@@ -67,8 +67,8 @@ class MyRouter extends Component {
           <AnimeRoute path="/invite" exact component={Invite} />
           <AnimeRoute path="/miners" exact component={Miners} />
           <AnimeRoute path="/subuser" exact component={Subuser} />
-          <AnimeRoute path="/deposit" exact component={Deposit} />
-          <AnimeRoute path="/withdraw" exact component={Withdraw} />
+          <AnimeRoute path="/deposit/:currency" exact component={Deposit} />
+          <AnimeRoute path="/withdraw/:currency" exact component={Withdraw} />
           {/* <Route component={NoMatchPage} /> */}
           <Footer />
           <Upgrade />

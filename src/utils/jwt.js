@@ -1,8 +1,8 @@
 /* eslint-disable camelcase */
 import jwt from 'jsonwebtoken';
+import config from '../config';
 
-const KEY = 'f520ec8c33195991a738';
-const SECRET = '3da7b1ba9a7614aa97aaed58dfb107ad';
+const { KEY, SECRET } = config;
 
 const exp = {
   getPublicToken() {
