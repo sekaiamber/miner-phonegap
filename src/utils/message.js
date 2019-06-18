@@ -45,7 +45,7 @@ const lastContent = {};
 ['error', 'info', 'loading', 'success', 'warn', 'warning'].forEach((key) => {
   lastContent[key] = '';
   ret[key] = (content, ...rest) => {
-    if (lastContent[key] === content) return;
+    if (lastContent[key] === content && content === '登錄過期，請重新登錄') return;
     lastContent[key] = content;
     message[key](content, ...rest);
   };

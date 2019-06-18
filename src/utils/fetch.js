@@ -63,13 +63,21 @@ function nativeFetch(url, options) {
   const nativeOptions = {
     method: options.method.toLowerCase(),
     headers: options.headers,
+    serializer: 'json',
     data: {},
   };
   if (options.body) {
     nativeOptions.data = JSON.parse(options.body);
   }
   return new Promise((resolve, reject) => {
-    http.sendRequest(url, nativeOptions, resolve, (response) => {
+    http.sendRequest(url, nativeOptions, (response) => {
+      resolve({
+        ...response,
+        json() {
+          return JSON.parse(this.data);
+        },
+      });
+    }, (response) => {
       // prints 403
       const err = JSON.parse(response.error);
       reject(new Error(`(${err.status}) ${err.error}`));
