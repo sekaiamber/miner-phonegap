@@ -5,3 +5,4 @@ postcss.config.js
 src/lib/*
 www
 vendors
+polyfill.js

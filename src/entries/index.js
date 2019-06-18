@@ -1,3 +1,4 @@
+import '../utils/polyfill';
 import dva from 'dva';
 import Clipboard from 'clipboard';
 import router from './router';
