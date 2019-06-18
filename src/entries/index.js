@@ -1,3 +1,4 @@
+import '@babel/polyfill';
 import '../utils/polyfill';
 import dva from 'dva';
 import Clipboard from 'clipboard';
