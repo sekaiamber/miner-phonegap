@@ -51,7 +51,42 @@ function catchError(error) {
   };
 }
 
-const fetchlib = window.fetch;
+// (url, {
+//   headers: getPriveteHeader(),
+//   ...options,
+//   body,
+//   method: 'POST',
+//   credentials: 'include',
+// })
+function nativeFetch(url, options) {
+  const { http } = window.cordova.plugin;
+  const nativeOptions = {
+    method: options.method.toLowerCase(),
+    headers: options.headers,
+    data: {},
+  };
+  if (options.body) {
+    nativeOptions.data = JSON.parse(options.body);
+  }
+  return new Promise((resolve, reject) => {
+    http.sendRequest(url, nativeOptions, resolve, (response) => {
+      // prints 403
+      const err = JSON.parse(response.error);
+      reject(new Error(`(${err.status}) ${err.error}`));
+    });
+  });
+}
+
+function getFetchLib() {
+  let fetchlib;
+  const { cordova } = window;
+  if (cordova && cordova.plugin && cordova.plugin.http) {
+    fetchlib = nativeFetch;
+  } else {
+    fetchlib = window.fetch;
+  }
+  return fetchlib;
+}
 
 function getPriveteHeader() {
   return {
@@ -97,7 +132,7 @@ const fetchPrivate = {
         ...data,
       });
     }
-    return fetchlib(url, {
+    return getFetchLib()(url, {
       headers: getPriveteHeader(),
       ...options,
       body,
@@ -128,7 +163,7 @@ const fetchPrivate = {
         ...data,
       });
     }
-    return fetchlib(url, {
+    return getFetchLib()(url, {
       headers: getPriveteHeader(),
       ...options,
       body,
@@ -159,7 +194,7 @@ const fetchPrivate = {
         locale: window.locale,
       });
     }
-    return fetchlib(url, {
+    return getFetchLib()(url, {
       headers: getPriveteHeader(),
       ...options,
       body,
@@ -179,7 +214,7 @@ const fetchPrivate = {
         });
       });
     }
-    return fetchlib(url, {
+    return getFetchLib()(url, {
       headers: getPriveteHeader(),
       ...options,
       method: 'DELETE',
@@ -203,7 +238,7 @@ const fetchPrivate = {
       const params = qs.stringify({ ...data, locale: window.locale });
       queryUrl += '?' + params;
     }
-    return fetchlib(queryUrl, {
+    return getFetchLib()(queryUrl, {
       headers: getPriveteHeader(),
       credentials: 'include',
       ...options,
@@ -238,7 +273,7 @@ const fetch = {
         ...data,
       });
     }
-    return fetchlib(url, {
+    return getFetchLib()(url, {
       headers: getHeader(),
       ...options,
       body,
@@ -262,7 +297,7 @@ const fetch = {
         ...data,
       });
     }
-    return fetchlib(url, {
+    return getFetchLib()(url, {
       headers: getHeader(),
       ...options,
       body,
@@ -286,7 +321,7 @@ const fetch = {
         locale: window.locale,
       });
     }
-    return fetchlib(url, {
+    return getFetchLib()(url, {
       headers: getHeader(),
       ...options,
       body,
@@ -299,7 +334,7 @@ const fetch = {
       .catch(catchError);
   },
   delete(url, options = {}) {
-    return fetchlib(url, {
+    return getFetchLib()(url, {
       headers: getHeader(),
       ...options,
       method: 'DELETE',
@@ -316,7 +351,7 @@ const fetch = {
       const params = qs.stringify({ ...data, locale: window.locale });
       queryUrl += '?' + params;
     }
-    return fetchlib(queryUrl, {
+    return getFetchLib()(queryUrl, {
       headers: getHeader(),
       credentials: 'include',
       ...options,
