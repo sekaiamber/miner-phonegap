@@ -27,15 +27,15 @@ function PaidPower({ list }) {
                 fill="none"
                 stroke="#953E96"
                 strokeWidth="3"
-                strokeDasharray="0,10000"
-                strokeDasharray={circleLength * p.days / getTotalDays(p.created_at, p.end_at) + ',10000'}
+                // strokeDasharray="0,10000"
+                // strokeDasharray={circleLength * p.days / getTotalDays(p.created_at, p.end_at) + ',10000'}
               />
             </svg>
             <span className="text"><span>P</span>{parseInt(p.vip_level.slice(1), 10)}</span>
           </div>
           <div className="center">
             <div className="data">{p.power} ph/s</div>
-            <div className="rate">預計收益率{p.rate}/天，{p.days}天</div>
+            <div className="rate">預計收益率{p.rate}/天</div>
           </div>
           <div className="price">
             <div>{p.price}</div>

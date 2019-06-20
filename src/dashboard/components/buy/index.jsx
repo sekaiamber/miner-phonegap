@@ -122,7 +122,7 @@ class Buy extends Component {
               </div>
               <div className="center">
                 <div className="data">{item.power} ph/s</div>
-                <div className="rate">預計收益率{item.rate}/天，{item.days}天</div>
+                <div className="rate">預計收益率{item.rate}/天</div>
               </div>
               <div className="price">
                 <div>{use === 'usdt' ? item.usdt_price : item.price}</div>
