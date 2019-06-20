@@ -29,6 +29,17 @@ class Me extends Component {
           <div className="code">推廣碼 {userInfo.invite_code}</div>
         </div>
         <div className="nickname">{userInfo.nickname}</div>
+        <div className="page-title">等級</div>
+        <div className="link-list">
+          <div className="link">
+            <div>社區等級</div>
+            <div>{userInfo.community_level && userInfo.community_level.toUpperCase()}</div>
+          </div>
+          <div className="link">
+            <div>礦工等級</div>
+            <div>{userInfo.level && userInfo.level.toUpperCase()}</div>
+          </div>
+        </div>
         <div className="page-title">安全</div>
         <div className="link-list">
           <div className="link">
