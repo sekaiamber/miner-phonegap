@@ -15,6 +15,8 @@ function checkStatus(response) {
   }
   if (window._APP_ && response.status === 401) {
     message.info('登錄過期，請重新登錄');
+    localStorage.setItem('member_id', '__EMPTY__');
+    localStorage.setItem('member_token', '__EMPTY__');
     window._APP_._store.dispatch({
       type: 'utils/goto',
       goto: '/login',

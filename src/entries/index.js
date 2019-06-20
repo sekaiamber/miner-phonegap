@@ -44,8 +44,7 @@ function render() {
 // 播放影片
 const { $ } = window;
 $(() => {
-  const v = $(`<video src="${welcomeVideo}" muted="muted"></video>`);
-  v[0].play();
+  const v = $(`<video src="${welcomeVideo}" muted="muted" autoplay></video>`);
   $('#welcome').append(v);
   v[0].addEventListener('ended', () => {
     $('body').removeClass('welcome');
