@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import '@babel/polyfill';
 import '../utils/polyfill';
 import dva from 'dva';
@@ -41,14 +42,49 @@ function render() {
   window._APP_ = app;
 }
 
+function setupCanvas(canvas) {
+  // Get the device pixel ratio, falling back to 1.
+  const dpr = window.devicePixelRatio || 1;
+  // Get the size of the canvas in CSS pixels.
+  const rect = canvas.getBoundingClientRect();
+  // Give the canvas pixel dimensions of their CSS
+  // size * the device pixel ratio.
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  canvas.style.width = rect.width + 'px';
+  canvas.style.height = rect.height + 'px';
+  const ctx = canvas.getContext('2d');
+  // Scale all drawing operations by the dpr, so you
+  // don't have to worry about the difference.
+  ctx.scale(dpr, dpr);
+  return ctx;
+}
+
 // 播放影片
 const { $ } = window;
 $(() => {
-  const v = $(`<video src="${welcomeVideo}" muted="muted" autoplay></video>`);
+  const v = $(`<video src="${welcomeVideo}" muted="muted"></video>`);
+  const c = $('<canvas></canvas>');
   $('#welcome').append(v);
-  v[0].addEventListener('ended', () => {
+  $('#welcome').append(c);
+  const video = v[0];
+  const canvas = c[0];
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerWidth;
+  const ctx = setupCanvas(canvas);
+  video.addEventListener('ended', () => {
     $('body').removeClass('welcome');
     $('#welcome').remove();
     render();
   }, true);
+  video.addEventListener('play', () => {
+    const loop = () => {
+      if (!video.paused && !video.ended) {
+        ctx.drawImage(video, 0, 0, window.innerWidth, window.innerWidth);
+        setTimeout(loop, 1000 / 30); // drawing at 30fps
+      }
+    };
+    loop();
+  }, 0);
+  v[0].play();
 });
