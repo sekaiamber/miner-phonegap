@@ -9,8 +9,10 @@
     top: 0;
     left: 0;
     height: 100%;
-    background: #fd9f44;
-    background-image: repeating-linear-gradient(45deg,hsla(0,0%,100%,.4),hsla(0,0%,100%,.4) 15px,transparent 0,transparent 30px);
+    background-image:
+      repeating-linear-gradient(45deg,hsla(0,0%,100%,.4),hsla(0,0%,100%,.4) 15px,transparent 0,transparent 30px),
+      linear-gradient(to right, #953D96 0%, #D85BDB 100%)
+    ;
   }
 
   .content {

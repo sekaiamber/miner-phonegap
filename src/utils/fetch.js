@@ -78,9 +78,12 @@ function nativeFetch(url, options) {
         },
       });
     }, (response) => {
-      // prints 403
-      const err = JSON.parse(response.error);
-      reject(new Error(`(${err.status}) ${err.error}`));
+      if (response.status === 401) {
+        resolve(response);
+      } else {
+        const err = JSON.parse(response.error);
+        reject(new Error(`(${err.status}) ${err.error}`));
+      }
     });
   });
 }

@@ -83,6 +83,10 @@ class MyHeader extends Component {
     const { top } = this.state;
     const { config } = this.props;
 
+    if (config.hide) {
+      return <div style={{ display: 'none' }} />;
+    }
+
     return (
       <header style={config.style} className={classnames('container', { top })}>
         <div className="icon-container">

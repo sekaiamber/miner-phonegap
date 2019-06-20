@@ -10,6 +10,10 @@ body {
   font-size: 0.14rem;
   font-weight: 300;
   background: #fff;
+
+  &.welcome {
+    background: #000;
+  }
 }
 
 input {
@@ -18,7 +22,7 @@ input {
 }
 
 button {
-  background-image: linear-gradient(to right, #FF7F22 0%, #FFB645 100%);
+  background-image: linear-gradient(to right, #953D96 0%, #D85BDB 100%);
   color: #fff;
   border: none;
   border-radius: 2px;
@@ -28,7 +32,7 @@ button {
 
 a {
   text-decoration: none;
-  color: #D7B97E;
+  color: #7f4b80;
   font-weight: 400;
 }
 
@@ -122,9 +126,6 @@ a {
   text-align: center;
 
   &>span {
-    box-shadow: 0 8px 16px 0 rgba($color: #22222C, $alpha: 0.1);
-    padding: 12px;
-    border-radius: 6px;
     min-height: 45px;
     border: transparent 1px solid;
     transition: all ease 0.3s;
@@ -138,7 +139,7 @@ a {
     opacity: 0.5;
 
     &.active {
-      color: #FF7F22;
+      color: #953D96;
       font-weight: 500;
       opacity: 1;
     }
@@ -148,6 +149,44 @@ a {
 // antd
 #app {
   .ant-spin-dot-item {
-    background-color: #FF7F22;
+    background-color: #953D96;
+  }
+}
+
+// shadow pad
+.shadow-pad {
+  background: #fff;
+  border-radius: 0.06rem;
+  min-height: 0.66rem;
+  padding: 0.12rem;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    box-shadow: 0 0.08rem 0.16rem 0 rgba($color: #22222C, $alpha: 0.1);
+    border-radius: 0.06rem;
+  }
+}
+
+// welcome
+#welcome {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #000;
+
+  video {
+    width: 100%;
+    height: 100%;
+    background: #000;
   }
 }

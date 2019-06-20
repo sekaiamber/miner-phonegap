@@ -26,44 +26,84 @@ class Footer extends Component {
     return (
       <footer className={classnames({ hide: activeNav === undefined })}>
         <div className={classnames('item', { active: activeNav === 0 })}>
-          <Link to="/">
+          {activeNav === 0 ? (
             <div>
-              <img src={activeNav === 0 ? homeActiveImg : homeImg} alt="" />
+              <div className="active-container">
+                <img src={homeActiveImg} alt="" />
+              </div>
             </div>
-            <div className="name">首頁</div>
-          </Link>
+          ) : (
+            <Link to="/">
+              <div>
+                <img src={homeImg} alt="" />
+              </div>
+              <div className="name">首頁</div>
+            </Link>
+          )}
         </div>
         <div className={classnames('item', { active: activeNav === 1 })}>
-          <Link to="/power">
+          {activeNav === 1 ? (
             <div>
-              <img src={activeNav === 1 ? powerActiveImg : powerImg} alt="" />
+              <div className="active-container">
+                <img src={powerActiveImg} alt="" />
+              </div>
             </div>
-            <div className="name">算力</div>
-          </Link>
+          ) : (
+            <Link to="/power">
+              <div>
+                <img src={powerImg} alt="" />
+              </div>
+              <div className="name">算力</div>
+            </Link>
+          )}
         </div>
         <div className={classnames('item', { active: activeNav === 2 })}>
-          <Link to="/buy">
+          {activeNav === 2 ? (
             <div>
-              <img src={activeNav === 2 ? buyActiveImg : buyImg} alt="" />
+              <div className="active-container">
+                <img src={buyActiveImg} alt="" />
+              </div>
             </div>
-            <div className="name">購買</div>
-          </Link>
+          ) : (
+            <Link to="/buy">
+              <div>
+                <img src={buyImg} alt="" />
+              </div>
+              <div className="name">購買</div>
+            </Link>
+          )}
         </div>
         <div className={classnames('item', { active: activeNav === 3 })}>
-          <Link to="/wallet">
+          {activeNav === 3 ? (
             <div>
-              <img src={activeNav === 3 ? walletActiveImg : walletImg} alt="" />
+              <div className="active-container">
+                <img src={walletActiveImg} alt="" />
+              </div>
             </div>
-            <div className="name">錢包</div>
-          </Link>
+          ) : (
+            <Link to="/wallet">
+              <div>
+                <img src={walletImg} alt="" />
+              </div>
+              <div className="name">錢包</div>
+            </Link>
+          )}
         </div>
         <div className={classnames('item', { active: activeNav === 4 })}>
-          <Link to="/me">
+          {activeNav === 4 ? (
             <div>
-              <img src={activeNav === 4 ? meActiveImg : meImg} alt="" />
+              <div className="active-container">
+                <img src={meActiveImg} alt="" />
+              </div>
             </div>
-            <div className="name">我的</div>
-          </Link>
+          ) : (
+            <Link to="/me">
+              <div>
+                <img src={meImg} alt="" />
+              </div>
+              <div className="name">我的</div>
+            </Link>
+          )}
         </div>
       </footer>
     );

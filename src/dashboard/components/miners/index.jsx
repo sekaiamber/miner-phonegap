@@ -19,7 +19,7 @@ class Invite extends Component {
         </div>
         <div className="page-title">挖礦獎勵</div>
         {list.map(item => (
-          <div className="item" key={item.id}>
+          <div className="item shadow-pad" key={item.id}>
             <div className="center">
               <div className="txid">{item.nickname}</div>
               <div className="time">ID: {item.user_id}</div>

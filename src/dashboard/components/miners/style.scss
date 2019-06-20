@@ -3,7 +3,7 @@
 
   .banner {
     color: #fff;
-    background: linear-gradient(45deg, #FF7F22 0%, #FFB645 100%);
+    background: linear-gradient(45deg, #953D96 0%, #D85BDB 100%);
     text-align: center;
     padding: 0.2rem 0;
     border-radius: 0.07rem;
@@ -17,11 +17,7 @@
   .item {
     display: flex;
     align-items: center;
-    box-shadow: 0 8px 16px 0 rgba($color: #22222C, $alpha: 0.1);
-    padding: 12px;
-    border-radius: 6px;
     margin-bottom: 10px;
-    min-height: 45px;
 
     .center {
       font-size: 0.14rem;

@@ -8,6 +8,8 @@ import models from '../dashboard/models';
 import message from '../utils/message';
 import './index.scss';
 
+import welcomeVideo from '../assets/welcome.mp4';
+
 // 置localStorage初始值
 if (!localStorage.getItem('member_id')) {
   localStorage.setItem('member_id', '__EMPTY__');
@@ -39,4 +41,15 @@ function render() {
   window._APP_ = app;
 }
 
-render();
+// 播放影片
+const { $ } = window;
+$(() => {
+  const v = $(`<video src="${welcomeVideo}" muted="muted"></video>`);
+  v[0].play();
+  $('#welcome').append(v);
+  v[0].addEventListener('ended', () => {
+    $('body').removeClass('welcome');
+    $('#welcome').remove();
+    render();
+  }, true);
+});

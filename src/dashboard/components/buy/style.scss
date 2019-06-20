@@ -8,11 +8,7 @@
   .list .item {
     display: flex;
     align-items: center;
-    box-shadow: 0 8px 16px 0 rgba($color: #22222C, $alpha: 0.1);
-    padding: 12px;
-    border-radius: 6px;
     margin-bottom: 10px;
-    min-height: 45px;
     border: transparent 1px solid;
     transition: all ease 0.3s;
 
@@ -21,7 +17,7 @@
     }
 
     &.selected {
-      border-color: #fd9840;
+      border-color: #953E96;
     }
 
     .lv,
@@ -103,6 +99,7 @@
     }
 
     .info-container {
+      background: #fff;
       flex-grow: 1;
       flex-shrink: 1;
       border-top: #EEEFF0 solid 1px;
@@ -111,7 +108,7 @@
     .btn-container {
       flex-grow: 0;
       flex-shrink: 0;
-      background: linear-gradient(15deg, #FF7F22 0%, #FFB645 100%);
+      background: linear-gradient(15deg, #953D96 0%, #D85BDB 100%);
     }
 
     .info-container,
@@ -160,7 +157,7 @@
 
       .btn {
         padding: 0.06rem 0;
-        background: linear-gradient(15deg, #FF7F22 0%, #FFB645 100%);
+        background: linear-gradient(15deg, #953D96 0%, #D85BDB 100%);
         color: #fff;
         text-align: center;
         border-radius: 0.3rem;

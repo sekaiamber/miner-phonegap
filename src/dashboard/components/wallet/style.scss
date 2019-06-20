@@ -4,7 +4,7 @@
   .card {
     border-radius: 0.12rem;
     padding: 0.2rem;
-    background: linear-gradient(45deg, #FF7F22 0%, #FFB645 100%);
+    background: linear-gradient(45deg, #953D96 0%, #D85BDB 100%);
     color: #fff;
 
     &.usdt {
@@ -78,11 +78,7 @@
     .item {
       display: flex;
       align-items: center;
-      box-shadow: 0 8px 16px 0 rgba($color: #22222C, $alpha: 0.1);
-      padding: 12px;
-      border-radius: 6px;
       margin-bottom: 10px;
-      min-height: 45px;
 
       .logo {
         flex-grow: 0;

@@ -9,7 +9,7 @@ import totolImg from '../../../../assets/power_yesterday.svg';
 function YesterdayPower({ amount }) {
   return (
     <div id="yesterdayPower">
-      <div className="yesterdaypower">
+      <div className="yesterdaypower shadow-pad">
         <div className="icon"><img src={totolImg} alt="" /></div>
         <div className="center">
           {/* <div className="data">{p.power}ph/s</div> */}

@@ -14,7 +14,7 @@ class Subuser extends Component {
     return (
       <div id="subuser" className="container">
         {list.map(item => (
-          <div className="item" key={item.vip_level}>
+          <div className="item shadow-pad" key={item.vip_level}>
             <div className="lv">
               <svg xmlns="http://www.w3.org/200/svg" height="44" width="44">
                 <circle cx="22" cy="22" r="20" fill="none" stroke="#ececec" strokeWidth="3" strokeLinecap="round" />
@@ -24,7 +24,7 @@ class Subuser extends Component {
                   cy="22"
                   r="20"
                   fill="none"
-                  stroke="#fd9840"
+                  stroke="#953E96"
                   strokeWidth="3"
                 />
               </svg>

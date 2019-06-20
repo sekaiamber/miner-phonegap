@@ -9,6 +9,7 @@ import './style.scss';
 
 // images
 import walletBaseImg from '../../../assets/wallet_base.svg';
+import walletBase2Img from '../../../assets/wallet_base_2.svg';
 import walletUsdtImg from '../../../assets/wallet_usdt.png';
 import walletQrImg from '../../../assets/wallet_qr.svg';
 import walletDepImg from '../../../assets/wallet_deposit.svg';
@@ -43,7 +44,7 @@ class Wallet extends Component {
     } else {
       info.address = userInfo.payment_address;
       info.balance = accountInfo.balance;
-      info.logo = walletBaseImg;
+      info.logo = walletBase2Img;
     }
     return info;
   }
@@ -76,7 +77,7 @@ class Wallet extends Component {
     return (
       <div id="wallet" className="container">
         <div className="top-select">
-          <span>
+          <span className="shadow-pad">
             <span className={classnames('option', { active: use === 'base' })} onClick={this.handleChangeUse.bind(this, 'base')}>BASE钱包</span>
             <span className={classnames('option', { active: use === 'usdt' })} onClick={this.handleChangeUse.bind(this, 'usdt')}>USDT钱包</span>
           </span>
@@ -107,7 +108,7 @@ class Wallet extends Component {
         <div className="page-title">充提歷史</div>
         <div className="history">
           {history.map((item, i) => (
-            <div className="item" key={item.type + i}>
+            <div className="item shadow-pad" key={item.type + i}>
               <img className="logo" src={useWallet.logo} alt="" />
               <div className="center">
                 <div className="txid">{item.txid || '等待中'}</div>

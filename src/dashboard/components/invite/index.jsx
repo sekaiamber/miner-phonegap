@@ -8,12 +8,15 @@ import Qrcode from '../common/qrcode';
 
 import './style.scss';
 
-const url = 'https://www.basepool.net';
+function getUrl(code) {
+  return `https://www.basepool.net/sign_up?invite_code=${code}`;
+}
 
 // images
 class Invite extends Component {
   render() {
     const { userInfo } = this.props;
+    const url = getUrl(userInfo.invite_code);
 
     return (
       <div id="invite" className="container">

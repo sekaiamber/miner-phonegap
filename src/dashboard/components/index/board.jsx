@@ -9,7 +9,7 @@ function getNumberText(text, fixed) {
 export default function Board(props) {
   const { data } = props;
   const {
-    myPower, myBase, rewardPower, deductionBase,
+    myPower, myBase, rewardPower, deductionBase, canMining, alreadyMining,
   } = data;
   return (
     <div id="board">
@@ -17,6 +17,10 @@ export default function Board(props) {
         <div className="item">
           <div className="value">{getNumberText(myPower)} ph/s</div>
           <div className="name">我的算力</div>
+        </div>
+        <div className="item">
+          <div className="value">{getNumberText(canMining)}</div>
+          <div className="name">我的礦池</div>
         </div>
         <div className="item">
           <div className="value">{getNumberText(myBase)}</div>
@@ -27,6 +31,10 @@ export default function Board(props) {
         <div className="item">
           <div className="value">{getNumberText(rewardPower)} ph/s</div>
           <div className="name">獎勵算力</div>
+        </div>
+        <div className="item">
+          <div className="value">{getNumberText(alreadyMining)}</div>
+          <div className="name">已挖BASE</div>
         </div>
         <div className="item">
           <div className="value">{getNumberText(deductionBase)}</div>

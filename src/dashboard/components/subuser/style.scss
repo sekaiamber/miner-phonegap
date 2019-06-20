@@ -4,11 +4,7 @@
   .item {
     display: flex;
     align-items: center;
-    box-shadow: 0 8px 16px 0 rgba($color: #22222C, $alpha: 0.1);
-    padding: 12px;
-    border-radius: 6px;
     margin-bottom: 10px;
-    min-height: 45px;
     justify-content: space-between;
 
     &:last-child {

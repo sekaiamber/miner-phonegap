@@ -69,7 +69,7 @@ module.exports = {
       use: 'url-loader?limit=10000!img?progressive=true'
     },
     {
-      test: /\.(eot|woff|woff2|ttf|svg)$/,
+      test: /\.(eot|woff|woff2|ttf|svg|mp3|mp4)$/,
       use: 'url-loader?limit=10000'
     },
     {

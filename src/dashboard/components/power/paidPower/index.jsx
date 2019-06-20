@@ -15,7 +15,7 @@ function PaidPower({ list }) {
   return (
     <div id="paidPower">
       {list.map(((p, i) => (
-        <div className="paidpower" key={i}>
+        <div className="paidpower shadow-pad" key={i}>
           <div className="lv">
             <svg xmlns="http://www.w3.org/200/svg" height="44" width="44">
               <circle cx="22" cy="22" r="20" fill="none" stroke="#ececec" strokeWidth="3" strokeLinecap="round" />
@@ -25,7 +25,7 @@ function PaidPower({ list }) {
                 cy="22"
                 r="20"
                 fill="none"
-                stroke="#fd9840"
+                stroke="#953E96"
                 strokeWidth="3"
                 strokeDasharray="0,10000"
                 strokeDasharray={circleLength * p.days / getTotalDays(p.created_at, p.end_at) + ',10000'}

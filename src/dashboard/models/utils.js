@@ -11,18 +11,21 @@ const resetPassword = data => fetch.post(QUERYS.RESET_PASSWORD, data);
 
 const pathConfigs = {
   '/': {
+    // header: {
+    //   title: '',
+    //   style: {
+    //     color: '#fff',
+    //     position: 'absolute',
+    //     backgroundColor: 'transparent',
+    //     borderBottomColor: 'transparent',
+    //   },
+    //   icon: {
+    //     left: 'notices',
+    //     right: 'activitiesDone',
+    //   },
+    // },
     header: {
-      title: '首頁',
-      style: {
-        color: '#fff',
-        position: 'absolute',
-        backgroundColor: 'transparent',
-        borderBottomColor: 'transparent',
-      },
-      icon: {
-        left: 'notices',
-        right: 'activitiesDone',
-      },
+      hide: true,
     },
     footer: {
       activeNav: 0,

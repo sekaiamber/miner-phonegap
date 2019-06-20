@@ -97,14 +97,14 @@ class Buy extends Component {
     return (
       <div id="buy">
         <div className="top-select">
-          <span>
+          <span className="shadow-pad">
             <span className={classnames('option', { active: use === 'usdt' })} onClick={this.handleChangeUse.bind(this, 'usdt')}>使用USDT购买</span>
             <span className={classnames('option', { active: use === 'base' })} onClick={this.handleChangeUse.bind(this, 'base')}>使用BASE购买</span>
           </span>
         </div>
         <div className="list container">
           {list.map(item => (
-            <div className={classnames('item', { selected: item.id === selectId })} key={item.id} onClick={this.handleSelect.bind(this, item)}>
+            <div className={classnames('item shadow-pad', { selected: item.id === selectId })} key={item.id} onClick={this.handleSelect.bind(this, item)}>
               <div className="lv">
                 <svg xmlns="http://www.w3.org/200/svg" height="44" width="44">
                   <circle cx="22" cy="22" r="20" fill="none" stroke="#ececec" strokeWidth="3" strokeLinecap="round" />
@@ -114,7 +114,7 @@ class Buy extends Component {
                     cy="22"
                     r="20"
                     fill="none"
-                    stroke="#fd9840"
+                    stroke="#953E96"
                     strokeWidth="3"
                   />
                 </svg>

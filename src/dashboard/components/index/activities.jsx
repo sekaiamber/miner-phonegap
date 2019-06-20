@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
 import baseImg from '../../../assets/base_shine.svg';
+import { play } from '../../../utils/media';
+
+import pickSound from '../../../assets/pick.mp3';
 
 class Activities extends Component {
   handleCollect(item) {
@@ -9,6 +12,7 @@ class Activities extends Component {
       type: 'account/collect',
       payload: item.id,
     });
+    play(pickSound);
   }
 
   render() {
