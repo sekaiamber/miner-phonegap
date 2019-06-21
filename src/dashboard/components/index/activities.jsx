@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 import baseImg from '../../../assets/base_shine.svg';
 import { play } from '../../../utils/media';
+import vibration from '../../../utils/vibration';
 
 import pickSound from '../../../assets/pick.mp3';
 
@@ -13,6 +14,7 @@ class Activities extends Component {
       payload: item.id,
     });
     play(pickSound);
+    vibration(150);
   }
 
   render() {

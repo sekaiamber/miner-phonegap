@@ -74,7 +74,10 @@ $(() => {
   const ctx = setupCanvas(canvas);
   video.addEventListener('ended', () => {
     $('body').removeClass('welcome');
-    $('#welcome').remove();
+    $('#welcome').fadeOut(300);
+    setTimeout(() => {
+      $('#welcome').remove();
+    }, 400);
     render();
   }, true);
   video.addEventListener('play', () => {

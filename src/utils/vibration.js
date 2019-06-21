@@ -5,13 +5,9 @@ function onDeviceReady() {
 }
 document.addEventListener('deviceready', onDeviceReady, false);
 
-function play(src) {
+function vibration(time) {
   if (!ready) return;
-  const { Media } = window;
-  const media = new Media(src);
-  media.play();
+  navigator.vibrate(time);
 }
 
-export {
-  play,
-};
+export default vibration;
