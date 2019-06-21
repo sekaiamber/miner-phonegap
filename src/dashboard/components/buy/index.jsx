@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import classnames from 'classnames';
 import Decimal from 'decimal.js-light';
 import { connect } from 'dva';
+import { Spin } from 'antd';
 import message from '../../../utils/message';
 
 import './style.scss';
@@ -103,33 +104,39 @@ class Buy extends Component {
           </span>
         </div>
         <div className="list container">
-          {list.map(item => (
-            <div className={classnames('item shadow-pad', { selected: item.id === selectId })} key={item.id} onClick={this.handleSelect.bind(this, item)}>
-              <div className="lv">
-                <svg xmlns="http://www.w3.org/200/svg" height="44" width="44">
-                  <circle cx="22" cy="22" r="20" fill="none" stroke="#ececec" strokeWidth="3" strokeLinecap="round" />
-                  <circle
-                    className="demo2"
-                    cx="22"
-                    cy="22"
-                    r="20"
-                    fill="none"
-                    stroke="#953E96"
-                    strokeWidth="3"
-                  />
-                </svg>
-                <span className="text"><span>P</span>{parseInt(item.vip_level.slice(1), 10)}</span>
-              </div>
-              <div className="center">
-                <div className="data">{item.power} ph/s</div>
-                <div className="rate">預計收益率{item.rate}/天</div>
-              </div>
-              <div className="price">
-                <div>{use === 'usdt' ? item.usdt_price : item.price}</div>
-                <div className="unit">{unit}</div>
-              </div>
+          {list === 'LOADING' ? (
+            <div className="loading">
+              <Spin />
             </div>
-          ))}
+          ) : (
+            list.map(item => (
+              <div className={classnames('item shadow-pad', { selected: item.id === selectId })} key={item.id} onClick={this.handleSelect.bind(this, item)}>
+                <div className="lv">
+                  <svg xmlns="http://www.w3.org/200/svg" height="44" width="44">
+                    <circle cx="22" cy="22" r="20" fill="none" stroke="#ececec" strokeWidth="3" strokeLinecap="round" />
+                    <circle
+                      className="demo2"
+                      cx="22"
+                      cy="22"
+                      r="20"
+                      fill="none"
+                      stroke="#953E96"
+                      strokeWidth="3"
+                    />
+                  </svg>
+                  <span className="text"><span>P</span>{parseInt(item.vip_level.slice(1), 10)}</span>
+                </div>
+                <div className="center">
+                  <div className="data">{item.power} ph/s</div>
+                  <div className="rate">預計收益率{item.rate}/天</div>
+                </div>
+                <div className="price">
+                  <div>{use === 'usdt' ? item.usdt_price : item.price}</div>
+                  <div className="unit">{unit}</div>
+                </div>
+              </div>
+            ))
+          )}
         </div>
         {selected && (
           <div className="footer">

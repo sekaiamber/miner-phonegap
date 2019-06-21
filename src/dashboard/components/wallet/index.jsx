@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import classnames from 'classnames';
 import { connect } from 'dva';
 import { Link } from 'dva/router';
-
+import { Spin } from 'antd';
 import './style.scss';
 
 // images
@@ -70,7 +70,7 @@ class Wallet extends Component {
   }
 
   render() {
-    const { userInfo, accountInfo, history } = this.props;
+    const { history } = this.props;
     const { use } = this.state;
     const useWallet = this.getUseWallet();
 
@@ -107,18 +107,24 @@ class Wallet extends Component {
         </div>
         <div className="page-title">充提歷史</div>
         <div className="history">
-          {history.map((item, i) => (
-            <div className="item shadow-pad" key={item.type + i}>
-              <img className="logo" src={useWallet.logo} alt="" />
-              <div className="center">
-                <div className="txid">{item.txid || '等待中'}</div>
-                <div className="time">{item.created_at}</div>
-              </div>
-              <div className="amount">
-                {item.type === 'deposits' ? '+' : '-'}{item.amount}
-              </div>
+          {history === 'LOADING' ? (
+            <div className="loading">
+              <Spin />
             </div>
-          ))}
+          ) : (
+            history.map((item, i) => (
+              <div className="item shadow-pad" key={item.type + i}>
+                <img className="logo" src={useWallet.logo} alt="" />
+                <div className="center">
+                  <div className="txid">{item.txid || '等待中'}</div>
+                  <div className="time">{item.created_at}</div>
+                </div>
+                <div className="amount">
+                  {item.type === 'deposits' ? '+' : '-'}{item.amount}
+                </div>
+              </div>
+            ))
+          )}
         </div>
       </div>
     );

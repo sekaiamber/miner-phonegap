@@ -205,7 +205,7 @@ export default {
       yield put({
         type: 'updateState',
         payload: {
-          history: [],
+          history: 'LOADING',
         },
       });
       const currency = payload || 'BASE';
@@ -251,13 +251,17 @@ export default {
         yield put({
           type: 'queryMy',
         });
-        yield put({
-          type: 'utils/loading',
-          loading: null,
-        });
       }
+      yield put({
+        type: 'utils/loading',
+        loading: null,
+      });
     },
     * submitWithdraw({ payload }, { call, put }) {
+      yield put({
+        type: 'utils/loading',
+        loading: {},
+      });
       const data = yield call(submitWithdraw, payload);
       if (data.success) {
         message.success('申請提現成功');
@@ -265,6 +269,10 @@ export default {
           type: 'queryAccount',
         });
       }
+      yield put({
+        type: 'utils/loading',
+        loading: null,
+      });
     },
     * collect({ payload }, { call, put }) {
       const data = yield call(collect, payload);

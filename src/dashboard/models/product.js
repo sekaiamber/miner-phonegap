@@ -14,6 +14,12 @@ export default {
   subscriptions: {},
   effects: {
     * queryProducts(_, { call, put }) {
+      yield put({
+        type: 'updateState',
+        payload: {
+          products: 'LOADING',
+        },
+      });
       const data = yield call(queryProducts);
       if (data.success) {
         yield put({

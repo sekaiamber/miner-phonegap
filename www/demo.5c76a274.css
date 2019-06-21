@@ -719,6 +719,8 @@ footer {
   padding-top: 0.44rem; }
   #buy .list {
     padding-top: 0.12rem; }
+    #buy .list .loading {
+      text-align: center; }
   #buy .list .item {
     display: -webkit-box;
     display: -webkit-flex;
@@ -1009,6 +1011,8 @@ footer {
       text-overflow: ellipsis; }
     #wallet .history .item .time {
       color: rgba(0, 0, 0, 0.4); }
+  #wallet .history .loading {
+    text-align: center; }
 
 #me {
   padding-top: 0.56rem; }
@@ -1643,7 +1647,8 @@ button {
   border: none;
   border-radius: 2px;
   font-size: 0.16rem;
-  padding: 0.12rem 0.24rem; }
+  padding: 0.12rem 0.24rem;
+  outline: none; }
 
 a {
   text-decoration: none;
