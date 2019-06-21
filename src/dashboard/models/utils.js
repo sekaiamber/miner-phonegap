@@ -261,21 +261,47 @@ export default {
         },
       });
     },
-    * sendSms({ payload, onSuccess }, { call }) {
+    * sendSms({ payload, onSuccess }, { call, put }) {
+      yield put({
+        type: 'utils/loading',
+        loading: {
+          text: '發送中',
+        },
+      });
       const data = yield call(sendSms, payload);
       if (data.success) {
         message.success('已發送，請查看手機');
         if (onSuccess) onSuccess();
       }
+      yield put({
+        type: 'utils/loading',
+        loading: null,
+      });
     },
-    * sendResetSms({ payload, onSuccess }, { call }) {
+    * sendResetSms({ payload, onSuccess }, { call, put }) {
+      yield put({
+        type: 'utils/loading',
+        loading: {
+          text: '發送中',
+        },
+      });
       const data = yield call(sendResetSms, payload);
       if (data.success) {
         message.success('已發送，請查看手機');
         if (onSuccess) onSuccess();
       }
+      yield put({
+        type: 'utils/loading',
+        loading: null,
+      });
     },
     * signup({ payload }, { call, put }) {
+      yield put({
+        type: 'utils/loading',
+        loading: {
+          text: '註冊中',
+        },
+      });
       const data = yield call(signup, payload);
       if (data.success) {
         message.success('註冊成功，請登錄');
@@ -284,6 +310,10 @@ export default {
           goto: '/login',
         });
       }
+      yield put({
+        type: 'utils/loading',
+        loading: null,
+      });
     },
     * resetPassword({ payload }, { call, put }) {
       const data = yield call(resetPassword, payload);

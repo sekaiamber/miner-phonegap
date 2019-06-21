@@ -3,6 +3,7 @@ import { connect } from 'dva';
 import React, { Component } from 'react';
 import logoImg from '../../../assets/logo.svg';
 import message from '../../../utils/message';
+import vibration from '../../../utils/vibration';
 
 import './style.scss';
 
@@ -27,6 +28,7 @@ class NormalLoginForm extends Component {
   handleSubmit = () => {
     const { dispatch } = this.props;
     const { login, password } = this.state;
+    vibration(100);
     if (login.length === 0) {
       message.error('請輸入手機號碼');
       return;
