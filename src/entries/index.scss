@@ -26,7 +26,7 @@ button {
   background-image: linear-gradient(to right, #953D96 0%, #D85BDB 100%);
   color: #fff;
   border: none;
-  border-radius: 2px;
+  border-radius: 0.02rem;
   font-size: 0.16rem;
   padding: 0.12rem 0.24rem;
   outline: none;
@@ -68,10 +68,10 @@ a {
 }
 
 .page-title {
-  font-size: 18px;
+  font-size: 0.18rem;
   font-weight: 500;
-  margin-top: 30px;
-  margin-bottom: 18px;
+  margin-top: 0.3rem;
+  margin-bottom: 0.18rem;
 }
 
 .form {
@@ -140,16 +140,16 @@ a {
     background: #fff;
     border-radius: 0.06rem;
     padding: 0.2rem;
-    box-shadow: 0 0 7px 0px rgba($color: #000000, $alpha: 0.3);
+    box-shadow: 0 0 0.07rem 0 rgba($color: #000000, $alpha: 0.3);
   }
 }
 
 .top-select {
-  padding-bottom: 12px;
+  padding-bottom: 0.12rem;
   text-align: center;
 
   &>span {
-    min-height: 45px;
+    min-height: 0.45rem;
     border: transparent 1px solid;
     transition: all ease 0.3s;
     display: inline-block;
@@ -157,7 +157,7 @@ a {
 
   .option {
     display: inline-block;
-    width: 130px;
+    width: 1.3rem;
     transition: all ease 0.3s;
     opacity: 0.5;
 

@@ -140,7 +140,7 @@ footer {
     width: 0.4rem;
     border-radius: 0.2rem;
     background: #fff;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 0.08rem rgba(0, 0, 0, 0.5);
     text-align: center;
     padding-top: 0.09rem;
     -webkit-transition: all ease 0.15s;
@@ -186,7 +186,7 @@ footer {
     background-image: linear-gradient(to right, #953D96 0%, #D85BDB 100%);
     color: #fff;
     border: none;
-    border-radius: 2px;
+    border-radius: 0.02rem;
     font-size: 0.16rem;
     padding: 0.12rem 0.24rem; }
     #signup button[disabled] {
@@ -212,7 +212,7 @@ footer {
     background-image: linear-gradient(to right, #953D96 0%, #D85BDB 100%);
     color: #fff;
     border: none;
-    border-radius: 2px;
+    border-radius: 0.02rem;
     font-size: 0.16rem;
     padding: 0.12rem 0.24rem; }
     #forgetPassword button[disabled] {
@@ -556,21 +556,21 @@ footer {
 #totalPower {
   border: #979797 solid 1px;
   overflow: hidden;
-  border-radius: 7px;
+  border-radius: 0.07rem;
   position: relative; }
   #totalPower .bg {
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
-    background-image: -webkit-repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4) 15px, transparent 0, transparent 30px), -webkit-linear-gradient(left, #953D96 0%, #D85BDB 100%);
-    background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4) 15px, transparent 0, transparent 30px), linear-gradient(to right, #953D96 0%, #D85BDB 100%);
+    background-image: -webkit-repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4) 0.15rem, transparent 0, transparent 0.3rem), -webkit-linear-gradient(left, #953D96 0%, #D85BDB 100%);
+    background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4) 0.15rem, transparent 0, transparent 0.3rem), linear-gradient(to right, #953D96 0%, #D85BDB 100%);
     -webkit-transition: all ease-in-out .3s;
     transition: all ease-in-out .3s; }
   #totalPower .content {
     position: relative;
     z-index: 2;
-    padding: 13px 20px;
+    padding: 0.13rem 0.2rem;
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
@@ -584,13 +584,13 @@ footer {
       -webkit-box-flex: 0;
       -webkit-flex-grow: 0;
               flex-grow: 0;
-      width: 45px; }
+      width: 0.45rem; }
     #totalPower .content .lv {
       color: #fff;
       font-weight: 600;
-      font-size: 30px; }
+      font-size: 0.3rem; }
       #totalPower .content .lv span {
-        font-size: 40px; }
+        font-size: 0.4rem; }
     #totalPower .content .center {
       -webkit-flex-shrink: 1;
               flex-shrink: 1;
@@ -599,10 +599,10 @@ footer {
               flex-grow: 1;
       text-align: center; }
       #totalPower .content .center .title {
-        font-size: 18px;
+        font-size: 0.18rem;
         font-weight: 600; }
       #totalPower .content .center .data {
-        font-size: 32px;
+        font-size: 0.32rem;
         font-weight: 600; }
     #totalPower .content .icon img {
       width: 100%; }
@@ -614,7 +614,7 @@ footer {
   -webkit-box-align: center;
   -webkit-align-items: center;
           align-items: center;
-  margin-bottom: 10px; }
+  margin-bottom: 0.1rem; }
   #paidPower .paidpower:last-child {
     margin-bottom: 0; }
   #paidPower .paidpower .lv,
@@ -625,12 +625,12 @@ footer {
     -webkit-flex-grow: 0;
             flex-grow: 0; }
   #paidPower .paidpower .lv {
-    height: 44px;
-    width: 44px;
+    height: 0.44rem;
+    width: 0.44rem;
     text-align: center;
-    font-size: 12px;
+    font-size: 0.12rem;
     position: relative;
-    margin-right: 12px; }
+    margin-right: 0.12rem; }
     #paidPower .paidpower .lv .text {
       position: absolute;
       top: 50%;
@@ -645,23 +645,23 @@ footer {
     -webkit-flex-grow: 1;
             flex-grow: 1; }
     #paidPower .paidpower .center .rate {
-      font-size: 12px;
+      font-size: 0.12rem;
       color: #999; }
     #paidPower .paidpower .center .data {
-      font-size: 14px;
+      font-size: 0.14rem;
       font-weight: 500;
-      margin-bottom: 8px; }
+      margin-bottom: 0.08rem; }
   #paidPower .paidpower .price {
-    margin-left: 12px;
+    margin-left: 0.12rem;
     text-align: right; }
     #paidPower .paidpower .price .unit {
-      font-size: 12px;
+      font-size: 0.12rem;
       opacity: 0.5; }
 
 .demo2 {
-  -webkit-transform-origin: 22px 22px;
-      -ms-transform-origin: 22px 22px;
-          transform-origin: 22px 22px;
+  -webkit-transform-origin: 0.22rem 0.22rem;
+      -ms-transform-origin: 0.22rem 0.22rem;
+          transform-origin: 0.22rem 0.22rem;
   -webkit-transform: rotate(-90deg);
       -ms-transform: rotate(-90deg);
           transform: rotate(-90deg);
@@ -675,7 +675,7 @@ footer {
   -webkit-box-align: center;
   -webkit-align-items: center;
           align-items: center;
-  margin-bottom: 10px; }
+  margin-bottom: 0.1rem; }
   #yesterdayPower .yesterdaypower:last-child {
     margin-bottom: 0; }
   #yesterdayPower .yesterdaypower .icon,
@@ -686,8 +686,8 @@ footer {
     -webkit-flex-grow: 0;
             flex-grow: 0; }
   #yesterdayPower .yesterdaypower .icon {
-    width: 22px;
-    margin-right: 12px; }
+    width: 0.22rem;
+    margin-right: 0.12rem; }
     #yesterdayPower .yesterdaypower .icon img {
       width: 100%; }
   #yesterdayPower .yesterdaypower .center {
@@ -697,15 +697,15 @@ footer {
     -webkit-flex-grow: 1;
             flex-grow: 1; }
     #yesterdayPower .yesterdaypower .center .data {
-      font-size: 14px;
+      font-size: 0.14rem;
       font-weight: 500; }
   #yesterdayPower .yesterdaypower .reward {
-    margin-left: 12px; }
+    margin-left: 0.12rem; }
 
 .demo2 {
-  -webkit-transform-origin: 22px 22px;
-      -ms-transform-origin: 22px 22px;
-          transform-origin: 22px 22px;
+  -webkit-transform-origin: 0.22rem 0.22rem;
+      -ms-transform-origin: 0.22rem 0.22rem;
+          transform-origin: 0.22rem 0.22rem;
   -webkit-transform: rotate(-90deg);
       -ms-transform: rotate(-90deg);
           transform: rotate(-90deg);
@@ -728,7 +728,7 @@ footer {
     -webkit-box-align: center;
     -webkit-align-items: center;
             align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 0.1rem;
     border: transparent 1px solid;
     -webkit-transition: all ease 0.3s;
     transition: all ease 0.3s; }
@@ -744,12 +744,12 @@ footer {
       -webkit-flex-grow: 0;
               flex-grow: 0; }
     #buy .list .item .lv {
-      height: 44px;
-      width: 44px;
+      height: 0.44rem;
+      width: 0.44rem;
       text-align: center;
-      font-size: 12px;
+      font-size: 0.12rem;
       position: relative;
-      margin-right: 12px; }
+      margin-right: 0.12rem; }
       #buy .list .item .lv .text {
         position: absolute;
         top: 50%;
@@ -764,17 +764,17 @@ footer {
       -webkit-flex-grow: 1;
               flex-grow: 1; }
       #buy .list .item .center .rate {
-        font-size: 12px;
+        font-size: 0.12rem;
         color: #999; }
       #buy .list .item .center .data {
-        font-size: 14px;
+        font-size: 0.14rem;
         font-weight: 500;
-        margin-bottom: 8px; }
+        margin-bottom: 0.08rem; }
     #buy .list .item .price {
-      margin-left: 12px;
+      margin-left: 0.12rem;
       text-align: right; }
       #buy .list .item .price .unit {
-        font-size: 12px;
+        font-size: 0.12rem;
         opacity: 0.5; }
   #buy .footer {
     position: fixed;
@@ -949,7 +949,7 @@ footer {
           -webkit-align-items: center;
                   align-items: center; }
           #wallet .card .top .address .text span {
-            width: 200px;
+            width: 2rem;
             display: inline-block;
             overflow: hidden;
             text-overflow: ellipsis; }
@@ -969,7 +969,7 @@ footer {
       padding: 0.07rem 0.3rem;
       font-size: 0.18rem;
       font-weight: 400;
-      box-shadow: 0 8px 16px 0 rgba(34, 34, 44, 0.12);
+      box-shadow: 0 0.08rem 0.16rem 0 rgba(34, 34, 44, 0.12);
       height: 0.42rem;
       border-radius: 0.21rem;
       color: #000; }
@@ -982,14 +982,14 @@ footer {
     -webkit-box-align: center;
     -webkit-align-items: center;
             align-items: center;
-    margin-bottom: 10px; }
+    margin-bottom: 0.1rem; }
     #wallet .history .item .logo {
       -webkit-box-flex: 0;
       -webkit-flex-grow: 0;
               flex-grow: 0;
       -webkit-flex-shrink: 0;
               flex-shrink: 0;
-      width: 40px; }
+      width: 0.4rem; }
     #wallet .history .item .center {
       font-size: 0.14rem;
       -webkit-flex-shrink: 1;
@@ -1049,11 +1049,11 @@ footer {
     font-size: 0.22rem;
     font-weight: 400; }
   #me .link-list {
-    box-shadow: 0 8px 16px 0 rgba(34, 34, 44, 0.1);
-    padding: 0 12px;
-    border-radius: 6px;
-    margin-bottom: 10px;
-    min-height: 45px;
+    box-shadow: 0 0.08rem 0.16rem 0 rgba(34, 34, 44, 0.1);
+    padding: 0 0.12rem;
+    border-radius: 0.06rem;
+    margin-bottom: 0.1rem;
+    min-height: 0.45rem;
     border: transparent 1px solid;
     -webkit-transition: all ease 0.3s;
     transition: all ease 0.3s; }
@@ -1067,7 +1067,7 @@ footer {
       -webkit-box-pack: justify;
       -webkit-justify-content: space-between;
               justify-content: space-between;
-      padding: 12px 0;
+      padding: 0.12rem 0;
       color: #000;
       font-weight: 300; }
       #me .link-list .link div:first-child {
@@ -1102,11 +1102,11 @@ footer {
     -webkit-box-align: center;
     -webkit-align-items: center;
             align-items: center;
-    box-shadow: 0 8px 16px 0 rgba(34, 34, 44, 0.1);
-    padding: 12px;
-    border-radius: 6px;
-    margin-bottom: 10px;
-    min-height: 45px; }
+    box-shadow: 0 0.08rem 0.16rem 0 rgba(34, 34, 44, 0.1);
+    padding: 0.12rem;
+    border-radius: 0.06rem;
+    margin-bottom: 0.1rem;
+    min-height: 0.45rem; }
     #myActivities .item .logo {
       -webkit-box-flex: 0;
       -webkit-flex-grow: 0;
@@ -1141,10 +1141,10 @@ footer {
     -webkit-box-align: center;
     -webkit-align-items: center;
             align-items: center;
-    box-shadow: 0 8px 16px 0 rgba(34, 34, 44, 0.1);
-    padding: 12px;
-    border-radius: 6px;
-    margin-bottom: 10px;
+    box-shadow: 0 0.08rem 0.16rem 0 rgba(34, 34, 44, 0.1);
+    padding: 0.12rem;
+    border-radius: 0.06rem;
+    margin-bottom: 0.1rem;
     text-align: center; }
 
 #invite {
@@ -1158,12 +1158,12 @@ footer {
     margin-top: 0.38rem;
     font-weight: 400; }
   #invite .url {
-    box-shadow: 0 8px 16px 0 rgba(34, 34, 44, 0.1);
-    padding: 12px;
-    border-radius: 6px;
-    margin-bottom: 10px;
+    box-shadow: 0 0.08rem 0.16rem 0 rgba(34, 34, 44, 0.1);
+    padding: 0.12rem;
+    border-radius: 0.06rem;
+    margin-bottom: 0.1rem;
     margin-top: 0.38rem;
-    min-height: 45px; }
+    min-height: 0.45rem; }
   #invite .btn {
     color: #fff;
     background: -webkit-linear-gradient(75deg, #953D96 0%, #D85BDB 100%);
@@ -1194,7 +1194,7 @@ footer {
     -webkit-box-align: center;
     -webkit-align-items: center;
             align-items: center;
-    margin-bottom: 10px; }
+    margin-bottom: 0.1rem; }
     #miners .item .center {
       font-size: 0.14rem;
       -webkit-flex-shrink: 1;
@@ -1226,7 +1226,7 @@ footer {
     -webkit-box-align: center;
     -webkit-align-items: center;
             align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 0.1rem;
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
             justify-content: space-between; }
@@ -1240,12 +1240,12 @@ footer {
       -webkit-flex-grow: 0;
               flex-grow: 0; }
     #subuser .item .lv {
-      height: 44px;
-      width: 44px;
+      height: 0.44rem;
+      width: 0.44rem;
       text-align: center;
-      font-size: 12px;
+      font-size: 0.12rem;
       position: relative;
-      margin-right: 12px; }
+      margin-right: 0.12rem; }
       #subuser .item .lv .text {
         position: absolute;
         top: 50%;
@@ -1255,7 +1255,7 @@ footer {
                 transform: translate(-50%, -50%);
         font-weight: 400; }
     #subuser .item .price {
-      font-size: 24px; }
+      font-size: 0.24rem; }
 
 #deposit {
   margin-top: 0.56rem; }
@@ -1266,11 +1266,11 @@ footer {
     -webkit-box-align: center;
     -webkit-align-items: center;
             align-items: center;
-    box-shadow: 0 8px 16px 0 rgba(34, 34, 44, 0.1);
-    padding: 12px;
-    border-radius: 6px;
-    margin-bottom: 10px;
-    min-height: 45px;
+    box-shadow: 0 0.08rem 0.16rem 0 rgba(34, 34, 44, 0.1);
+    padding: 0.12rem;
+    border-radius: 0.06rem;
+    margin-bottom: 0.1rem;
+    min-height: 0.45rem;
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
             justify-content: space-between; }
@@ -1280,7 +1280,7 @@ footer {
               flex-grow: 0;
       -webkit-flex-shrink: 0;
               flex-shrink: 0;
-      width: 40px; }
+      width: 0.4rem; }
     #deposit .banner .amount {
       -webkit-box-flex: 0;
       -webkit-flex-grow: 0;
@@ -1298,9 +1298,9 @@ footer {
     margin-top: 0.12rem;
     text-align: center; }
   #deposit .qrcode-container {
-    box-shadow: 0 8px 16px 0 rgba(34, 34, 44, 0.1);
-    padding: 12px;
-    border-radius: 6px;
+    box-shadow: 0 0.08rem 0.16rem 0 rgba(34, 34, 44, 0.1);
+    padding: 0.12rem;
+    border-radius: 0.06rem;
     text-align: center; }
     #deposit .qrcode-container img {
       width: 1.25rem; }
@@ -1645,7 +1645,7 @@ button {
   background-image: linear-gradient(to right, #953D96 0%, #D85BDB 100%);
   color: #fff;
   border: none;
-  border-radius: 2px;
+  border-radius: 0.02rem;
   font-size: 0.16rem;
   padding: 0.12rem 0.24rem;
   outline: none; }
@@ -1677,10 +1677,10 @@ a {
   position: relative; }
 
 .page-title {
-  font-size: 18px;
+  font-size: 0.18rem;
   font-weight: 500;
-  margin-top: 30px;
-  margin-bottom: 18px; }
+  margin-top: 0.3rem;
+  margin-bottom: 0.18rem; }
 
 .form .item {
   padding: 0.06rem 0;
@@ -1757,20 +1757,20 @@ a {
     background: #fff;
     border-radius: 0.06rem;
     padding: 0.2rem;
-    box-shadow: 0 0 7px 0px rgba(0, 0, 0, 0.3); }
+    box-shadow: 0 0 0.07rem 0 rgba(0, 0, 0, 0.3); }
 
 .top-select {
-  padding-bottom: 12px;
+  padding-bottom: 0.12rem;
   text-align: center; }
   .top-select > span {
-    min-height: 45px;
+    min-height: 0.45rem;
     border: transparent 1px solid;
     -webkit-transition: all ease 0.3s;
     transition: all ease 0.3s;
     display: inline-block; }
   .top-select .option {
     display: inline-block;
-    width: 130px;
+    width: 1.3rem;
     -webkit-transition: all ease 0.3s;
     transition: all ease 0.3s;
     opacity: 0.5; }

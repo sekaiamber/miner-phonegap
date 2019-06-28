@@ -37,7 +37,7 @@
           align-items: center;
 
           span {
-            width: 200px;
+            width: 2rem;
             display: inline-block;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -63,7 +63,7 @@
       padding: 0.07rem 0.3rem;
       font-size: 0.18rem;
       font-weight: 400;
-      box-shadow: 0 8px 16px 0 rgba($color: #22222C, $alpha: 0.12);
+      box-shadow: 0 0.08rem 0.16rem 0 rgba($color: #22222C, $alpha: 0.12);
       height: 0.42rem;
       border-radius: 0.21rem;
       color: #000;
@@ -78,12 +78,12 @@
     .item {
       display: flex;
       align-items: center;
-      margin-bottom: 10px;
+      margin-bottom: 0.1rem;
 
       .logo {
         flex-grow: 0;
         flex-shrink: 0;
-        width: 40px;
+        width: 0.4rem;
       }
 
       .center {

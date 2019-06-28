@@ -4,7 +4,7 @@
   .item {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 0.1rem;
     justify-content: space-between;
 
     &:last-child {
@@ -19,12 +19,12 @@
     }
 
     .lv {
-      height: 44px;
-      width: 44px;
+      height: 0.44rem;
+      width: 0.44rem;
       text-align: center;
-      font-size: 12px;
+      font-size: 0.12rem;
       position: relative;
-      margin-right: 12px;
+      margin-right: 0.12rem;
 
       .text {
         position: absolute;
@@ -36,7 +36,7 @@
     }
 
     .price {
-      font-size: 24px;
+      font-size: 0.24rem;
     }
   }
 }

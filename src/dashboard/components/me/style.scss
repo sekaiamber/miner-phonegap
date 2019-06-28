@@ -41,11 +41,11 @@
   }
 
   .link-list {
-    box-shadow: 0 8px 16px 0 rgba($color: #22222C, $alpha: 0.1);
-    padding: 0 12px;
-    border-radius: 6px;
-    margin-bottom: 10px;
-    min-height: 45px;
+    box-shadow: 0 0.08rem 0.16rem 0 rgba($color: #22222C, $alpha: 0.1);
+    padding: 0 0.12rem;
+    border-radius: 0.06rem;
+    margin-bottom: 0.1rem;
+    min-height: 0.45rem;
     border: transparent 1px solid;
     transition: all ease 0.3s;
 
@@ -53,7 +53,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 0;
+      padding: 0.12rem 0;
       color: #000;
       font-weight: 300;
 

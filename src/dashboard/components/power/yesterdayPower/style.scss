@@ -2,7 +2,7 @@
   .yesterdaypower {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 0.1rem;
 
     &:last-child {
       margin-bottom: 0;
@@ -15,8 +15,8 @@
     }
 
     .icon {
-      width: 22px;
-      margin-right: 12px;
+      width: 0.22rem;
+      margin-right: 0.12rem;
       
       img {
         width: 100%;
@@ -28,19 +28,19 @@
       flex-grow: 1;
 
       .data {
-        font-size: 14px;
+        font-size: 0.14rem;
         font-weight: 500;
       }
     }
 
     .reward {
-      margin-left: 12px;
+      margin-left: 0.12rem;
     }
   }
 }
 
 .demo2{
-  transform-origin: 22px 22px;
+  transform-origin: 0.22rem 0.22rem;
   transform: rotate(-90deg);
   transition: stroke-dasharray .3s ease-in;
 }
