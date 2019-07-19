@@ -1,6 +1,20 @@
-# Hello World PhoneGap Template [![bitHound Score][bithound-img]][bithound-url]
+# PHONEGAP PROJECT.
 
-A PhoneGap Hello World template
+## 开发
+
+1. 先装个phonegap。参照[官方指南](http://docs.phonegap.com/getting-started/1-install-phonegap/cli/)。
+```
+$ npm install -g phonegap@latest
+```
+
+2. 执行`phonegap platform add browser --force`。
+3. 执行`phonegap install browse`。
+4. 执行`cnpm i`。
+
+------
+
+下面是原版的README。
+
 
 ## Usage
 
