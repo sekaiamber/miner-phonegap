@@ -27,6 +27,10 @@ import Miners from '../dashboard/components/miners';
 import Subuser from '../dashboard/components/subuser';
 import Deposit from '../dashboard/components/deposit';
 import Withdraw from '../dashboard/components/withdraw';
+import Post from '../dashboard/components/post';
+import Order from '../dashboard/components/order';
+import ChangePassword from '../dashboard/components/changePassword';
+import ChangeWithdrawPassword from '../dashboard/components/changeWithdrawPassword';
 // import NoMatchPage from '../dashboard/components/noMatchPage';
 
 function AnimeRoute({ component: C, ...rest }) {
@@ -69,6 +73,10 @@ class MyRouter extends Component {
           <AnimeRoute path="/subuser" exact component={Subuser} />
           <AnimeRoute path="/deposit/:currency" exact component={Deposit} />
           <AnimeRoute path="/withdraw/:currency" exact component={Withdraw} />
+          <AnimeRoute path="/post/:id" exact component={Post} />
+          <AnimeRoute path="/orders" exact component={Order} />
+          <AnimeRoute path="/changePassword" exact component={ChangePassword} />
+          <AnimeRoute path="/changeWithdrawPassword" exact component={ChangeWithdrawPassword} />
           {/* <Route component={NoMatchPage} /> */}
           <Footer />
           <Upgrade />

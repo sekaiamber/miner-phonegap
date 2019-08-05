@@ -9,6 +9,12 @@ import './style.scss';
 
 // images
 import avatarImg from '../../../assets/me_avatar.svg';
+import linkImg1 from '../../../assets/me_link_1.svg';
+import linkImg2 from '../../../assets/me_link_2.svg';
+import linkImg3 from '../../../assets/me_link_3.svg';
+import linkImg4 from '../../../assets/me_link_4.svg';
+import linkImg5 from '../../../assets/me_link_5.svg';
+import linkImg6 from '../../../assets/me_link_6.svg';
 
 class Me extends Component {
   handleLogout = () => {
@@ -23,32 +29,35 @@ class Me extends Component {
     return (
       <div id="me" className="container">
         <div className="avatar-container">
-          <div className="avatar">
-            <img src={avatarImg} alt="" />
-          </div>
-          <div className="code">推廣碼 {userInfo.invite_code}</div>
+          <img src={avatarImg} alt="" />
+          <div className="nickname">{userInfo.nickname}</div>
         </div>
-        <div className="nickname">{userInfo.nickname}</div>
-        <div className="page-title">等級</div>
-        <div className="link-list">
-          <div className="link">
-            <div>社區等級</div>
-            <div>{userInfo.community_level && userInfo.community_level.toUpperCase()}</div>
-          </div>
-          <div className="link">
-            <div>礦工等級</div>
-            <div>{userInfo.level && userInfo.level.toUpperCase()}</div>
-          </div>
+        <div className="divider" />
+        <div className="link">
+          <span className="icon"><img src={linkImg1} alt="" /></span>
+          <Link to="/changePassword">钱包设置</Link>
         </div>
-        <div className="page-title">安全</div>
-        <div className="link-list">
-          <div className="link">
-            <div>手機驗證</div>
-            <div>已完成</div>
-          </div>
+        <div className="link">
+          <span className="icon"><img src={linkImg2} alt="" /></span>
+          <Link to="/changeWithdrawPassword">安全设置</Link>
         </div>
-        <div className="page-title">我的礦工</div>
-        <div className="link-list">
+        <div className="link">
+          <span className="icon"><img src={linkImg3} alt="" /></span>
+          <Link to="/post/about">关于我们</Link>
+        </div>
+        <div className="link">
+          <span className="icon"><img src={linkImg4} alt="" /></span>
+          <Link to="/post/qa">常见问题</Link>
+        </div>
+        <div className="link">
+          <span className="icon"><img src={linkImg5} alt="" /></span>
+          <Link to="/me">联系我们</Link>
+        </div>
+        <div className="link">
+          <span className="icon"><img src={linkImg6} alt="" /></span>
+          <Link to="/invite">APP下载</Link>
+        </div>
+        {/* <div className="link-list">
           <Link to="/invite" className="link">
             <div>邀請好友</div>
             <div>&gt;</div>
@@ -61,7 +70,7 @@ class Me extends Component {
             <div>我的礦工</div>
             <div>&gt;</div>
           </Link>
-        </div>
+        </div> */}
         <div className="logout">
           <a onClick={this.handleLogout}>退出登錄</a>
         </div>

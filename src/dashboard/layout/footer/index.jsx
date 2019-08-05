@@ -9,8 +9,8 @@ import homeImg from '../../../assets/m_home.svg';
 import homeActiveImg from '../../../assets/m_home_active.svg';
 import powerImg from '../../../assets/m_power.svg';
 import powerActiveImg from '../../../assets/m_power_active.svg';
-import buyImg from '../../../assets/m_buy.svg';
-import buyActiveImg from '../../../assets/m_buy_active.svg';
+// import buyImg from '../../../assets/m_buy.svg';
+// import buyActiveImg from '../../../assets/m_buy_active.svg';
 import walletImg from '../../../assets/m_wallet.svg';
 import walletActiveImg from '../../../assets/m_wallet_active.svg';
 import meImg from '../../../assets/m_me.svg';
@@ -26,38 +26,26 @@ class Footer extends Component {
     return (
       <footer className={classnames({ hide: activeNav === undefined })}>
         <div className={classnames('item', { active: activeNav === 0 })}>
-          {activeNav === 0 ? (
-            <div>
-              <div className="active-container">
-                <img src={homeActiveImg} alt="" />
-              </div>
-            </div>
-          ) : (
-            <Link to="/">
-              <div>
-                <img src={homeImg} alt="" />
-              </div>
-              <div className="name">首頁</div>
-            </Link>
-          )}
+          <Link to="/">
+            <img src={homeActiveImg} alt="" />
+          </Link>
+        </div>
+        <div className={classnames('item', { active: activeNav === 3 })}>
+          <Link to="/wallet">
+            <img src={walletActiveImg} alt="" />
+          </Link>
         </div>
         <div className={classnames('item', { active: activeNav === 1 })}>
-          {activeNav === 1 ? (
-            <div>
-              <div className="active-container">
-                <img src={powerActiveImg} alt="" />
-              </div>
-            </div>
-          ) : (
-            <Link to="/power">
-              <div>
-                <img src={powerImg} alt="" />
-              </div>
-              <div className="name">算力</div>
-            </Link>
-          )}
+          <Link to="/power">
+            <img src={powerActiveImg} alt="" />
+          </Link>
         </div>
-        <div className={classnames('item', { active: activeNav === 2 })}>
+        <div className={classnames('item', { active: activeNav === 4 })}>
+          <Link to="/me">
+            <img src={meActiveImg} alt="" />
+          </Link>
+        </div>
+        {/* <div className={classnames('item', { active: activeNav === 2 })}>
           {activeNav === 2 ? (
             <div>
               <div className="active-container">
@@ -72,39 +60,7 @@ class Footer extends Component {
               <div className="name">購買</div>
             </Link>
           )}
-        </div>
-        <div className={classnames('item', { active: activeNav === 3 })}>
-          {activeNav === 3 ? (
-            <div>
-              <div className="active-container">
-                <img src={walletActiveImg} alt="" />
-              </div>
-            </div>
-          ) : (
-            <Link to="/wallet">
-              <div>
-                <img src={walletImg} alt="" />
-              </div>
-              <div className="name">錢包</div>
-            </Link>
-          )}
-        </div>
-        <div className={classnames('item', { active: activeNav === 4 })}>
-          {activeNav === 4 ? (
-            <div>
-              <div className="active-container">
-                <img src={meActiveImg} alt="" />
-              </div>
-            </div>
-          ) : (
-            <Link to="/me">
-              <div>
-                <img src={meImg} alt="" />
-              </div>
-              <div className="name">我的</div>
-            </Link>
-          )}
-        </div>
+        </div> */}
       </footer>
     );
   }

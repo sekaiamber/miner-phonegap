@@ -17,34 +17,38 @@ import walletWitImg from '../../../assets/wallet_withdraw.svg';
 
 class Wallet extends Component {
   state = {
-    use: 'base',
-  }
-
-  componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch({
-      type: 'account/queryHistory',
-      payload: 'BASE',
-    });
+    use: 'usdt',
   }
 
   getUseWallet() {
     const { use } = this.state;
-    const { userInfo, accountInfo } = this.props;
+    const {
+      userInfo, accountInfo, prices, block,
+    } = this.props;
     const info = {
       unit: use.toUpperCase(),
       address: '',
       balance: '',
       logo: '',
+      block: null,
     };
     if (use === 'usdt') {
       info.address = userInfo.usdt_payment_address;
       info.balance = accountInfo.usdt_balance;
       info.logo = walletUsdtImg;
-    } else {
-      info.address = userInfo.payment_address;
-      info.balance = accountInfo.balance;
+      info.unitValue = prices.usdt.cny;
+    } else if (use === 'btc') {
+      info.address = '';
+      info.balance = accountInfo.btc_balance;
       info.logo = walletBase2Img;
+      info.unitValue = prices[use].usdt;
+      info.block = block.btc;
+    } else if (use === 'ltc') {
+      info.address = '';
+      info.balance = accountInfo.ltc_balance;
+      info.logo = walletBase2Img;
+      info.unitValue = prices[use].usdt;
+      info.block = block.ltc;
     }
     return info;
   }
@@ -62,84 +66,85 @@ class Wallet extends Component {
     this.setState({
       use,
     });
-    const { dispatch } = this.props;
-    dispatch({
-      type: 'account/queryHistory',
-      payload: use.toUpperCase(),
-    });
   }
 
   render() {
-    const { history } = this.props;
     const { use } = this.state;
     const useWallet = this.getUseWallet();
 
     return (
       <div id="wallet" className="container">
         <div className="top-select">
-          <span className="shadow-pad">
-            <span className={classnames('option', { active: use === 'base' })} onClick={this.handleChangeUse.bind(this, 'base')}>BASE钱包</span>
-            <span className={classnames('option', { active: use === 'usdt' })} onClick={this.handleChangeUse.bind(this, 'usdt')}>USDT钱包</span>
+          <span>
+            <span className={classnames('option', { active: use === 'usdt' })} onClick={this.handleChangeUse.bind(this, 'usdt')}>USDT</span>
+            <span className={classnames('option', { active: use === 'btc' })} onClick={this.handleChangeUse.bind(this, 'btc')}>BTC</span>
+            <span className={classnames('option', { active: use === 'ltc' })} onClick={this.handleChangeUse.bind(this, 'ltc')}>LTC</span>
           </span>
         </div>
         <div className={classnames('card', { usdt: use === 'usdt' })}>
-          <div className="top">
-            <img className="logo" src={useWallet.logo} alt="" />
-            <div className="address">
-              <div className="currency">{useWallet.unit}</div>
-              <div className="text">
-                <span>{useWallet.address}</span>
-                <img src={walletQrImg} alt="" onClick={this.handleGotoDeposit} />
+          <div className="top">{useWallet.unit}</div>
+          <div className="amount">{parseFloat(useWallet.balance).toFixed(2)}</div>
+          <div className="value">
+            <span>
+              {use === 'usdt' ? (
+                `${parseFloat(useWallet.balance * useWallet.unitValue).toFixed(2)} CNY`
+              ) : (
+                `$ ${parseFloat(useWallet.balance * useWallet.unitValue).toFixed(2)}`
+              )}
+            </span>
+          </div>
+        </div>
+        {useWallet.block && (
+          <div className="info">
+            <div className="row">
+              <div className="me">
+                <div className="key">999T</div>
+                <div className="value">我的{useWallet.unit}算力</div>
+              </div>
+              <div className="block">
+                <div className="key">{useWallet.block.hashRate}</div>
+                <div className="value">{useWallet.unit}全网算力</div>
+              </div>
+            </div>
+            <div className="row">
+              <div className="me">
+                <div className="key">0.2222 BTC</div>
+                <div className="value">我的{useWallet.unit}矿池收益</div>
+              </div>
+              <div className="block">
+                <div className="key">{useWallet.block.difficulty}</div>
+                <div className="value">{useWallet.unit}全网难度</div>
               </div>
             </div>
           </div>
-          <div className="amount">{parseFloat(useWallet.balance).toFixed(2)}</div>
-        </div>
+        )}
         <div className="opt">
-          <Link className="opt-btn" to={`/deposit/${use}`}>
-            <img src={walletDepImg} alt="" />
-            <span>充值</span>
-          </Link>
-          <Link className="opt-btn" to={`/withdraw/${use}`}>
-            <img src={walletWitImg} alt="" />
-            <span>提現</span>
-          </Link>
-        </div>
-        <div className="page-title">充提歷史</div>
-        <div className="history">
-          {history === 'LOADING' ? (
-            <div className="loading">
-              <Spin />
-            </div>
-          ) : (
-            history.map((item, i) => (
-              <div className="item shadow-pad" key={item.type + i}>
-                <img className="logo" src={useWallet.logo} alt="" />
-                <div className="center">
-                  <div className="txid">{item.txid || '等待中'}</div>
-                  <div className="time">{item.created_at}</div>
-                </div>
-                <div className="amount">
-                  {item.type === 'deposits' ? '+' : '-'}{item.amount}
-                </div>
-              </div>
-            ))
+          {use === 'usdt' && (
+            <Link className="opt-btn" to={`/deposit/${use}`}>
+              充值
+            </Link>
           )}
+          <Link className="opt-btn" to={`/withdraw/${use}`}>
+            提現
+          </Link>
         </div>
+        <Link className="big" to="/buy">矿机租赁</Link>
+        <Link className="big" to="/orders">我的矿机</Link>
       </div>
     );
   }
 }
 
-function mapStateToProps({ account }) {
+function mapStateToProps({ account, market }) {
   const {
-    userInfo, account: accountInfo, history,
+    userInfo, account: accountInfo,
   } = account;
 
   return {
     userInfo,
     accountInfo,
-    history,
+    block: market.block,
+    prices: market.prices,
   };
 }
 

@@ -11,6 +11,7 @@ const QUERYS = {
   QUERY_ACTIVITIES_DONE: page => `/api/v1/activities.json?page=${page}&state=done`,
   QUERY_ACTIVITIES_ALL: '/api/v1/activities.json?page=1',
   QUERY_ACTIVITIES_TOTAL: '/api/v1/activities/total.json',
+  QUERY_ACTIVITIES_INVITE: '/api/v1/activities/invite.json',
   QUERY_ORDERS: '/api/v1/orders.json',
   QUERY_PRODUCTS: '/api/v1/products.json',
   QUERY_DEPOSITS: '/api/v1/deposits.json',
@@ -22,6 +23,11 @@ const QUERYS = {
   SEND_FORGET_SMS: '/api/v1/sms/reset_password.json',
   SIGNUP: '/api/v1/users.json',
   RESET_PASSWORD: '/api/v1/reset_password.json',
+  QUERY_BANNERS: '/api/v1/banners.json',
+  CONTINUE: id => `/api/v1/orders/${id}/continue.json`,
+  SEND_WITHDRAW_SMS: '/api/v1/sms/withdraw.json',
+  CHANGE_PASSWORD: '/api/v1/passwords/login.json',
+  CHANGE_WITHDRAW_PASSWORD: '/api/v1/passwords/withdraw.json',
 };
 
 const { DOMAIN: domain } = config;

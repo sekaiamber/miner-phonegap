@@ -4,12 +4,12 @@ import QUERYS from '../querys';
 
 const queryProducts = () => fetch.get(QUERYS.QUERY_PRODUCTS);
 const buy = data => fetch.private.post(QUERYS.QUERY_ORDERS, data);
+const continueOrder = id => fetch.private.post(QUERYS.CONTINUE(id));
 
 export default {
   namespace: 'product',
   state: {
-    products: [],
-    canBuy: false,
+    products: {},
   },
   subscriptions: {},
   effects: {
@@ -25,19 +25,31 @@ export default {
         yield put({
           type: 'updateState',
           payload: {
-            products: data.data.products,
-            canBuy: data.data.can_buy,
+            products: data.data,
           },
         });
       }
     },
-    * buy({ payload, onSuccess }, { call, put }) {
+    * buy({ payload, onSuccess, onFail }, { call, put }) {
       const data = yield call(buy, payload);
       if (data.success) {
         if (onSuccess) onSuccess();
         yield put({
           type: 'account/queryAccount',
         });
+      } else if (onFail) {
+        onFail();
+      }
+    },
+    * continueOrder({ payload, onSuccess, onFail }, { call, put }) {
+      const data = yield call(continueOrder, payload);
+      if (data.success) {
+        if (onSuccess) onSuccess();
+        yield put({
+          type: 'account/queryOrders',
+        });
+      } else if (onFail) {
+        onFail();
       }
     },
   },

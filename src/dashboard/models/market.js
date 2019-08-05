@@ -4,7 +4,7 @@ import fetch from '../../utils/fetch';
 import QUERYS from '../querys';
 
 const queryMarket = () => fetch.get(QUERYS.QUERY_MARKET);
-const queryBlock = () => fetch.get(QUERYS.QUERY_BLOCK);
+const queryHome = () => fetch.get(QUERYS.QUERY_BLOCK);
 
 function getPrice(data) {
   return {
@@ -18,20 +18,17 @@ export default {
   namespace: 'market',
   state: {
     prices: {
-      base: {
+      ltc: {
         cny: 0,
         usdt: 0,
-        change: 0,
       },
       btc: {
         cny: 0,
         usdt: 0,
-        change: 0,
       },
-      eth: {
+      usdt: {
         cny: 0,
         usdt: 0,
-        change: 0,
       },
     },
     block: {
@@ -39,17 +36,31 @@ export default {
       power: 0,
       level: 0,
     },
+    fee: {
+      btc: '0',
+      usdt: '0',
+      ltc: '0',
+    },
   },
   subscriptions: {},
   effects: {
     * queryMarket(_, { call, put }) {
       const data = yield call(queryMarket);
       if (data.success) {
-        const list = data.data;
+        const d = data.data;
         const prices = {
-          base: getPrice(list.find(a => a.name === 'BASE/ETH')),
-          eth: getPrice(list.find(a => a.name === 'ETH/USDT')),
-          btc: getPrice(list.find(a => a.name === 'BTC/USDT')),
+          btc: {
+            cny: d.btc * d.usdt,
+            usdt: d.btc,
+          },
+          ltc: {
+            cny: d.ltc * d.usdt,
+            usdt: d.ltc,
+          },
+          usdt: {
+            cny: d.usdt,
+            usdt: 1,
+          },
         };
         yield put({
           type: 'updateState',
@@ -59,16 +70,20 @@ export default {
         });
       }
     },
-    * queryBlock(_, { call, put }) {
-      const data = yield call(queryBlock);
+    * queryHome(_, { call, put }) {
+      const data = yield call(queryHome);
       if (data.success) {
         yield put({
           type: 'updateState',
           payload: {
             block: {
-              height: data.block_number,
-              power: data.power,
-              level: data.reward_level,
+              btc: data.data.btc,
+              ltc: data.data.ltc,
+            },
+            fee: {
+              btc: data.data.btc_fee,
+              usdt: data.data.usdt_fee,
+              ltc: data.data.ltc_fee,
             },
           },
         });

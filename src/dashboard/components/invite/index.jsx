@@ -8,8 +8,9 @@ import Qrcode from '../common/qrcode';
 
 import './style.scss';
 
-function getUrl(code) {
-  return `https://www.basepool.net/sign_up?invite_code=${code}`;
+// TODO:
+function getUrl() {
+  return 'https://pangmayi.net/';
 }
 
 // images
@@ -23,7 +24,7 @@ class Invite extends Component {
         <div className="qrcode">
           <Qrcode data={url} option={{ height: 250, width: 250, margin: 2 }} />
         </div>
-        <div className="code">我的邀請碼：{userInfo.invite_code}</div>
+        <div className="code">邀請碼：{userInfo.invite_code}</div>
         <div className="url">{url}</div>
         <div className="btn clipboard-target" data-clipboard-text={url}>點擊複製鏈接</div>
       </div>

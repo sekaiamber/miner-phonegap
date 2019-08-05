@@ -28,6 +28,18 @@ module.exports = {
     port: 8060,
     historyApiFallback: true,
     hot: true,
+    proxy: {
+      '/api': {
+        target: config.PROXY_DOMAIN,
+        changeOrigin: true,
+        secure: false,
+      },
+      '/uploads': {
+        target: config.PROXY_DOMAIN,
+        changeOrigin: true,
+        secure: false,
+      }
+    }
   },
   plugins: [
     new webpack.DefinePlugin({

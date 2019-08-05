@@ -14,6 +14,7 @@ const queryAcitiviesDone = page => fetch.private.get(QUERYS.QUERY_ACTIVITIES_DON
 const queryAcitiviesAll = () => fetch.private.get(QUERYS.QUERY_ACTIVITIES_ALL);
 const queryAcitiviesYesterday = () => fetch.private.get(QUERYS.QUERY_ACTIVITIES_YESTERDAY);
 const queryAcitiviesTotal = () => fetch.private.get(QUERYS.QUERY_ACTIVITIES_TOTAL);
+const queryAcitiviesInvite = () => fetch.private.get(QUERYS.QUERY_ACTIVITIES_INVITE);
 const queryOrders = () => fetch.private.get(QUERYS.QUERY_ORDERS);
 const queryDeposits = data => fetch.private.get(QUERYS.QUERY_DEPOSITS, data);
 const queryWithdraws = data => fetch.private.get(QUERYS.QUERY_WITHDRAWS, data);
@@ -21,6 +22,9 @@ const querySubUser = () => fetch.private.get(QUERYS.QUERY_SUB_USER);
 const changeAutoReceive = data => fetch.private.post(QUERYS.QUERY_MY, { auto_receive: data });
 const submitWithdraw = data => fetch.private.post(QUERYS.QUERY_WITHDRAWS, data);
 const collect = id => fetch.private.post(QUERYS.COLLECT(id));
+const sendWithdrawSms = () => fetch.private.post(QUERYS.SEND_WITHDRAW_SMS);
+const changePassword = data => fetch.private.post(QUERYS.CHANGE_PASSWORD, data);
+const changeWithdrawPassword = data => fetch.private.post(QUERYS.CHANGE_WITHDRAW_PASSWORD, data);
 
 function sedoRandom(seed) {
   return ('0.' + Math.sin(seed).toString().substr(6));
@@ -40,6 +44,9 @@ export default {
     orders: [],
     history: [],
     subuser: [],
+    invite: {
+      activities: [],
+    },
   },
   subscriptions: {},
   effects: {
@@ -230,6 +237,54 @@ export default {
         });
       }
     },
+    * queryDeposits({ payload }, { call, put }) {
+      yield put({
+        type: 'updateState',
+        payload: {
+          history: 'LOADING',
+        },
+      });
+      const currency = payload || 'USDT';
+      const deposits = yield call(queryDeposits, { currency });
+      if (deposits.success) {
+        const dep = deposits.data.map(d => ({
+          ...d,
+          type: 'deposits',
+        }));
+        const history = dep;
+        history.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+        yield put({
+          type: 'updateState',
+          payload: {
+            history,
+          },
+        });
+      }
+    },
+    * queryWithdraws({ payload }, { call, put }) {
+      yield put({
+        type: 'updateState',
+        payload: {
+          history: 'LOADING',
+        },
+      });
+      const currency = payload || 'USDT';
+      const withdraws = yield call(queryWithdraws, { currency });
+      if (withdraws.success) {
+        const wit = withdraws.data.map(d => ({
+          ...d,
+          type: 'withdraw',
+        }));
+        const history = wit;
+        history.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+        yield put({
+          type: 'updateState',
+          payload: {
+            history,
+          },
+        });
+      }
+    },
     * querySubUser(_, { call, put }) {
       const data = yield call(querySubUser);
       if (data.success) {
@@ -237,6 +292,17 @@ export default {
           type: 'updateState',
           payload: {
             subuser: data.data,
+          },
+        });
+      }
+    },
+    * queryAcitiviesInvite(_, { call, put }) {
+      const data = yield call(queryAcitiviesInvite);
+      if (data.success) {
+        yield put({
+          type: 'updateState',
+          payload: {
+            invite: data.data,
           },
         });
       }
@@ -293,6 +359,24 @@ export default {
         type: 'updateState',
         payload,
       });
+    },
+    * sendWithdrawSms(_, { call }) {
+      const data = yield call(sendWithdrawSms);
+      if (data.success) {
+        message.success('发送成功');
+      }
+    },
+    * changePassword({ payload }, { call }) {
+      const data = yield call(changePassword, payload);
+      if (data.success) {
+        message.success('重置密码成功');
+      }
+    },
+    * changeWithdrawPassword({ payload }, { call }) {
+      const data = yield call(changeWithdrawPassword, payload);
+      if (data.success) {
+        message.success('重置提现密码成功');
+      }
     },
   },
   reducers: {

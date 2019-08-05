@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable array-callback-return */
@@ -6,6 +7,7 @@ import React, { Component } from 'react';
 import classnames from 'classnames';
 import Decimal from 'decimal.js-light';
 import { connect } from 'dva';
+import { Spin } from 'antd';
 import message from '../../../utils/message';
 
 import './style.scss';
@@ -17,11 +19,25 @@ class Withdraw extends Component {
   state = {
     to: '',
     amount: '',
+    withdraw_password: '',
+    verify_code: '',
+  }
+
+  componentDidMount() {
+    const { dispatch, match } = this.props;
+    let currency = 'usdt';
+    if (match && match.params) {
+      currency = match.params.currency;
+    }
+    dispatch({
+      type: 'account/queryWithdraws',
+      payload: currency.toUpperCase(),
+    });
   }
 
   getUseWallet() {
     const { match, data } = this.props;
-    let currency = 'base';
+    let currency = 'usdt';
     if (match && match.params) {
       currency = match.params.currency;
     }
@@ -32,46 +48,25 @@ class Withdraw extends Component {
     if (currency === 'usdt') {
       info.balance = data.usdt_balance;
     } else {
-      info.balance = data.balance;
+      info.balance = data[`${currency}_balance`];
     }
     return info;
   }
 
   getFee() {
-    const { match } = this.props;
-    let currency = 'base';
+    const { match, fee } = this.props;
+    let currency = 'usdt';
     if (match && match.params) {
       currency = match.params.currency;
     }
-    if (currency === 'usdt') return '5';
-    const { amount } = this.state;
-    let fee = '0';
-    if (amount !== '') {
-      fee = new Decimal(amount).mul(new Decimal('0.02'));
-      if (fee.lessThan(new Decimal('20'))) {
-        fee = '20';
-      } else {
-        fee = fee.toString();
-      }
-    }
-    return fee;
+    return fee[currency];
   }
 
   getFinal() {
-    const { match } = this.props;
-    let currency = 'base';
-    if (match && match.params) {
-      currency = match.params.currency;
-    }
     const { amount } = this.state;
+    const fee = this.getFee();
     let final = '0';
-    if (currency === 'usdt' && amount !== '' && new Decimal(amount).greaterThan(new Decimal('5'))) {
-      final = new Decimal(amount).minus('5').toString();
-    } else if (amount !== '' && new Decimal(amount).greaterThan(new Decimal('20'))) {
-      let fee = new Decimal(amount).mul(new Decimal('0.02'));
-      if (fee.lessThan(new Decimal('20'))) {
-        fee = new Decimal('20');
-      }
+    if (amount && new Decimal(amount).greaterThan(fee)) {
       final = new Decimal(amount).minus(fee).toString();
     }
     return final;
@@ -86,6 +81,18 @@ class Withdraw extends Component {
   handleChangeAmount = (e) => {
     this.setState({
       amount: e.target.value,
+    });
+  }
+
+  handleChangeWithdrawPassword = (e) => {
+    this.setState({
+      withdraw_password: e.target.value,
+    });
+  }
+
+  handleChangeVerifyCode = (e) => {
+    this.setState({
+      verify_code: e.target.value,
     });
   }
 
@@ -114,7 +121,9 @@ class Withdraw extends Component {
   }
 
   handleSubmit = () => {
-    const { to, amount } = this.state;
+    const {
+      to, amount, withdraw_password, verify_code,
+    } = this.state;
     const { dispatch, match } = this.props;
     let currency;
     if (match && match.params) {
@@ -125,6 +134,8 @@ class Withdraw extends Component {
       to,
       amount,
       currency: currency.toUpperCase(),
+      withdraw_password,
+      verify_code,
     };
     dispatch({
       type: 'account/submitWithdraw',
@@ -132,8 +143,17 @@ class Withdraw extends Component {
     });
   }
 
+  handleSendSms = () => {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'account/sendWithdrawSms',
+    });
+  }
+
   canSubmit() {
-    const { amount, to } = this.state;
+    const {
+      to, amount, withdraw_password, verify_code,
+    } = this.state;
     const { match } = this.props;
     let currency = 'base';
     if (match && match.params) {
@@ -146,8 +166,11 @@ class Withdraw extends Component {
   }
 
   render() {
-    const { to, amount } = this.state;
+    const {
+      to, amount, withdraw_password, verify_code,
+    } = this.state;
     const useWallet = this.getUseWallet();
+    const { history } = this.props;
 
     return (
       <div id="withdraw" className={classnames('container', { usdt: useWallet.unit === 'USDT' })}>
@@ -162,6 +185,13 @@ class Withdraw extends Component {
           </div>
           <div className="item">
             <input type="number" placeholder="提現金額" value={amount} onChange={this.handleChangeAmount} />
+          </div>
+          <div className="item">
+            <input type="text" placeholder="提現密码" value={withdraw_password} onChange={this.handleChangeWithdrawPassword} />
+          </div>
+          <div className="item verify">
+            <input type="number" placeholder="手机验证码" value={verify_code} onChange={this.handleChangeVerifyCode} />
+            <a onClick={this.handleSendSms}>發送驗證碼</a>
           </div>
           <div className="item">
             <div className="form-info">
@@ -179,16 +209,39 @@ class Withdraw extends Component {
         <div className="submit">
           <button className="btn" disabled={this.canSubmit()} onClick={this.handleSubmit}>確認提現</button>
         </div>
+        <div className="page-title">提现歷史</div>
+        <div className="history">
+          {history === 'LOADING' ? (
+            <div className="loading">
+              <Spin />
+            </div>
+          ) : (
+            history.map((item, i) => (
+              <div className="item" key={item.type + i}>
+                <img className="logo" src={useWallet.logo} alt="" />
+                <div className="center">
+                  <div className="txid">{item.txid || '等待中'}</div>
+                  <div className="time">{item.created_at}</div>
+                </div>
+                <div className="amount">
+                  {item.type === 'deposits' ? '+' : '-'}{item.amount}
+                </div>
+              </div>
+            ))
+          )}
+        </div>
       </div>
     );
   }
 }
 
-function mapStateToProps({ account }) {
-  const { account: data } = account;
+function mapStateToProps({ account, market }) {
+  const { account: data, history } = account;
 
   return {
     data,
+    history,
+    fee: market.fee,
   };
 }
 export default connect(mapStateToProps)(Withdraw);

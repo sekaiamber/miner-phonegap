@@ -1,75 +1,81 @@
 #wallet {
   padding-top: 0.56rem;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+
+  .top-select .option {
+    width: 0.6rem;
+  }
+
+  .info {
+    background: rgba($color: #322121, $alpha: 0.4);
+    margin: 0.25rem 0;
+
+    .row {
+      border-top: #d1ab90 solid 1px;
+      display: flex;
+      padding: 0.13rem 0.15rem;
+
+      &:first-child {
+        border-top-width: 2px;
+      }
+
+      .me {
+        width: 40%;
+      }
+      .block {
+        width: 60%;
+      }
+
+      .key {
+        font-size: 0.18rem;
+      }
+      .value {
+        font-size: 0.12rem;
+        opacity: 0.4;
+      }
+    }
+  }
 
   .card {
-    border-radius: 0.12rem;
-    padding: 0.2rem;
-    background: linear-gradient(45deg, #953D96 0%, #D85BDB 100%);
-    color: #fff;
-
-    &.usdt {
-      background: linear-gradient(45deg, #26a07b 0%, #23e0a7 100%);
-    }
+    text-align: center;
 
     .top {
-      display: flex;
-      align-items: center;
-
-      .logo {
-        width: 0.44rem;
-        flex-grow: 0;
-        flex-shrink: 0;
-      }
-
-      .address {
-        flex-grow: 1;
-        flex-shrink: 1;
-        line-height: 1.35;
-        margin-left: 0.15rem;
-
-        .currency {
-          font-size: 0.22rem;
-          font-weight: 400;
-        }
-
-        .text {
-          display: flex;
-          align-items: center;
-
-          span {
-            width: 2rem;
-            display: inline-block;
-            overflow: hidden;
-            text-overflow: ellipsis;
-          }
-        }
-      }
+      font-size: 0.17rem;
     }
-
     .amount {
-      font-size: 0.22rem;
+      font-size: 0.48rem;
       font-weight: 400;
-      margin-top: 0.33rem;
-      text-align: right;
+      margin-bottom: 0.1rem;
+    }
+    .value span {
+      background: rgba($color: #1D0D0D, $alpha: 0.4);
+      padding: 0.06rem 0.16rem;
+      height: 0.3rem;
+      border-radius: 0.15rem;
     }
   }
 
   .opt {
     display: flex;
-    justify-content: space-around;
-    margin: 0.2rem 0;
+    margin: 0.25rem -0.05rem;
 
     .opt-btn {
-      padding: 0.07rem 0.3rem;
-      font-size: 0.18rem;
+      padding: 0.09rem 0;
+      font-size: 0.2rem;
       font-weight: 400;
-      box-shadow: 0 0.08rem 0.16rem 0 rgba($color: #22222C, $alpha: 0.12);
-      height: 0.42rem;
-      border-radius: 0.21rem;
-      color: #000;
+      border-radius: 0.03rem;
+      text-align: center;
+      flex-grow: 1;
+      margin: 0 0.05rem;
 
-      span {
-        margin-left: 0.08rem;
+      &:last-child {
+        background: rgba($color: #FFEFD8, $alpha: 0.4);
+        color: #FFEFD8;
+      }
+      &:first-child {
+        background: #FFEFD8;
+        color: #1D0D0D;
       }
     }
   }
@@ -113,5 +119,18 @@
     .loading {
       text-align: center;
     }
+  }
+
+  .big {
+    width: 100%;
+    display: block;
+    padding: 0.09rem 0;
+    font-size: 0.2rem;
+    font-weight: 400;
+    border-radius: 0.03rem;
+    text-align: center;
+    background: #FFEFD8;
+    color: #1D0D0D;
+    margin-bottom: 0.12rem;
   }
 }

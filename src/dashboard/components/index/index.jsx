@@ -1,11 +1,11 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import { connect } from 'dva';
+import { Carousel } from 'antd';
 import { Link } from 'dva/router';
 import Markets from './markets';
-import Board from './board';
-import Activities from './activities';
 
 import './style.scss';
 
@@ -21,6 +21,27 @@ import refreshImg from '../../../assets/index_refresh.svg';
 
 
 class Index extends Component {
+  state = {
+    use: 'btc',
+  }
+
+  getUseWallet = () => {
+    const { account } = this.props;
+    const { use } = this.state;
+    if (use === 'btc') {
+      return {
+        name: 'BTC',
+        yesterday: account.btc_yesterday_earnings,
+        total: account.btc_total_earnings,
+      };
+    }
+    return {
+      name: 'LTC',
+      yesterday: account.ltc_yesterday_earnings,
+      total: account.ltc_total_earnings,
+    };
+  }
+
   handleAutoReceive = () => {
     const { autoReceive, dispatch } = this.props;
     dispatch({
@@ -37,83 +58,66 @@ class Index extends Component {
     });
   }
 
+  handleChangeUse(use) {
+    this.setState({
+      use,
+    });
+  }
+
   render() {
     const {
-      prices, block, boardData, acitivies, autoReceive,
+      prices, banners,
     } = this.props;
+    const { use } = this.state;
+    const useWallet = this.getUseWallet();
 
     return (
-      <div>
-        <div id="home">
-          <div className="block-info container">
-            <div className="item">
-              <div className="wrapper">塊高：{block.height}</div>
+      <div id="home">
+        <div className="index-menu container">
+          <img src={menuImg} alt="" />
+          <div className="menu">
+            <div className="menu-item" onClick={this.handleRedirect.bind(this, '/notice')}>
+              <img src={menu1Img} alt="" />
+              <span>最新公告</span>
             </div>
-            <div className="item">
-              <div className="wrapper">算力：{block.power}</div>
-            </div>
-          </div>
-          <div className="index-menu container">
-            <img src={menuImg} alt="" />
-            <div className="menu">
-              <div className="menu-item" onClick={this.handleRedirect.bind(this, '/notice')}>
-                <img src={menu1Img} alt="" />
-                <span>最新公告</span>
-              </div>
-              <div className="menu-item" onClick={this.handleRedirect.bind(this, '/activities')}>
-                <img src={menu2Img} alt="" />
-                <span>歷史記錄</span>
-              </div>
+            <div className="menu-item" onClick={this.handleRedirect.bind(this, '/activities')}>
+              <img src={menu2Img} alt="" />
+              <span>歷史記錄</span>
             </div>
           </div>
-          <Activities data={acitivies} />
-          <div className="opt container">
-            <div className={classnames('switch', { on: autoReceive })} onClick={this.handleAutoReceive}>
-              <span>自動領取</span>
-            </div>
-            <div className="center" />
-            <Link to="/buy" className="opt-link">
-              <img src={optBuyPowerImg} alt="" />
-              <span>購買算力</span>
-            </Link>
-            <Link to="/invite" className="opt-link">
-              <img src={optAddPowerImg} alt="" />
-              <span>增加算力</span>
-            </Link>
-            <div className="block-level container">
-              <div>矿池利润</div>
-              <div>{block.level}</div>
-            </div>
-          </div>
-          <div className="container desc">注：超過72小時未領取的幣將被銷毀</div>
         </div>
-        <Board data={boardData} />
+        <div className="top-select">
+          <span>
+            <span className={classnames('option', { active: use === 'btc' })} onClick={this.handleChangeUse.bind(this, 'btc')}>BTC</span>
+            <span className={classnames('option', { active: use === 'ltc' })} onClick={this.handleChangeUse.bind(this, 'ltc')}>LTC</span>
+          </span>
+        </div>
+        <div className="earn">
+          <div className="name">{useWallet.name}</div>
+          <div className="yesterday">{useWallet.yesterday}</div>
+          <div className="total">{useWallet.total}</div>
+        </div>
+        <div id="banners">
+          <Carousel autoplay>
+            {banners.map((banner, i) => (
+              <div className="banner" key={i}>
+                <div style={{ backgroundImage: `url(${banner.image})` }} />
+              </div>
+            ))}
+          </Carousel>
+        </div>
         <Markets data={prices} />
       </div>
     );
   }
 }
 
-function mapStateToProps({ market, account }) {
-  const {
-    userInfo, account: accountInfo, acitiviesYesterday, acitivies,
-  } = account;
-
-  const boardData = {
-    myPower: userInfo.power,
-    myBase: accountInfo.balance,
-    rewardPower: acitiviesYesterday,
-    deductionBase: accountInfo.activity_balance,
-    canMining: accountInfo.can_mining,
-    alreadyMining: accountInfo.already_mining,
-  };
-
+function mapStateToProps({ market, account, utils }) {
   return {
     prices: market.prices,
     block: market.block,
-    boardData,
-    acitivies,
-    autoReceive: userInfo.auto_receive,
+    banners: utils.banners,
+    account: account.account,
   };
 }
 

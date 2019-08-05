@@ -2,18 +2,18 @@
   padding-top: 0.56rem;
 
   .verify {
-    display: flex;
+    position: relative;
 
     a {
-      flex-grow: 0;
-      flex-shrink: 0;
+      position: absolute;
+      right: 0.14rem;
+      top: 50%;
+      transform: translate(0, -50%);
     }
   }
 
   button {
     width: 100%;
-    background-image: linear-gradient(to right, #953D96 0%, #D85BDB 100%);
-    color: #fff;
     border: none;
     border-radius: 0.02rem;
     font-size: 0.16rem;

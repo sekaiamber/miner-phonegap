@@ -6,6 +6,7 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import { connect } from 'dva';
+import { Spin } from 'antd';
 import Qrcode from '../common/qrcode';
 import message from '../../../utils/message';
 import saveImage from '../../../utils/saveImage';
@@ -13,7 +14,6 @@ import './style.scss';
 
 import walletBaseImg from '../../../assets/wallet_base.svg';
 import walletUsdtImg from '../../../assets/wallet_usdt.png';
-import bitrabbitImg from '../../../assets/bitrabbit.svg';
 
 // images
 class Deposit extends Component {
@@ -21,9 +21,21 @@ class Deposit extends Component {
     url: '',
   }
 
+  componentDidMount() {
+    const { dispatch, match } = this.props;
+    let currency = 'usdt';
+    if (match && match.params) {
+      currency = match.params.currency;
+    }
+    dispatch({
+      type: 'account/queryDeposits',
+      payload: currency.toUpperCase(),
+    });
+  }
+
   getUseWallet() {
     const { match, userInfo } = this.props;
-    let currency = 'base';
+    let currency = 'usdt';
     if (match && match.params) {
       currency = match.params.currency;
     }
@@ -64,25 +76,39 @@ class Deposit extends Component {
   }
 
   render() {
+    const { history } = this.props;
     const useWallet = this.getUseWallet();
 
     return (
       <div id="deposit" className={classnames('container', { usdt: useWallet.unit === 'USDT' })}>
-        <div className="banner">
-          <img className="logo" src={useWallet.logo} alt="" />
-          <div className="amount">{useWallet.unit}</div>
-        </div>
+        <div className="unit">{useWallet.unit}</div>
         <div className="qrcode-container">
           {useWallet.address && (
             <div className="qrcode"><Qrcode data={useWallet.address} option={{ height: 250, width: 250, margin: 2 }} onUrlChange={this.handleUrlChange} /></div>
           )}
           <div className="btn" onClick={this.handleSaveImage}>保存二維碼</div>
-          <div className="desc">{useWallet.unit} 充值地址</div>
           <div className="address clipboard-target" data-clipboard-text={useWallet.address}>{useWallet.address}</div>
         </div>
-        <div className="bitrabbit">{useWallet.unit} 購買渠道</div>
-        <div className="btn" onClick={this.handleOpenBitrabbit}>
-          <img src={bitrabbitImg} alt="" />
+        <div className="page-title">充提歷史</div>
+        <div className="history">
+          {history === 'LOADING' ? (
+            <div className="loading">
+              <Spin />
+            </div>
+          ) : (
+            history.map((item, i) => (
+              <div className="item" key={item.type + i}>
+                <img className="logo" src={useWallet.logo} alt="" />
+                <div className="center">
+                  <div className="txid">{item.txid || '等待中'}</div>
+                  <div className="time">{item.created_at}</div>
+                </div>
+                <div className="amount">
+                  {item.type === 'deposits' ? '+' : '-'}{item.amount}
+                </div>
+              </div>
+            ))
+          )}
         </div>
       </div>
     );
@@ -90,10 +116,11 @@ class Deposit extends Component {
 }
 
 function mapStateToProps({ account }) {
-  const { userInfo } = account;
+  const { userInfo, history } = account;
 
   return {
     userInfo,
+    history,
   };
 }
 export default connect(mapStateToProps)(Deposit);

@@ -81,7 +81,7 @@ class MyHeader extends Component {
 
   render() {
     const { top } = this.state;
-    const { config } = this.props;
+    const { config, coverHeaderTitle } = this.props;
 
     if (config.hide) {
       return <div style={{ display: 'none' }} />;
@@ -92,7 +92,7 @@ class MyHeader extends Component {
         <div className="icon-container">
           {config.icon && config.icon.left && this.getIcon(config.icon.left)}
         </div>
-        <div className="title">{config.title}</div>
+        <div className="title">{config.title === '__COVER__' ? coverHeaderTitle : config.title}</div>
         <div className="icon-container">
           {config.icon && config.icon.right && this.getIcon(config.icon.right)}
         </div>
@@ -105,6 +105,7 @@ function mapStateToProps({ utils }) {
   return {
     currentPath: utils.currentPath,
     config: utils.currentPathConfig.header || {},
+    coverHeaderTitle: utils.coverHeaderTitle,
   };
 }
 

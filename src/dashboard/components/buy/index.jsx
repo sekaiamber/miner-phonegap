@@ -1,13 +1,25 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import Decimal from 'decimal.js-light';
 import { connect } from 'dva';
-import { Spin } from 'antd';
+import { Spin, Input } from 'antd';
+import { Link } from 'dva/router';
 import message from '../../../utils/message';
 
 import './style.scss';
+
+
+import buyUsdtImg from '../../../assets/buy_usdt.svg';
+import ltcImg from '../../../assets/ltc.png';
+import btcImg from '../../../assets/btc.png';
+
+const icons = {
+  btc: btcImg,
+  ltc: ltcImg,
+};
 
 // images
 // import blockHeightImg from '../../../assets/block_height.svg';
@@ -17,40 +29,45 @@ class Buy extends Component {
     selected: undefined,
     showOrder: false,
     use: 'usdt',
+    form: {},
   }
 
   getOrderCost() {
-    const { accountInfo } = this.props;
-    const { selected, use } = this.state;
-    if (!selected) {
-      return {
-        discount: '0',
-        cost: '0',
-      };
-    }
-    if (use === 'usdt') {
-      return {
-        cost: selected.usdt_price,
-      };
-    }
-    const activityBalance = new Decimal(accountInfo.activity_balance);
-    const price = new Decimal(selected.price);
-    if (price.lessThan(activityBalance)) {
-      return {
-        discount: selected.price,
-        cost: '0',
-      };
-    }
-    return {
-      discount: accountInfo.activity_balance,
-      cost: price.minus(activityBalance).toString(),
-    };
+    const { form } = this.state;
+    let cost = 0;
+    Object.keys(form).forEach((id) => {
+      const p = form[id];
+      cost += parseFloat(p.product.price) * p.count;
+    });
+    return cost;
+  }
+
+  getItemList(list) {
+    const { form } = this.state;
+    return list.map(product => (
+      <div className="item balance" key={product.id}>
+        <div className="logo">
+          <img src={icons[product.currency.toLowerCase()]} alt="" />
+        </div>
+        <div className="center">
+          <div className="txid">{product.power}T <span>{product.price} USDT({product.days}天/期)</span></div>
+          <div className="time">{product.month_earns}</div>
+        </div>
+        <div className="amount">
+          <a className="minus" onClick={this.handleProductCountClick.bind(this, product, -1)}>-</a>
+          <Input className="amount-input" value={form[product.id] ? form[product.id].count : ''} onChange={this.handleProductCountChange.bind(this, product)} />
+          <a className="plus" onClick={this.handleProductCountClick.bind(this, product, 1)}>+</a>
+        </div>
+      </div>
+    ));
   }
 
   handleShowOrder = () => {
-    this.setState({
-      showOrder: true,
-    });
+    if (this.getOrderCost() > 0) {
+      this.setState({
+        showOrder: true,
+      });
+    }
   }
 
   handleCloseModal = (e) => {
@@ -62,120 +79,148 @@ class Buy extends Component {
   }
 
   handleSubmitOrder = () => {
-    const { selected, use } = this.state;
+    const { form, submitting } = this.state;
     const { dispatch } = this.props;
+
+    if (submitting) return;
+
+    this.setState({
+      submitting: true,
+    });
+
+    const order = Object.keys(form).map(id => ({
+      id,
+      amount: form[id].count,
+    }));
     dispatch({
       type: 'product/buy',
       payload: {
-        product_id: selected.id,
-        currency: use.toUpperCase(),
+        order,
       },
       onSuccess: () => {
         message.success('購買成功');
+        this.setState({
+          submitting: false,
+          showOrder: false,
+        });
+        dispatch({
+          type: 'utils/refreshPage',
+        });
+      },
+      onFail: () => {
+        this.setState({
+          submitting: false,
+        });
       },
     });
   }
 
-  handleSelect(id) {
-    this.setState({
-      selected: id,
-    });
+  handleProductCountChange(product, e) {
+    const { form } = this.state;
+    const { value } = e.target;
+    const reg = /^[0-9]+$/;
+    if ((!Number.isNaN(value) && reg.test(value)) || value === '') {
+      this.setState({
+        form: {
+          ...form,
+          [product.id]: {
+            product,
+            count: value,
+          },
+        },
+      });
+    }
   }
 
-  handleChangeUse(use) {
-    this.setState({
-      use,
-    });
+  handleProductCountClick(product, number) {
+    const { form } = this.state;
+    const value = form[product.id];
+    if (!value) {
+      this.setState({
+        form: {
+          ...form,
+          [product.id]: {
+            product,
+            count: '1',
+          },
+        },
+      });
+    } else {
+      const newCount = Math.max(parseInt(value.count, 10) + number, 0);
+      this.setState({
+        form: {
+          ...form,
+          [product.id]: {
+            product,
+            count: newCount.toString(),
+          },
+        },
+      });
+    }
   }
 
   render() {
-    const { list } = this.props;
-    const { selected, showOrder, use } = this.state;
+    const { list, accountInfo } = this.props;
+    const {
+      showOrder, form, submitting,
+    } = this.state;
     const orderCost = this.getOrderCost();
-    const selectId = selected ? selected.id : undefined;
-    const unit = use === 'usdt' ? 'USDT' : 'BASE';
+
 
     return (
-      <div id="buy">
-        <div className="top-select">
-          <span className="shadow-pad">
-            <span className={classnames('option', { active: use === 'usdt' })} onClick={this.handleChangeUse.bind(this, 'usdt')}>使用USDT购买</span>
-            <span className={classnames('option', { active: use === 'base' })} onClick={this.handleChangeUse.bind(this, 'base')}>使用BASE购买</span>
-          </span>
+      <div id="buy" className="container">
+        <div className="item balance">
+          <img className="logo" src={buyUsdtImg} alt="" />
+          <div className="center">
+            <div className="txid">{accountInfo.usdt_balance} <span>USDT</span></div>
+            <div className="time">可用金额</div>
+          </div>
+          <div className="amount">
+            <Link to="/deposit/usdt">去充值</Link>
+          </div>
         </div>
-        <div className="list container">
-          {list === 'LOADING' ? (
-            <div className="loading">
-              <Spin />
-            </div>
-          ) : (
-            list.map(item => (
-              <div className={classnames('item shadow-pad', { selected: item.id === selectId })} key={item.id} onClick={this.handleSelect.bind(this, item)}>
-                <div className="lv">
-                  <svg xmlns="http://www.w3.org/200/svg" height="44" width="44">
-                    <circle cx="22" cy="22" r="20" fill="none" stroke="#ececec" strokeWidth="3" strokeLinecap="round" />
-                    <circle
-                      className="demo2"
-                      cx="22"
-                      cy="22"
-                      r="20"
-                      fill="none"
-                      stroke="#953E96"
-                      strokeWidth="3"
-                    />
-                  </svg>
-                  <span className="text"><span>P</span>{parseInt(item.vip_level.slice(1), 10)}</span>
-                </div>
-                <div className="center">
-                  <div className="data">{item.power} ph/s</div>
-                  <div className="rate">預計收益率{item.rate}/天</div>
-                </div>
-                <div className="price">
-                  <div>{use === 'usdt' ? item.usdt_price : item.price}</div>
-                  <div className="unit">{unit}</div>
-                </div>
-              </div>
-            ))
-          )}
-        </div>
-        {selected && (
-          <div className="footer">
-            <div className="info-container">
-              <div className="info">
-                <div className="cost">合計：{orderCost.cost} {unit}</div>
-                { use === 'base' && (
-                  <div className="discount">可抵扣：{orderCost.discount} {unit}</div>
-                )}
-              </div>
-            </div>
-            <div className="btn-container">
-              <div className="btn" onClick={this.handleShowOrder}>去計算</div>
+
+        <div className="product-group-title">租赁算力包（无忧控矿，到期押金全退）</div>
+        {list.rent_products && this.getItemList(list.rent_products)}
+        <div className="product-group-title">购买矿机</div>
+        {list.buy_products && this.getItemList(list.buy_products)}
+        <div className="product-group-title">购买矿机（限时预约，付款后20天后开始产生收益）</div>
+        {list.reservation_buy_products && this.getItemList(list.reservation_buy_products)}
+        <div className="product-group-title">矿场机位（限时预约，付款后80天后开始产生收益）</div>
+        {list.buy_position_products && this.getItemList(list.buy_position_products)}
+
+
+        <div className="footer">
+          <div className="info-container">
+            <div className="info">
+              <div className="cost">合計：{orderCost} USDT</div>
             </div>
           </div>
-        )}
+          <div className="btn-container">
+            <div className="btn" onClick={this.handleShowOrder}>确认订单</div>
+          </div>
+        </div>
         {showOrder && (
           <div className="order-modal" onClick={this.handleCloseModal}>
             <div className="order-container">
-              <div className="item">
-                <div>訂單金額：</div>
-                <div>
-                  {selected ? (
-                    use === 'usdt' ? selected.usdt_price : selected.price
-                  ) : '0'} {unit}
+              {Object.keys(form).map(id => form[id]).map(order => (
+                <div className="item balance" key={order.product.id}>
+                  <div className="logo">
+                    <img src={icons[order.product.currency.toLowerCase()]} alt="" />
+                  </div>
+                  <div className="center">
+                    <div className="txid">{order.product.power}T ({order.product.days}天/期)</div>
+                    <div className="time">{order.product.price} USDT</div>
+                  </div>
+                  <div className="amount check">X{order.count}</div>
                 </div>
-              </div>
-              { use === 'base' && (
-                <div className="item">
-                  <div>抵扣</div>
-                  <div>-{orderCost.discount} {unit}</div>
-                </div>
-              )}
-              <div className="item">
-                <div>合計</div>
-                <div>{orderCost.cost} {unit}</div>
-              </div>
-              <div className="order-submit">
-                <div className="btn" onClick={this.handleSubmitOrder}>提交訂單</div>
+              ))}
+              <div className="submit" onClick={this.handleSubmitOrder}>
+                {submitting ? (
+                  <Spin />
+                ) : (
+                  `提交订单 (合计${orderCost} USDT)`
+                )}
               </div>
             </div>
           </div>

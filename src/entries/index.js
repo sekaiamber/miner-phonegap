@@ -9,7 +9,7 @@ import models from '../dashboard/models';
 import message from '../utils/message';
 import './index.scss';
 
-import welcomeVideo from '../assets/welcome.mp4';
+// import welcomeVideo from '../assets/welcome.mp4';
 
 // 置localStorage初始值
 if (!localStorage.getItem('member_id')) {
@@ -42,52 +42,53 @@ function render() {
   window._APP_ = app;
 }
 
-function setupCanvas(canvas) {
-  // Get the device pixel ratio, falling back to 1.
-  const dpr = window.devicePixelRatio || 1;
-  // Get the size of the canvas in CSS pixels.
-  const rect = canvas.getBoundingClientRect();
-  // Give the canvas pixel dimensions of their CSS
-  // size * the device pixel ratio.
-  canvas.width = rect.width * dpr;
-  canvas.height = rect.height * dpr;
-  canvas.style.width = rect.width + 'px';
-  canvas.style.height = rect.height + 'px';
-  const ctx = canvas.getContext('2d');
-  // Scale all drawing operations by the dpr, so you
-  // don't have to worry about the difference.
-  ctx.scale(dpr, dpr);
-  return ctx;
-}
+// function setupCanvas(canvas) {
+//   // Get the device pixel ratio, falling back to 1.
+//   const dpr = window.devicePixelRatio || 1;
+//   // Get the size of the canvas in CSS pixels.
+//   const rect = canvas.getBoundingClientRect();
+//   // Give the canvas pixel dimensions of their CSS
+//   // size * the device pixel ratio.
+//   canvas.width = rect.width * dpr;
+//   canvas.height = rect.height * dpr;
+//   canvas.style.width = rect.width + 'px';
+//   canvas.style.height = rect.height + 'px';
+//   const ctx = canvas.getContext('2d');
+//   // Scale all drawing operations by the dpr, so you
+//   // don't have to worry about the difference.
+//   ctx.scale(dpr, dpr);
+//   return ctx;
+// }
 
 // 播放影片
 const { $ } = window;
 $(() => {
-  const v = $(`<video src="${welcomeVideo}" muted="muted"></video>`);
-  const c = $('<canvas></canvas>');
-  $('#welcome').append(v);
-  $('#welcome').append(c);
-  const video = v[0];
-  const canvas = c[0];
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerWidth;
-  const ctx = setupCanvas(canvas);
-  video.addEventListener('ended', () => {
-    $('body').removeClass('welcome');
-    $('#welcome').fadeOut(300);
-    setTimeout(() => {
-      $('#welcome').remove();
-    }, 400);
-    render();
-  }, true);
-  video.addEventListener('play', () => {
-    const loop = () => {
-      if (!video.paused && !video.ended) {
-        ctx.drawImage(video, 0, 0, window.innerWidth, window.innerWidth);
-        setTimeout(loop, 1000 / 30); // drawing at 30fps
-      }
-    };
-    loop();
-  }, 0);
-  v[0].play();
+  // const v = $(`<video src="${welcomeVideo}" muted="muted"></video>`);
+  // const c = $('<canvas></canvas>');
+  // $('#welcome').append(v);
+  // $('#welcome').append(c);
+  // const video = v[0];
+  // const canvas = c[0];
+  // canvas.width = window.innerWidth;
+  // canvas.height = window.innerWidth;
+  // const ctx = setupCanvas(canvas);
+  // video.addEventListener('ended', () => {
+  //   $('body').removeClass('welcome');
+  //   $('#welcome').fadeOut(300);
+  //   setTimeout(() => {
+  //     $('#welcome').remove();
+  //   }, 400);
+  //   render();
+  // }, true);
+  // video.addEventListener('play', () => {
+  //   const loop = () => {
+  //     if (!video.paused && !video.ended) {
+  //       ctx.drawImage(video, 0, 0, window.innerWidth, window.innerWidth);
+  //       setTimeout(loop, 1000 / 30); // drawing at 30fps
+  //     }
+  //   };
+  //   loop();
+  // }, 0);
+  // v[0].play();
+  render();
 });

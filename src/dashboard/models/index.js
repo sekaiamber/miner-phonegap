@@ -3,6 +3,7 @@ import account from './account';
 import market from './market';
 import product from './product';
 import notice from './notice';
+import post from './post';
 
 const reducers = {
   utils,
@@ -10,6 +11,7 @@ const reducers = {
   market,
   product,
   notice,
+  post,
 };
 
 export default reducers;

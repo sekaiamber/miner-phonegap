@@ -1,5 +1,5 @@
 #buy {
-  padding-top: 0.44rem;
+  margin-top: 0.56rem;
 
   .list {
     padding-top: 0.12rem;
@@ -9,73 +9,106 @@
     }
   }
 
-  .list .item {
+  .product-group-title {
+    margin: 0.2rem 0;
+    font-size: 0.14rem;
+    font-weight: 400;
+  }
+
+  .item {
+    position: relative;
+    background-image: url(../../../assets/buy_item_bg.png);
+    background-size: cover;
+    background-position: bottom center;
+    background-color: #FFEFD8;
     display: flex;
+    padding: 0.2rem 0.1rem;
+    border-radius: 0.08rem;
+    box-shadow: 0 0.03rem 0.2rem 0 rgba(255, 239, 216, 0.45);
+    color: #1D0D0D;
     align-items: center;
     margin-bottom: 0.1rem;
-    border: transparent 1px solid;
-    transition: all ease 0.3s;
 
-    &:last-child {
-      margin-bottom: 0;
+    a {
+      color: #1D0D0D;
     }
 
-    &.selected {
-      border-color: #953E96;
-    }
-
-    .lv,
-    .price {
-      flex-shrink: 0;
+    .logo {
       flex-grow: 0;
-    }
-
-    .lv {
-      height: 0.44rem;
-      width: 0.44rem;
+      flex-shrink: 0;
+      width: 0.4rem;
       text-align: center;
-      font-size: 0.12rem;
-      position: relative;
-      margin-right: 0.12rem;
 
-      .text {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+      img {
+        max-width: 0.4rem;
+        max-height: 0.4rem;
       }
     }
 
     .center {
+      font-size: 0.14rem;
       flex-shrink: 1;
       flex-grow: 1;
+      overflow: hidden;
+      margin: 0 0.1rem;
+    }
 
-      .rate {
-        font-size: 0.12rem;
-        color: #999;
+    .amount {
+      flex-grow: 0;
+      flex-shrink: 0;
+      position: relative;
+
+      &.check {
+        font-size: 0.3rem;
+        font-weight: 400;
       }
-      .data {
-        font-size: 0.14rem;
-        font-weight: 500;
-        margin-bottom: 0.08rem;
+
+      .minus,
+      .plus {
+        position: absolute;
+        top: 50%;
+        display: block;
+        height: 100%;
+        text-align: center;
+        transform: translate(0, -50%);
+        width: 0.25rem;
+        z-index: 1;
+        line-height: 0.3rem;
+        font-size: 0.2rem;
+      }
+
+      .minus {
+        left: 0;
+      }
+      .plus {
+        right: 0;
       }
     }
 
-    .price {
-      margin-left: 0.12rem;
-      text-align: right;
+    .txid {
+      font-weight: 400;
+      overflow: hidden;
+      text-overflow: ellipsis;
 
-      .unit {
+      span {
         font-size: 0.12rem;
-        opacity: 0.5;
       }
+    }
+
+    .time {
+      font-size: 0.12rem;
+    }
+
+    .amount-input {
+      width: 0.8rem;
+      text-align: center;
     }
   }
 
   .footer {
     position: fixed;
     display: flex;
-    bottom: 0.72rem;
+    bottom: 0;
     z-index: 1;
     height: 0.5rem;
     align-items: stretch;
@@ -83,6 +116,7 @@
     width: 100%;
     animation: buy-footer-show 0.3s ease;
     transform: translate(0, 0);
+    left: 0;
 
     .info {
       font-size: 0.12rem;
@@ -98,21 +132,20 @@
 
     .btn {
       padding: 0 0.12rem;
-      color: #fff;
       font-weight: 400;
     }
 
     .info-container {
-      background: #fff;
+      background: #322121;
       flex-grow: 1;
       flex-shrink: 1;
-      border-top: #EEEFF0 solid 1px;
     }
 
     .btn-container {
       flex-grow: 0;
       flex-shrink: 0;
-      background: linear-gradient(15deg, #953D96 0%, #D85BDB 100%);
+      background: linear-gradient(to right, #D2B07A 0%, #F0D7B3 100%);
+      color: #1D0D0D;
     }
 
     .info-container,
@@ -130,12 +163,12 @@
       z-index: 2;
       width: 100%;
       height: 100vh;
-      background: rgba($color: #000000, $alpha: 0.2);
+      background: rgba($color: #000000, $alpha: 0.6);
       font-size: 0.12rem;
       animation: buy-modal-show 0.3s ease;
     }
     &-container {
-      background: #fff;
+      background: #322121;
       padding: 0.2rem;
       border-radius: 0.05rem;
       position: absolute;
@@ -154,17 +187,16 @@
           color: #6788A2;
         }
       }
-    }
-    &-submit {
-      margin-top: 0.24rem;
-      font-size: 0.14rem;
 
-      .btn {
-        padding: 0.06rem 0;
-        background: linear-gradient(15deg, #953D96 0%, #D85BDB 100%);
-        color: #fff;
+      .submit {
         text-align: center;
-        border-radius: 0.3rem;
+        font-size: 0.16rem;
+        margin-top: 0.16rem;
+        font-weight: 400;
+        background: linear-gradient(to right, #D2B07A 0%, #F0D7B3 100%);
+        color: #1D0D0D;
+        padding: 0.06rem 0;
+        border-radius: 0.06rem;
       }
     }
   }

@@ -1,5 +1,7 @@
 #withdraw {
   margin-top: 0.56rem;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
 
   .banner {
     display: flex;
@@ -8,7 +10,18 @@
     padding-top: 0.12rem;
 
     div:last-child {
-      color: #6788A2;
+      color: #FFEFD8;
+    }
+  }
+
+  .verify {
+    position: relative;
+
+    a {
+      position: absolute;
+      right: 0.14rem;
+      top: 50%;
+      transform: translate(0, -50%);
     }
   }
 
@@ -16,7 +29,7 @@
     .scan-btn {
       width: 0.2rem;
       position: absolute;
-      right: 0;
+      right: 0.14rem;
       top: 50%;
       transform: translate(0, -50%);
     }
@@ -28,16 +41,16 @@
     height: 0.28rem;
 
     div:last-child {
-      color: #6788A2;
+      color: #FFEFD8;
     }
   }
 
   .btn {
-    color: #fff;
-    background: linear-gradient(15deg, #953D96 0%, #D85BDB 100%);
+    color: #1D0D0D;
+    background: linear-gradient(to right, #D2B07A 0%, #F0D7B3 100%);
     font-size: 0.16rem;
     font-weight: 400;
-    padding: 0.06rem 0.15rem;
+    padding: 0.1rem 0.15rem;
     border-radius: 0.27rem;
     margin-top: 0.12rem;
     text-align: center;
@@ -51,11 +64,5 @@
 
   .submit {
     margin-top: 0.24rem;
-  }
-
-  &.usdt {
-    .btn {
-      background: linear-gradient(15deg, #26a07b 0%, #23e0a7 100%);
-    }
   }
 }

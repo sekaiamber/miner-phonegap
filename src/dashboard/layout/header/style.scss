@@ -8,14 +8,14 @@ header {
   left: 0;
   width: 100vw;
   z-index: 5;
-  color: #2A455A;
   background-color: rgba($color: #fff, $alpha: 0);
   transition: all ease 0.3s;
   border-bottom: transparent solid 1px;
 
   &.top {
-    background-color: rgba($color: #fff, $alpha: 1);
-    border-bottom-color: #EEEFF0;
+    background-color: #322121;
+    border-bottom-color: #322121;
+    color: #FFEFD8;
   }
 
   .title {

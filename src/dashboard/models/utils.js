@@ -8,22 +8,10 @@ const sendSms = data => fetch.post(QUERYS.SEND_SMS, data);
 const sendResetSms = data => fetch.post(QUERYS.SEND_FORGET_SMS, data);
 const signup = data => fetch.post(QUERYS.SIGNUP, data);
 const resetPassword = data => fetch.post(QUERYS.RESET_PASSWORD, data);
+const queryBanners = () => fetch.get(QUERYS.QUERY_BANNERS);
 
 const pathConfigs = {
   '/': {
-    // header: {
-    //   title: '',
-    //   style: {
-    //     color: '#fff',
-    //     position: 'absolute',
-    //     backgroundColor: 'transparent',
-    //     borderBottomColor: 'transparent',
-    //   },
-    //   icon: {
-    //     left: 'notices',
-    //     right: 'activitiesDone',
-    //   },
-    // },
     header: {
       hide: true,
     },
@@ -35,18 +23,14 @@ const pathConfigs = {
     }, {
       type: 'account/queryAccount',
     }, {
-      type: 'account/queryAcitivies',
-    }, {
-      type: 'account/queryAcitiviesYesterday',
-    }, {
       type: 'market/queryMarket',
     }, {
-      type: 'market/queryBlock',
+      type: 'queryBanners',
     }],
   },
   '/power': {
     header: {
-      title: '算力',
+      title: '我的邀请',
     },
     footer: {
       activeNav: 1,
@@ -56,17 +40,15 @@ const pathConfigs = {
     }, {
       type: 'account/queryAccount',
     }, {
-      type: 'account/queryOrders',
-    }, {
-      type: 'account/queryAcitiviesYesterday',
+      type: 'account/queryAcitiviesInvite',
     }],
   },
   '/buy': {
     header: {
       title: '購買算力',
-    },
-    footer: {
-      activeNav: 2,
+      icon: {
+        left: 'back',
+      },
     },
     refresh: [{
       type: 'product/queryProducts',
@@ -85,6 +67,10 @@ const pathConfigs = {
       type: 'account/queryMy',
     }, {
       type: 'account/queryAccount',
+    }, {
+      type: 'market/queryMarket',
+    }, {
+      type: 'market/queryHome',
     }],
   },
   '/me': {
@@ -176,6 +162,8 @@ const pathConfigs = {
     },
     refresh: [{
       type: 'account/queryAccount',
+    }, {
+      type: 'market/queryHome',
     }],
   },
   '/signup': {
@@ -199,9 +187,42 @@ const pathConfigs = {
       },
     },
   },
+  '/post/:id': {
+    header: {
+      title: '__COVER__',
+      icon: {
+        left: 'back',
+      },
+    },
+  },
+  '/orders': {
+    header: {
+      title: '我的订单',
+      icon: {
+        left: 'back',
+      },
+    },
+    refresh: [{
+      type: 'account/queryOrders',
+    }],
+  },
+  '/changePassword': {
+    header: {
+      title: '修改密码',
+      icon: {
+        left: 'back',
+      },
+    },
+  },
+  '/changeWithdrawPassword': {
+    header: {
+      title: '修改提现密码',
+      icon: {
+        left: 'back',
+      },
+    },
+  },
 };
-
-let originDispatch;
 
 export default {
   namespace: 'utils',
@@ -211,10 +232,11 @@ export default {
     currentPathConfig: {},
     loading: null,
     needUpgrade: null,
+    coverHeaderTitle: null,
+    banners: [],
   },
   subscriptions: {
     setup({ dispatch, history }) {
-      originDispatch = dispatch;
       dispatch({
         type: 'updateState',
         payload: {
@@ -228,6 +250,7 @@ export default {
           payload: {
             currentPath: pathname,
             currentPathConfig: pathConfigs[c] || {},
+            coverHeaderTitle: null,
           },
         });
         dispatch({
@@ -347,6 +370,17 @@ export default {
         }
       }
       if (onSuccess) onSuccess();
+    },
+    * queryBanners(_, { call, put }) {
+      const data = yield call(queryBanners);
+      if (data.success) {
+        yield put({
+          type: 'updateState',
+          payload: {
+            banners: data.data,
+          },
+        });
+      }
     },
   },
   reducers: {

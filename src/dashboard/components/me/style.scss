@@ -1,65 +1,52 @@
 #me {
   padding-top: 0.56rem;
-
-  .avatar {
-    height: 1.2rem;
-    width: 1.2rem;
-    overflow: hidden;
-    border-radius: 50%;
-    background: #EDEDED;
-    text-align: center;
-    margin: 0 auto;
-    
-    img {
-      width: 80%;
-      margin-top: 10%;
-    }
-  }
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
 
   .avatar-container {
     position: relative;
-    margin-bottom: 0.25rem;
+    display: flex;
+    align-items: center;
+    color: #fff;
 
-    .code {
-      font-size: 0.12rem;
-      color: #fff;
-      background: linear-gradient(45deg, #953D96 0%, #D85BDB 100%);
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translate(-50%, 50%);
-      padding: 0.05rem 0.08rem;
-      height: 0.28rem;
-      border-radius: 0.14rem;
+    img {
+      height: 0.6rem;
+      width: 0.6rem;
+      background: #fff;
+      border-radius: 50%;
+      margin-right: 0.2rem;
+    }
+
+    .nickname {
+      font-size: 0.2rem;
     }
   }
 
-  .nickname {
-    text-align: center;
-    font-size: 0.22rem;
-    font-weight: 400;
+  .divider {
+    background-image: linear-gradient(to right, #D2B07A 0%, #F0D7B3 100%);
+    height: 1px;
+    margin: 0.2rem -0.3rem;
   }
 
-  .link-list {
-    box-shadow: 0 0.08rem 0.16rem 0 rgba($color: #22222C, $alpha: 0.1);
-    padding: 0 0.12rem;
-    border-radius: 0.06rem;
-    margin-bottom: 0.1rem;
-    min-height: 0.45rem;
-    border: transparent 1px solid;
-    transition: all ease 0.3s;
+  .link {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.15rem;
 
-    .link {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.12rem 0;
-      color: #000;
-      font-weight: 300;
+    img {
+      max-width: 0.2rem;
+      max-height: 0.22rem;
+    }
 
-      div:first-child {
-        color: #000;
-      }
+    .icon {
+      text-align: center;
+      display: inline-block;
+      width: 0.24rem;
+      margin-right: 0.15rem;
+    }
+
+    a {
+      color: #FFEFD8;
     }
   }
 

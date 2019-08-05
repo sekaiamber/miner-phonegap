@@ -1,3 +1,5 @@
+/* eslint-disable react/button-has-type */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable camelcase */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable array-callback-return */
@@ -22,6 +24,8 @@ class Signup extends Component {
     phone_number: '',
     password: '',
     password_confirmation: '',
+    withdraw_password: '',
+    withdraw_password_confirmation: '',
     invite_code: '',
     nickname: '',
     verify_code: '',
@@ -30,11 +34,11 @@ class Signup extends Component {
 
   handleSubmit = () => {
     const {
-      phone_number, password, password_confirmation, invite_code, nickname, verify_code,
+      phone_number, password, password_confirmation, invite_code, nickname, verify_code, withdraw_password, withdraw_password_confirmation,
     } = this.state;
     const { dispatch } = this.props;
     const payload = {
-      phone_number, password, password_confirmation, invite_code, nickname, verify_code,
+      phone_number, password, password_confirmation, invite_code, nickname, verify_code, withdraw_password, withdraw_password_confirmation,
     };
     dispatch({
       type: 'utils/signup',
@@ -95,20 +99,26 @@ class Signup extends Component {
 
   render() {
     const {
-      phone_number, password, password_confirmation, invite_code, nickname, verify_code, counting,
+      phone_number, password, password_confirmation, invite_code, nickname, verify_code, counting, withdraw_password, withdraw_password_confirmation,
     } = this.state;
 
     return (
       <div id="signup" className="container">
         <div className="form">
           <div className="item">
-            <input type="text" placeholder="用戶名" value={nickname} onChange={this.handleChange.bind(this, 'nickname')} />
+            <input type="text" placeholder="昵称" value={nickname} onChange={this.handleChange.bind(this, 'nickname')} />
           </div>
           <div className="item">
             <input type="password" placeholder="密碼（8-20位數字或字母）" value={password} onChange={this.handleChange.bind(this, 'password')} />
           </div>
           <div className="item">
             <input type="password" placeholder="確認密碼" value={password_confirmation} onChange={this.handleChange.bind(this, 'password_confirmation')} />
+          </div>
+          <div className="item">
+            <input type="password" placeholder="提现密碼（8-20位數字或字母）" value={withdraw_password} onChange={this.handleChange.bind(this, 'withdraw_password')} />
+          </div>
+          <div className="item">
+            <input type="password" placeholder="確認提现密碼" value={withdraw_password_confirmation} onChange={this.handleChange.bind(this, 'withdraw_password_confirmation')} />
           </div>
           <div className="item">
             <input type="text" placeholder="邀請碼（必填）" value={invite_code} onChange={this.handleChange.bind(this, 'invite_code')} />
