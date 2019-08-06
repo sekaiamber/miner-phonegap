@@ -125,7 +125,7 @@ class Wallet extends Component {
             </Link>
           )}
           <Link className="opt-btn" to={`/withdraw/${use}`}>
-            提現
+            提现
           </Link>
         </div>
         <Link className="big" to="/buy">矿机租赁</Link>

@@ -105,7 +105,7 @@ class Withdraw extends Component {
         formats: 'QR_CODE',
       });
     } else {
-      message.error('初始化相機失敗，請手工輸入');
+      message.error('初始化相机失败，请手工输入');
     }
   }
 
@@ -175,41 +175,41 @@ class Withdraw extends Component {
     return (
       <div id="withdraw" className={classnames('container', { usdt: useWallet.unit === 'USDT' })}>
         <div className="banner">
-          <div>可提現餘額</div>
+          <div>可提现余额</div>
           <div>{useWallet.balance} {useWallet.unit}</div>
         </div>
         <div className="form">
           <div className="item">
-            <input type="text" placeholder="提現地址" value={to} onChange={this.handleChangeTo} />
+            <input type="text" placeholder="提现地址" value={to} onChange={this.handleChangeTo} />
             <img className="scan-btn" src={scanImg} alt="" onClick={this.handleScan} />
           </div>
           <div className="item">
-            <input type="number" placeholder="提現金額" value={amount} onChange={this.handleChangeAmount} />
+            <input type="number" placeholder="提现金额" value={amount} onChange={this.handleChangeAmount} />
           </div>
           <div className="item">
-            <input type="text" placeholder="提現密码" value={withdraw_password} onChange={this.handleChangeWithdrawPassword} />
+            <input type="text" placeholder="提现密码" value={withdraw_password} onChange={this.handleChangeWithdrawPassword} />
           </div>
           <div className="item verify">
             <input type="number" placeholder="手机验证码" value={verify_code} onChange={this.handleChangeVerifyCode} />
-            <a onClick={this.handleSendSms}>發送驗證碼</a>
+            <a onClick={this.handleSendSms}>发送验证码</a>
           </div>
           <div className="item">
             <div className="form-info">
-              <div>手續費</div>
+              <div>手续费</div>
               <div>{this.getFee()} {useWallet.unit}</div>
             </div>
           </div>
           <div className="item">
             <div className="form-info">
-              <div>到賬金額</div>
+              <div>到账金额</div>
               <div>{this.getFinal()} {useWallet.unit}</div>
             </div>
           </div>
         </div>
         <div className="submit">
-          <button className="btn" disabled={this.canSubmit()} onClick={this.handleSubmit}>確認提現</button>
+          <button className="btn" disabled={this.canSubmit()} onClick={this.handleSubmit}>确认提现</button>
         </div>
-        <div className="page-title">提现歷史</div>
+        <div className="page-title">提现历史</div>
         <div className="history">
           {history === 'LOADING' ? (
             <div className="loading">

@@ -15,9 +15,9 @@ function Upgrade(props) {
   return (
     <div id="upgrade" className="my-modal-conainer">
       <div className="my-modal upgrade-modal">
-        <div className="title">客戶端版本過低</div>
+        <div className="title">客户端版本过低</div>
         <div className="content">{needUpgrade.info}</div>
-        <div className="btn" onClick={handleOpenDownload.bind(this, needUpgrade.url)}>點擊升級</div>
+        <div className="btn" onClick={handleOpenDownload.bind(this, needUpgrade.url)}>点击升级</div>
       </div>
     </div>
   );

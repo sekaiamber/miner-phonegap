@@ -98,7 +98,7 @@ class Buy extends Component {
         order,
       },
       onSuccess: () => {
-        message.success('購買成功');
+        message.success('购买成功');
         this.setState({
           submitting: false,
           showOrder: false,
@@ -193,7 +193,7 @@ class Buy extends Component {
         <div className="footer">
           <div className="info-container">
             <div className="info">
-              <div className="cost">合計：{orderCost} USDT</div>
+              <div className="cost">合计：{orderCost} USDT</div>
             </div>
           </div>
           <div className="btn-container">

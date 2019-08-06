@@ -30,11 +30,11 @@ class NormalLoginForm extends Component {
     const { login, password } = this.state;
     vibration(100);
     if (login.length === 0) {
-      message.error('請輸入手機號碼');
+      message.error('请输入手机号码');
       return;
     }
     if (password.length === 0) {
-      message.error('請輸入密碼');
+      message.error('请输入密码');
       return;
     }
     dispatch({
@@ -62,18 +62,18 @@ class NormalLoginForm extends Component {
         <div className="logo-container"><img src={logoImg} alt="" /></div>
         <div className="form">
           <div className="item">
-            <input type="text" placeholder="請輸入您的手機號碼" value={login} onChange={this.handleChangeAccount} />
+            <input type="text" placeholder="请输入您的手机号码" value={login} onChange={this.handleChangeAccount} />
           </div>
           <div className="item">
-            <input type="password" placeholder="請輸入您的登錄密碼" value={password} onChange={this.handleChangePassword} />
+            <input type="password" placeholder="请输入您的登录密码" value={password} onChange={this.handleChangePassword} />
           </div>
         </div>
         <div className="submit">
-          <button onClick={this.handleSubmit}>登 錄</button>
+          <button onClick={this.handleSubmit}>登 录</button>
         </div>
         <div className="opts">
-          <div><a onClick={this.handleGoto.bind(this, '/forgetPassword')}>忘記密碼</a></div>
-          <div>還沒有賬戶？<a onClick={this.handleGoto.bind(this, '/signup')}>註冊</a></div>
+          <div><a onClick={this.handleGoto.bind(this, '/forgetPassword')}>忘记密码</a></div>
+          <div>还没有账户？<a onClick={this.handleGoto.bind(this, '/signup')}>注册</a></div>
         </div>
       </div>
     );

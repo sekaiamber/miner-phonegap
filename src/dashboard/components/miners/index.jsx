@@ -14,10 +14,10 @@ class Invite extends Component {
     return (
       <div id="miners" className="container">
         <div className="banner">
-          <div className="title">礦工貢獻</div>
+          <div className="title">矿工贡献</div>
           <div className="value">{total} BASE</div>
         </div>
-        <div className="page-title">挖礦獎勵</div>
+        <div className="page-title">挖矿奖励</div>
         {list.map(item => (
           <div className="item shadow-pad" key={item.id}>
             <div className="center">

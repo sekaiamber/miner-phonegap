@@ -1,6 +1,6 @@
 import './loading.scss';
 
-export function loading(msg = '請稍等') {
+export function loading(msg = '请稍等') {
   let $c = document.getElementById('loading');
   if (!$c) {
     $c = document.createElement('div');

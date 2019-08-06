@@ -82,7 +82,7 @@ class Index extends Component {
             </div>
             <div className="menu-item" onClick={this.handleRedirect.bind(this, '/activities')}>
               <img src={menu2Img} alt="" />
-              <span>歷史記錄</span>
+              <span>历史记录</span>
             </div>
           </div>
         </div>

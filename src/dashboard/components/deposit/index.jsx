@@ -63,9 +63,9 @@ class Deposit extends Component {
   handleSaveImage = () => {
     const { url } = this.state;
     saveImage(url, () => {
-      message.success('已成功保存到相冊');
+      message.success('已成功保存到相册');
     }, () => {
-      message.error('您的手機不支持自動保存到相冊，請手動截屏');
+      message.error('您的手机不支持自动保存到相册，请手动截屏');
     });
   }
 
@@ -86,10 +86,10 @@ class Deposit extends Component {
           {useWallet.address && (
             <div className="qrcode"><Qrcode data={useWallet.address} option={{ height: 250, width: 250, margin: 2 }} onUrlChange={this.handleUrlChange} /></div>
           )}
-          <div className="btn" onClick={this.handleSaveImage}>保存二維碼</div>
+          <div className="btn" onClick={this.handleSaveImage}>保存二维码</div>
           <div className="address clipboard-target" data-clipboard-text={useWallet.address}>{useWallet.address}</div>
         </div>
-        <div className="page-title">充提歷史</div>
+        <div className="page-title">充提历史</div>
         <div className="history">
           {history === 'LOADING' ? (
             <div className="loading">

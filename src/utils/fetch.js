@@ -14,7 +14,7 @@ function checkStatus(response) {
     return response;
   }
   if (window._APP_ && response.status === 401) {
-    message.info('登錄過期，請重新登錄');
+    message.info('登录过期，请重新登录');
     localStorage.setItem('member_id', '__EMPTY__');
     localStorage.setItem('member_token', '__EMPTY__');
     window._APP_._store.dispatch({
@@ -34,7 +34,7 @@ function processData(data) {
   if (data.success === false) {
     data.errors.forEach(e => message.error(e.message ? e.message : e));
   }
-  // 判斷升級
+  // 判断升级
   if (data.upgrade && data.upgrade.force_upgrade) {
     window._APP_._store.dispatch({
       type: 'utils/updateState',

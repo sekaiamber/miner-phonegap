@@ -21,7 +21,7 @@ if (!localStorage.getItem('member_token')) {
 
 window.clipboard = new Clipboard('.clipboard-target');
 window.clipboard.on('success', (e) => {
-  message.success('複製成功');
+  message.success('复制成功');
   e.clearSelection();
 });
 

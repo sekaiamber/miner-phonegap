@@ -35,11 +35,11 @@ class Me extends Component {
         <div className="divider" />
         <div className="link">
           <span className="icon"><img src={linkImg1} alt="" /></span>
-          <Link to="/changePassword">钱包设置</Link>
+          <Link to="/changeWithdrawPassword">钱包设置</Link>
         </div>
         <div className="link">
           <span className="icon"><img src={linkImg2} alt="" /></span>
-          <Link to="/changeWithdrawPassword">安全设置</Link>
+          <Link to="/changePassword">安全设置</Link>
         </div>
         <div className="link">
           <span className="icon"><img src={linkImg3} alt="" /></span>
@@ -59,20 +59,20 @@ class Me extends Component {
         </div>
         {/* <div className="link-list">
           <Link to="/invite" className="link">
-            <div>邀請好友</div>
+            <div>邀请好友</div>
             <div>&gt;</div>
           </Link>
           <Link to="/miners" className="link">
-            <div>礦工管理</div>
+            <div>矿工管理</div>
             <div>&gt;</div>
           </Link>
           <Link to="/subuser" className="link">
-            <div>我的礦工</div>
+            <div>我的矿工</div>
             <div>&gt;</div>
           </Link>
         </div> */}
         <div className="logout">
-          <a onClick={this.handleLogout}>退出登錄</a>
+          <a onClick={this.handleLogout}>退出登录</a>
         </div>
         <div className="version">
           {__VERSION__}

@@ -63,13 +63,13 @@ class ChangePassword extends Component {
       <div id="signup" className="container">
         <div className="form">
           <div className="item">
-            <input type="password" placeholder="旧密碼" value={old_password} onChange={this.handleChange.bind(this, 'old_password')} />
+            <input type="password" placeholder="旧密码" value={old_password} onChange={this.handleChange.bind(this, 'old_password')} />
           </div>
           <div className="item">
-            <input type="password" placeholder="密碼（8-20位數字或字母）" value={password} onChange={this.handleChange.bind(this, 'password')} />
+            <input type="password" placeholder="密码（8-20位数字或字母）" value={password} onChange={this.handleChange.bind(this, 'password')} />
           </div>
           <div className="item">
-            <input type="password" placeholder="確認密碼" value={password_confirmation} onChange={this.handleChange.bind(this, 'password_confirmation')} />
+            <input type="password" placeholder="确认密码" value={password_confirmation} onChange={this.handleChange.bind(this, 'password_confirmation')} />
           </div>
         </div>
         <div className="submit">

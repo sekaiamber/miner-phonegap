@@ -54,7 +54,7 @@ export default {
       yield put({
         type: 'utils/loading',
         loading: {
-          text: '登錄中',
+          text: '登录中',
         },
       });
       const data = yield call(login, payload);
@@ -69,7 +69,7 @@ export default {
             member_id: v.member_id,
           },
         });
-        message.success('登錄成功');
+        message.success('登录成功');
         yield put({
           type: 'utils/goto',
           goto: '/',
@@ -330,7 +330,7 @@ export default {
       });
       const data = yield call(submitWithdraw, payload);
       if (data.success) {
-        message.success('申請提現成功');
+        message.success('申请提现成功');
         yield put({
           type: 'queryAccount',
         });
@@ -343,7 +343,7 @@ export default {
     * collect({ payload }, { call, put }) {
       const data = yield call(collect, payload);
       if (data.success) {
-        message.success('領取成功');
+        message.success('领取成功');
         yield put({
           type: 'queryAcitivies',
           remainOld: true,
