@@ -94,6 +94,12 @@ class Order extends Component {
             {this.getItemList(list.buy_position_products)}
           </div>
         )}
+        {list.experience && list.experience.length > 0 && (
+          <div>
+            <div className="product-group-title">体验矿机</div>
+            {this.getItemList(list.experience)}
+          </div>
+        )}
       </div>
     );
   }
@@ -117,6 +123,7 @@ function mapStateToProps({ account }) {
     buy_products: orders.filter(o => o.product_type === 'buy'),
     reservation_buy_products: orders.filter(o => o.product_type === 'reservation_buy'),
     buy_position_products: orders.filter(o => o.product_type === 'buy_position'),
+    experience: orders.filter(o => o.product_type === 'experience'),
   };
 
   return {
