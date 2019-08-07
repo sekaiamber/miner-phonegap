@@ -261,12 +261,18 @@ footer {
   position: relative; }
   #home .earn {
     text-align: center;
-    margin-bottom: 0.24rem; }
+    margin-bottom: 0.12rem; }
     #home .earn .name {
       font-size: 0.17rem; }
     #home .earn .yesterday {
       font-size: 0.48rem;
       color: #FFEFD8; }
+    #home .earn .total {
+      margin-top: 0.1rem; }
+      #home .earn .total span {
+        padding: 0.04rem 0.12rem;
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 0.2rem; }
   #home .index-menu {
     position: absolute;
     top: 0.15rem;

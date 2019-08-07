@@ -90,9 +90,9 @@ class Index extends Component {
             </span>
           </div>
           <div className="earn">
-            <div className="name">{useWallet.name}</div>
+            <div className="name">{useWallet.name} 昨日收益</div>
             <div className="yesterday">{useWallet.yesterday}</div>
-            <div className="total">{useWallet.total}</div>
+            <div className="total"><span>您在胖蚂蚁总计收获 {useWallet.total} {useWallet.name}</span></div>
           </div>
         </div>
         <Markets data={prices} />
