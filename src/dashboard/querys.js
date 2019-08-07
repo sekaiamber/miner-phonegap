@@ -28,6 +28,7 @@ const QUERYS = {
   SEND_WITHDRAW_SMS: '/api/v1/sms/withdraw.json',
   CHANGE_PASSWORD: '/api/v1/passwords/login.json',
   CHANGE_WITHDRAW_PASSWORD: '/api/v1/passwords/withdraw.json',
+  EXP: '/api/v1/orders/experience.json',
 };
 
 const { DOMAIN: domain } = config;

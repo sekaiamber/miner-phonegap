@@ -25,6 +25,7 @@ const collect = id => fetch.private.post(QUERYS.COLLECT(id));
 const sendWithdrawSms = () => fetch.private.post(QUERYS.SEND_WITHDRAW_SMS);
 const changePassword = data => fetch.private.post(QUERYS.CHANGE_PASSWORD, data);
 const changeWithdrawPassword = data => fetch.private.post(QUERYS.CHANGE_WITHDRAW_PASSWORD, data);
+const experience = () => fetch.private.post(QUERYS.EXP);
 
 function sedoRandom(seed) {
   return ('0.' + Math.sin(seed).toString().substr(6));
@@ -376,6 +377,15 @@ export default {
       const data = yield call(changeWithdrawPassword, payload);
       if (data.success) {
         message.success('重置提现密码成功');
+      }
+    },
+    * experience(_, { call, put }) {
+      const data = yield call(experience);
+      if (data.success) {
+        message.success('您已成功领取体验矿机');
+        yield put({
+          type: 'queryAccount',
+        });
       }
     },
   },

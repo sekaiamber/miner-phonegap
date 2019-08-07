@@ -13,11 +13,21 @@ footer {
   .item {
     width: 25%;
     text-align: center;
-
+    
     a {
       display: block;
       height: 0.62rem;
-      padding: 0.2rem 0;
+      padding-top: 0.12rem;
+      color: #6f5e58;
+
+      span {
+        display: block;
+        font-size: 0.12rem;
+
+        &:first-child {
+          margin-bottom: 0.04rem;
+        }
+      }
     }
 
     img {
@@ -26,8 +36,15 @@ footer {
       transition: all ease 0.3s;
     }
 
-    &.active img {
-      opacity: 1;
+    &.active {
+
+      a {
+        color: #ffefd9;
+      }
+
+      img {
+        opacity: 1;
+      }
     }
   }
 

@@ -222,6 +222,11 @@ const pathConfigs = {
       },
     },
   },
+  '/about': {
+    header: {
+      title: '',
+    },
+  },
 };
 
 export default {

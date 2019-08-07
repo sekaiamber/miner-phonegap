@@ -3,9 +3,9 @@ import React from 'react';
 import classnames from 'classnames';
 
 // images
-import baseImg from '../../../assets/base.svg';
-import ltcImg from '../../../assets/ltc.png';
-import btcImg from '../../../assets/btc.png';
+import usdtImg from '../../../assets/usdt-x.png';
+import ltcImg from '../../../assets/ltc-x.png';
+import btcImg from '../../../assets/btc-x.png';
 
 export default function Markets(props) {
   const { data } = props;
@@ -33,7 +33,7 @@ export default function Markets(props) {
         </div>
       </div>
       <div className="item">
-        <div className="icon"><img src={ltcImg} alt="" /></div>
+        <div className="icon"><img src={usdtImg} alt="" /></div>
         <div className="info">
           <div className="name">USDT</div>
           <div className="price">

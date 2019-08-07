@@ -73,30 +73,6 @@ class Index extends Component {
 
     return (
       <div id="home">
-        <div className="index-menu container">
-          <img src={menuImg} alt="" />
-          <div className="menu">
-            <div className="menu-item" onClick={this.handleRedirect.bind(this, '/notice')}>
-              <img src={menu1Img} alt="" />
-              <span>最新公告</span>
-            </div>
-            <div className="menu-item" onClick={this.handleRedirect.bind(this, '/activities')}>
-              <img src={menu2Img} alt="" />
-              <span>历史记录</span>
-            </div>
-          </div>
-        </div>
-        <div className="top-select">
-          <span>
-            <span className={classnames('option', { active: use === 'btc' })} onClick={this.handleChangeUse.bind(this, 'btc')}>BTC</span>
-            <span className={classnames('option', { active: use === 'ltc' })} onClick={this.handleChangeUse.bind(this, 'ltc')}>LTC</span>
-          </span>
-        </div>
-        <div className="earn">
-          <div className="name">{useWallet.name}</div>
-          <div className="yesterday">{useWallet.yesterday}</div>
-          <div className="total">{useWallet.total}</div>
-        </div>
         <div id="banners">
           <Carousel autoplay>
             {banners.map((banner, i) => (
@@ -105,6 +81,19 @@ class Index extends Component {
               </div>
             ))}
           </Carousel>
+        </div>
+        <div className="pad">
+          <div className="top-select">
+            <span>
+              <span className={classnames('option', { active: use === 'btc' })} onClick={this.handleChangeUse.bind(this, 'btc')}>BTC</span>
+              <span className={classnames('option', { active: use === 'ltc' })} onClick={this.handleChangeUse.bind(this, 'ltc')}>LTC</span>
+            </span>
+          </div>
+          <div className="earn">
+            <div className="name">{useWallet.name}</div>
+            <div className="yesterday">{useWallet.yesterday}</div>
+            <div className="total">{useWallet.total}</div>
+          </div>
         </div>
         <Markets data={prices} />
       </div>

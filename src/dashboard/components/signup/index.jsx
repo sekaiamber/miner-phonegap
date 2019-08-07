@@ -40,6 +40,18 @@ class Signup extends Component {
     const payload = {
       phone_number, password, password_confirmation, invite_code, nickname, verify_code, withdraw_password, withdraw_password_confirmation,
     };
+    if (password !== password_confirmation) {
+      message.error('登录密码不一致');
+      return;
+    }
+    if (withdraw_password !== withdraw_password_confirmation) {
+      message.error('提现密码不一致');
+      return;
+    }
+    if (password === withdraw_password) {
+      message.error('登录密码和提现密码必须不同');
+      return;
+    }
     dispatch({
       type: 'utils/signup',
       payload,

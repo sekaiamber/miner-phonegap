@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import classnames from 'classnames';
 import { connect } from 'dva';
 import { Link } from 'dva/router';
-import { Spin } from 'antd';
+import { Spin, Icon } from 'antd';
 import './style.scss';
 
 // images
@@ -62,6 +62,13 @@ class Wallet extends Component {
     });
   }
 
+  handleExperience = () => {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'account/experience',
+    });
+  }
+
   handleChangeUse(use) {
     this.setState({
       use,
@@ -71,6 +78,7 @@ class Wallet extends Component {
   render() {
     const { use } = this.state;
     const useWallet = this.getUseWallet();
+    const { accountInfo } = this.props;
 
     return (
       <div id="wallet" className="container">
@@ -128,8 +136,11 @@ class Wallet extends Component {
             提现
           </Link>
         </div>
-        <Link className="big" to="/buy">矿机租赁</Link>
-        <Link className="big" to="/orders">我的矿机</Link>
+        <Link className="big" to="/buy"><Icon type="transaction" /> <span>算力租赁</span></Link>
+        <Link className="big" to="/orders"><Icon type="account-book" /> <span>我的算力</span></Link>
+        {accountInfo.can_experience && (
+          <a className="big" onClick={this.handleExperience}><Icon type="gift" /> <span>体验矿机</span></a>
+        )}
       </div>
     );
   }

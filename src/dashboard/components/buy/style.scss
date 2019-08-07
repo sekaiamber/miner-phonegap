@@ -166,6 +166,24 @@
       background: rgba($color: #000000, $alpha: 0.6);
       font-size: 0.12rem;
       animation: buy-modal-show 0.3s ease;
+
+      .check .ant-checkbox-wrapper {
+        color: #F0D7B3;
+      }
+
+      a {
+        color: #D2B07A;
+        font-size: 0.14rem;
+      }
+
+      .tip {
+        height: 50vh;
+        overflow: auto;
+
+        ol {
+          padding-left: 0.2rem;
+        }
+      }
     }
     &-container {
       background: #322121;

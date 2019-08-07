@@ -68,15 +68,8 @@
       text-align: center;
       flex-grow: 1;
       margin: 0 0.05rem;
-
-      &:last-child {
-        background: rgba($color: #FFEFD8, $alpha: 0.4);
-        color: #FFEFD8;
-      }
-      &:first-child {
-        background: #FFEFD8;
-        color: #1D0D0D;
-      }
+      background: rgba($color: #FFEFD8, $alpha: 0.4);
+      color: #FFEFD8;
     }
   }
 
@@ -129,8 +122,18 @@
     font-weight: 400;
     border-radius: 0.03rem;
     text-align: center;
-    background: #FFEFD8;
-    color: #1D0D0D;
+    background: rgba($color: #FFEFD8, $alpha: 0.3);
+    color: #FFEFD8;
     margin-bottom: 0.12rem;
+
+    i {
+      font-size: 0.3rem;
+      vertical-align: middle;
+      margin-right: 0.06rem;
+    }
+
+    span {
+      vertical-align: middle;
+    }
   }
 }

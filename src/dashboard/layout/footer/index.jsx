@@ -27,22 +27,26 @@ class Footer extends Component {
       <footer className={classnames({ hide: activeNav === undefined })}>
         <div className={classnames('item', { active: activeNav === 0 })}>
           <Link to="/">
-            <img src={homeActiveImg} alt="" />
+            <span><img src={homeActiveImg} alt="" /></span>
+            <span>首页</span>
           </Link>
         </div>
         <div className={classnames('item', { active: activeNav === 3 })}>
           <Link to="/wallet">
-            <img src={walletActiveImg} alt="" />
+            <span><img src={walletActiveImg} alt="" /></span>
+            <span>钱包</span>
           </Link>
         </div>
         <div className={classnames('item', { active: activeNav === 1 })}>
           <Link to="/power">
-            <img src={powerActiveImg} alt="" />
+            <span><img src={powerActiveImg} alt="" /></span>
+            <span>邀请</span>
           </Link>
         </div>
         <div className={classnames('item', { active: activeNav === 4 })}>
           <Link to="/me">
-            <img src={meActiveImg} alt="" />
+            <span><img src={meActiveImg} alt="" /></span>
+            <span>我的</span>
           </Link>
         </div>
         {/* <div className={classnames('item', { active: activeNav === 2 })}>
