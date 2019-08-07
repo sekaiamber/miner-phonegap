@@ -24,6 +24,8 @@ const icons = {
 // images
 // import blockHeightImg from '../../../assets/block_height.svg';
 
+const continueList = ['reservation_buy', 'rent'];
+
 class Order extends Component {
   state = {}
 
@@ -38,7 +40,7 @@ class Order extends Component {
           <div className="time">到期时间：{product.end_at}</div>
         </div>
         <div className="amount">
-          {product.product_type === 'rent' && product.can_continue && (
+          {continueList.indexOf(product.product_type) > -1 && product.can_continue && (
             <Popconfirm
               placement="left"
               title="确认续租此产品？"

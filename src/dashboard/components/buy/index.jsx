@@ -59,6 +59,8 @@ class Buy extends Component {
           <a className="minus" onClick={this.handleProductCountClick.bind(this, product, -1)}>-</a>
           <Input className="amount-input" value={form[product.id] ? form[product.id].count : ''} onChange={this.handleProductCountChange.bind(this, product)} />
           <a className="plus" onClick={this.handleProductCountClick.bind(this, product, 1)}>+</a>
+
+          <div className="remain">剩余{product.number}份</div>
         </div>
       </div>
     ));
@@ -198,10 +200,10 @@ class Buy extends Component {
 
         <div className="product-group-title">租赁算力包（无忧控矿，到期押金全退）</div>
         {list.rent_products && this.getItemList(list.rent_products)}
-        <div className="product-group-title">购买矿机</div>
-        {list.buy_products && this.getItemList(list.buy_products)}
-        <div className="product-group-title">购买矿机（限时预约，付款后20天后开始产生收益）</div>
+        <div className="product-group-title">租赁算力包（限时预约，付款后20天后开始产生收益）</div>
         {list.reservation_buy_products && this.getItemList(list.reservation_buy_products)}
+        <div className="product-group-title">购买算力包</div>
+        {list.buy_products && this.getItemList(list.buy_products)}
         <div className="product-group-title">矿场机位（限时预约，付款后80天后开始产生收益）</div>
         {list.buy_position_products && this.getItemList(list.buy_position_products)}
 

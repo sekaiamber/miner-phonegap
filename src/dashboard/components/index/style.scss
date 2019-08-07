@@ -151,6 +151,22 @@
     margin: 0 0.16rem;
     border-radius: 0.06rem;
     overflow: hidden;
+    margin-bottom: 0.12rem;
+  }
+
+  .notice {
+    background: rgba($color: #000000, $alpha: 0.3);
+    padding: 0.06rem 0.12rem;
+    margin: 0 0.16rem;
+    border-radius: 0.06rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 0.12rem;
+    white-space: nowrap;
+
+    i {
+      margin-right: 0.06rem;
+    }
   }
 }
 

@@ -30,6 +30,8 @@ class Wallet extends Component {
       address: '',
       balance: '',
       logo: '',
+      earnings: '',
+      power: '',
       block: null,
     };
     if (use === 'usdt') {
@@ -43,12 +45,16 @@ class Wallet extends Component {
       info.logo = walletBase2Img;
       info.unitValue = prices[use].usdt;
       info.block = block.btc;
+      info.earnings = accountInfo.btc_total_earnings;
+      info.power = accountInfo.btc_total_power;
     } else if (use === 'ltc') {
       info.address = '';
       info.balance = accountInfo.ltc_balance;
       info.logo = walletBase2Img;
       info.unitValue = prices[use].usdt;
       info.block = block.ltc;
+      info.earnings = accountInfo.ltc_total_earnings;
+      info.power = accountInfo.ltc_total_power;
     }
     return info;
   }
@@ -106,7 +112,7 @@ class Wallet extends Component {
           <div className="info">
             <div className="row">
               <div className="me">
-                <div className="key">999T</div>
+                <div className="key">{useWallet.power}T</div>
                 <div className="value">我的{useWallet.unit}算力</div>
               </div>
               <div className="block">
@@ -116,7 +122,7 @@ class Wallet extends Component {
             </div>
             <div className="row">
               <div className="me">
-                <div className="key">0.2222 BTC</div>
+                <div className="key">{useWallet.earnings} {useWallet.unit}</div>
                 <div className="value">我的{useWallet.unit}矿池收益</div>
               </div>
               <div className="block">

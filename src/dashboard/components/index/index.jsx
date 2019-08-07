@@ -1,9 +1,10 @@
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import { connect } from 'dva';
-import { Carousel } from 'antd';
+import { Carousel, Icon } from 'antd';
 import { Link } from 'dva/router';
 import Markets from './markets';
 
@@ -23,6 +24,27 @@ import refreshImg from '../../../assets/index_refresh.svg';
 class Index extends Component {
   state = {
     use: 'btc',
+    point: 0,
+  }
+
+  handler = null
+
+  componentDidMount() {
+    this.handler = setInterval(this.changePoint, 5000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.handler);
+    this.handler = null;
+  }
+
+  changePoint = () => {
+    const { notices } = this.props;
+    const { point } = this.state;
+    if (notices.length === 0) return;
+    this.state({
+      point: (point + 1) % notices.length,
+    });
   }
 
   getUseWallet = () => {
@@ -40,6 +62,15 @@ class Index extends Component {
       yesterday: account.ltc_yesterday_earnings,
       total: account.ltc_total_earnings,
     };
+  }
+
+  handleClickNotice = () => {
+    const notice = this.state.notices[this.state.point];
+    if (notice.url) {
+      if (window.cordova) {
+        window.cordova.InAppBrowser.open(notice.url, '_system', 'location=yes');
+      }
+    }
   }
 
   handleAutoReceive = () => {
@@ -66,9 +97,9 @@ class Index extends Component {
 
   render() {
     const {
-      prices, banners,
+      prices, banners, notices,
     } = this.props;
-    const { use } = this.state;
+    const { use, point } = this.state;
     const useWallet = this.getUseWallet();
 
     return (
@@ -90,23 +121,27 @@ class Index extends Component {
             </span>
           </div>
           <div className="earn">
-            <div className="name">{useWallet.name} 昨日收益</div>
+            <div className="name">昨日收益</div>
             <div className="yesterday">{useWallet.yesterday}</div>
             <div className="total"><span>您在胖蚂蚁总计收获 {useWallet.total} {useWallet.name}</span></div>
           </div>
         </div>
+        {notices.length > 0 && (
+          <div className="notice" onClick={this.handleClickNotice}><Icon type="notification" /> {notices[point].title}</div>
+        )}
         <Markets data={prices} />
       </div>
     );
   }
 }
 
-function mapStateToProps({ market, account, utils }) {
+function mapStateToProps({ market, account, utils, notice }) {
   return {
     prices: market.prices,
     block: market.block,
     banners: utils.banners,
     account: account.account,
+    notices: notice.notices,
   };
 }
 

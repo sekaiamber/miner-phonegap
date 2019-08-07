@@ -26,6 +26,8 @@ const pathConfigs = {
       type: 'market/queryMarket',
     }, {
       type: 'queryBanners',
+    }, {
+      type: 'notice/queryNotices',
     }],
   },
   '/power': {

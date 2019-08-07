@@ -1,6 +1,6 @@
 {
   "name": "guizhou",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -58,6 +58,7 @@
     "clipboard": "^2.0.4",
     "cordova-browser": "^5.0.4",
     "cordova-plugin-advanced-http": "git+https://github.com/silkimen/cordova-plugin-advanced-http.git",
+    "cordova-plugin-android-permissions": "git+https://github.com/NeoLSN/cordova-plugin-android-permissions.git",
     "cordova-plugin-battery-status": "~1.1.1",
     "cordova-plugin-camera": "~2.1.1",
     "cordova-plugin-canvas2image": "git+https://github.com/devgeeks/Canvas2ImagePlugin.git",

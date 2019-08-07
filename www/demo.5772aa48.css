@@ -328,7 +328,19 @@ footer {
     padding: 0.2rem 0;
     margin: 0 0.16rem;
     border-radius: 0.06rem;
-    overflow: hidden; }
+    overflow: hidden;
+    margin-bottom: 0.12rem; }
+  #home .notice {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.06rem 0.12rem;
+    margin: 0 0.16rem;
+    border-radius: 0.06rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 0.12rem;
+    white-space: nowrap; }
+    #home .notice i {
+      margin-right: 0.06rem; }
 
 #banners {
   padding: 0 0.16rem;
@@ -500,17 +512,18 @@ footer {
       #buy .item .amount .minus,
       #buy .item .amount .plus {
         position: absolute;
-        top: 50%;
+        top: 0;
         display: block;
-        height: 100%;
+        height: 0.32rem;
         text-align: center;
-        -webkit-transform: translate(0, -50%);
-            -ms-transform: translate(0, -50%);
-                transform: translate(0, -50%);
         width: 0.25rem;
         z-index: 1;
         line-height: 0.3rem;
         font-size: 0.2rem; }
+      #buy .item .amount .remain {
+        text-align: right;
+        font-size: 0.12rem;
+        margin-top: 0.04rem; }
       #buy .item .amount .minus {
         left: 0; }
       #buy .item .amount .plus {

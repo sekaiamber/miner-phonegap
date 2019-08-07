@@ -92,3 +92,27 @@ $(() => {
   // v[0].play();
   render();
 });
+
+// 权限
+function checkPermission() {
+  if (window.cordova && window.cordova.plugins.permissions) {
+    const { permissions } = window.cordova.plugins;
+    permissions.hasPermission(permissions.CAMERA, (status) => {
+      if (!status.hasPermission) {
+        permissions.requestPermission(permissions.CAMERA, () => {}, () => {});
+      }
+    });
+    permissions.hasPermission(permissions.WRITE_EXTERNAL_STORAGE, (status) => {
+      if (!status.hasPermission) {
+        permissions.requestPermission(permissions.WRITE_EXTERNAL_STORAGE, () => {}, () => {});
+      }
+    });
+    permissions.hasPermission(permissions.READ_EXTERNAL_STORAGE, (status) => {
+      if (!status.hasPermission) {
+        permissions.requestPermission(permissions.READ_EXTERNAL_STORAGE, () => {}, () => {});
+      }
+    });
+  }
+}
+
+document.addEventListener('deviceready', checkPermission, false);
