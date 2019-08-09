@@ -464,6 +464,13 @@ footer {
     margin-bottom: 0.1rem; }
     #buy .item a {
       color: #1D0D0D; }
+    #buy .item .buy-btn {
+      display: block;
+      padding: 0.06rem 0.08rem;
+      border-radius: 0.03rem;
+      text-align: center;
+      background: #452E2E;
+      color: #fff; }
     #buy .item .logo {
       -webkit-box-flex: 0;
               flex-grow: 0;
@@ -684,16 +691,22 @@ footer {
     display: flex;
     margin: 0.25rem -0.05rem; }
     #wallet .opt .opt-btn {
-      padding: 0.09rem 0;
-      font-size: 0.2rem;
-      font-weight: 400;
-      border-radius: 0.03rem;
-      text-align: center;
       -webkit-box-flex: 1;
               flex-grow: 1;
       margin: 0 0.05rem;
-      background: #B5ABAB;
-      color: #fff; }
+      color: #1D0D0D;
+      background: -webkit-gradient(linear, left top, right top, from(#D2B07A), to(#F0D7B3));
+      background: -webkit-linear-gradient(left, #D2B07A 0%, #F0D7B3 100%);
+      background: linear-gradient(to right, #D2B07A 0%, #F0D7B3 100%);
+      font-size: 0.16rem;
+      font-weight: 400;
+      padding: 0.1rem 0.15rem;
+      border-radius: 0.27rem;
+      margin-top: 0.12rem;
+      text-align: center;
+      width: 100%;
+      -webkit-transition: all ease 0.3s;
+      transition: all ease 0.3s; }
   #wallet .history .item {
     display: -webkit-box;
     display: flex;
@@ -725,16 +738,20 @@ footer {
   #wallet .history .loading {
     text-align: center; }
   #wallet .big {
-    width: 100%;
-    display: block;
-    padding: 0.09rem 0;
-    font-size: 0.2rem;
+    color: #1D0D0D;
+    background: -webkit-gradient(linear, left top, right top, from(#D2B07A), to(#F0D7B3));
+    background: -webkit-linear-gradient(left, #D2B07A 0%, #F0D7B3 100%);
+    background: linear-gradient(to right, #D2B07A 0%, #F0D7B3 100%);
+    font-size: 0.16rem;
     font-weight: 400;
-    border-radius: 0.03rem;
+    padding: 0.1rem 0.15rem;
+    border-radius: 0.27rem;
+    margin-top: 0.12rem;
     text-align: center;
-    background: rgba(181, 171, 171, 0.7);
-    color: #fff;
-    margin-bottom: 0.12rem; }
+    width: 100%;
+    -webkit-transition: all ease 0.3s;
+    transition: all ease 0.3s;
+    display: block; }
     #wallet .big i {
       font-size: 0.3rem;
       vertical-align: middle;
@@ -746,40 +763,63 @@ footer {
   padding-top: 0.56rem;
   padding-left: 0.3rem;
   padding-right: 0.3rem; }
+  #me .avatar {
+    height: 1.2rem;
+    width: 1.2rem;
+    overflow: hidden;
+    border-radius: 50%;
+    background: #EDEDED;
+    text-align: center;
+    margin: 0 auto; }
+    #me .avatar img {
+      width: 80%;
+      margin-top: 10%; }
   #me .avatar-container {
     position: relative;
-    display: -webkit-box;
-    display: flex;
-    -webkit-box-align: center;
-            align-items: center; }
-    #me .avatar-container img {
-      height: 0.6rem;
-      width: 0.6rem;
-      background: #fff;
-      border-radius: 50%;
-      margin-right: 0.2rem; }
-    #me .avatar-container .nickname {
-      font-size: 0.2rem; }
-  #me .divider {
-    background: #000;
-    height: 1px;
-    margin: 0.2rem -0.3rem; }
-  #me .link {
-    display: -webkit-box;
-    display: flex;
-    -webkit-box-align: center;
-            align-items: center;
-    margin-bottom: 0.15rem; }
-    #me .link img {
+    margin-bottom: 0.25rem; }
+    #me .avatar-container .code {
+      font-size: 0.12rem;
+      background: -webkit-gradient(linear, left top, right top, from(#D2B07A), to(#F0D7B3));
+      background: -webkit-linear-gradient(left, #D2B07A 0%, #F0D7B3 100%);
+      background: linear-gradient(to right, #D2B07A 0%, #F0D7B3 100%);
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      -webkit-transform: translate(-50%, 50%);
+          -ms-transform: translate(-50%, 50%);
+              transform: translate(-50%, 50%);
+      padding: 0.05rem 0.08rem;
+      height: 0.28rem;
+      border-radius: 0.14rem; }
+  #me .link-list {
+    box-shadow: 0 0.08rem 0.16rem 0 rgba(34, 34, 44, 0.1);
+    padding: 0 0.12rem;
+    border-radius: 0.06rem;
+    margin-bottom: 0.1rem;
+    min-height: 0.45rem;
+    border: transparent 1px solid;
+    -webkit-transition: all ease 0.3s;
+    transition: all ease 0.3s; }
+    #me .link-list .link {
+      display: -webkit-box;
+      display: flex;
+      -webkit-box-align: center;
+              align-items: center;
+      -webkit-box-pack: justify;
+              justify-content: space-between;
+      padding: 0.12rem 0;
+      color: #000;
+      font-weight: 300; }
+      #me .link-list .link div:first-child {
+        color: #000; }
+    #me .link-list img {
       max-width: 0.2rem;
       max-height: 0.22rem; }
-    #me .link .icon {
+    #me .link-list .icon {
       text-align: center;
       display: inline-block;
       width: 0.24rem;
       margin-right: 0.15rem; }
-    #me .link a {
-      color: #000; }
   #me .logout {
     margin: 0.24rem 0 0.12rem;
     text-align: center; }

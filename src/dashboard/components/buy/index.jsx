@@ -15,6 +15,7 @@ import './style.scss';
 import buyUsdtImg from '../../../assets/usdt-x.png';
 import ltcImg from '../../../assets/ltc-x.png';
 import btcImg from '../../../assets/btc-x.png';
+import pangmayiImg from '../../../assets/pangmayi-x.png';
 
 const icons = {
   btc: btcImg,
@@ -44,12 +45,12 @@ class Buy extends Component {
     return cost;
   }
 
-  getItemList(list) {
+  getItemList(list, icon) {
     const { form } = this.state;
     return list.map(product => (
       <div className="item balance shadow-pad" key={product.id}>
         <div className="logo">
-          <img src={icons[product.currency.toLowerCase()]} alt="" />
+          <img src={icon || icons[product.currency.toLowerCase()]} alt="" />
         </div>
         <div className="center">
           <div className="txid">{product.power}T <span>{product.price} USDT({product.days}天/期)</span></div>
@@ -194,7 +195,7 @@ class Buy extends Component {
             <div className="time">可用金额</div>
           </div>
           <div className="amount">
-            <Link to="/deposit/usdt">去充值</Link>
+            <Link to="/deposit/usdt" className="buy-btn">去充值</Link>
           </div>
         </div>
 
@@ -205,7 +206,7 @@ class Buy extends Component {
         <div className="product-group-title">购买算力包</div>
         {list.buy_products && this.getItemList(list.buy_products)}
         <div className="product-group-title">矿场机位（限时预约，付款后80天后开始产生收益）</div>
-        {list.buy_position_products && this.getItemList(list.buy_position_products)}
+        {list.buy_position_products && this.getItemList(list.buy_position_products, pangmayiImg)}
 
 
         <div className="footer">

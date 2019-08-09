@@ -54,15 +54,18 @@
     margin: 0.25rem -0.05rem;
 
     .opt-btn {
-      padding: 0.09rem 0;
-      font-size: 0.2rem;
-      font-weight: 400;
-      border-radius: 0.03rem;
-      text-align: center;
       flex-grow: 1;
       margin: 0 0.05rem;
-      background: #B5ABAB;
-      color: #fff;
+      color: #1D0D0D;
+      background: linear-gradient(to right, #D2B07A 0%, #F0D7B3 100%);
+      font-size: 0.16rem;
+      font-weight: 400;
+      padding: 0.1rem 0.15rem;
+      border-radius: 0.27rem;
+      margin-top: 0.12rem;
+      text-align: center;
+      width: 100%;
+      transition: all ease 0.3s;
     }
   }
 
@@ -108,16 +111,17 @@
   }
 
   .big {
-    width: 100%;
-    display: block;
-    padding: 0.09rem 0;
-    font-size: 0.2rem;
+    color: #1D0D0D;
+    background: linear-gradient(to right, #D2B07A 0%, #F0D7B3 100%);
+    font-size: 0.16rem;
     font-weight: 400;
-    border-radius: 0.03rem;
+    padding: 0.1rem 0.15rem;
+    border-radius: 0.27rem;
+    margin-top: 0.12rem;
     text-align: center;
-    background: rgba($color: #B5ABAB, $alpha: 0.7);
-    color: #fff;
-    margin-bottom: 0.12rem;
+    width: 100%;
+    transition: all ease 0.3s;
+    display: block;
 
     i {
       font-size: 0.3rem;

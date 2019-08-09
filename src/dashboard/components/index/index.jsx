@@ -123,7 +123,10 @@ class Index extends Component {
           <div className="earn">
             <div className="name">昨日收益</div>
             <div className="yesterday">{useWallet.yesterday}</div>
-            <div className="total"><span>您在胖蚂蚁总计收获 {useWallet.total} {useWallet.name}</span></div>
+            <div className="total">
+              <div>您在胖蚂蚁总计收获</div>
+              <div>{useWallet.total} {useWallet.name}</div>
+            </div>
           </div>
         </div>
         {notices.length > 0 && (
