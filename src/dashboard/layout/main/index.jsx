@@ -21,7 +21,7 @@ class Main extends Component {
         classNames="page"
         unmountOnExit
       >
-        <div id="main" className="page">{children}</div>
+        <div id="main" className={`page ${match ? match.path.replace('/', '') : ''}`}>{children}</div>
       </CSSTransition>
     );
   }

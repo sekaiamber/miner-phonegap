@@ -8,7 +8,7 @@ import { Link } from 'dva/router';
 import './style.scss';
 
 // images
-import avatarImg from '../../../assets/main_logo.svg';
+import avatarImg from '../../../assets/pangmayi-x.png';
 import linkImg1 from '../../../assets/me_link_1.svg';
 import linkImg2 from '../../../assets/me_link_2.svg';
 import linkImg3 from '../../../assets/me_link_3.svg';
@@ -27,14 +27,14 @@ class Me extends Component {
   render() {
     const { userInfo } = this.props;
     return (
-      <div id="me" className="container">
-        <div className="avatar-container">
+      <div id="me">
+        <div className="avatar-container block">
           <div className="avatar">
             <img src={avatarImg} alt="" />
           </div>
           <div className="code">{userInfo.nickname}</div>
         </div>
-        <div className="link-list">
+        <div className="link-list block">
           <Link to="/changeWithdrawPassword" className="link">
             <div><span className="icon"><img src={linkImg1} alt="" /></span> <span>钱包设置</span></div>
             <div>&gt;</div>
@@ -75,7 +75,7 @@ class Me extends Component {
             <div>&gt;</div>
           </Link>
         </div> */}
-        <div className="logout">
+        <div className="logout block">
           <a onClick={this.handleLogout}>退出登录</a>
         </div>
         <div className="version">

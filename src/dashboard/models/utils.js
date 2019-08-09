@@ -13,7 +13,7 @@ const queryBanners = () => fetch.get(QUERYS.QUERY_BANNERS);
 const pathConfigs = {
   '/': {
     header: {
-      title: '胖蚂蚁',
+      hide: true,
     },
     footer: {
       activeNav: 0,
@@ -77,7 +77,7 @@ const pathConfigs = {
   },
   '/me': {
     header: {
-      title: '个人中心',
+      hide: true,
     },
     footer: {
       activeNav: 4,
