@@ -4,6 +4,7 @@ import message from '../../utils/message';
 import fetch from '../../utils/fetch';
 import jwt from '../../utils/jwt';
 import QUERYS from '../querys';
+import cleanStateModel from '../../utils/cleanState';
 
 const login = data => fetch.post(QUERYS.LOGIN, data);
 const logout = () => fetch.private.delete(QUERYS.LOGIN);
@@ -31,7 +32,7 @@ function sedoRandom(seed) {
   return ('0.' + Math.sin(seed).toString().substr(6));
 }
 
-export default {
+export default cleanStateModel({
   namespace: 'account',
   state: {
     member_token: undefined,
@@ -90,6 +91,12 @@ export default {
         yield put({
           type: 'utils/goto',
           goto: '/login',
+        });
+        yield put({
+          type: 'cleanState',
+        });
+        yield put({
+          type: 'product/cleanState',
         });
       }
     },
@@ -397,4 +404,4 @@ export default {
       };
     },
   },
-};
+});

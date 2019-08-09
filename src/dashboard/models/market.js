@@ -2,6 +2,7 @@ import { routerRedux } from 'dva/router';
 import pathToRegexp from 'path-to-regexp';
 import fetch from '../../utils/fetch';
 import QUERYS from '../querys';
+import cleanStateModel from '../../utils/cleanState';
 
 const queryMarket = () => fetch.get(QUERYS.QUERY_MARKET);
 const queryHome = () => fetch.get(QUERYS.QUERY_BLOCK);
@@ -14,7 +15,7 @@ function getPrice(data) {
   };
 }
 
-export default {
+export default cleanStateModel({
   namespace: 'market',
   state: {
     prices: {
@@ -98,4 +99,4 @@ export default {
       };
     },
   },
-};
+});

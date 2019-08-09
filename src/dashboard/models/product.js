@@ -1,12 +1,13 @@
 import pathToRegexp from 'path-to-regexp';
 import fetch from '../../utils/fetch';
 import QUERYS from '../querys';
+import cleanStateModel from '../../utils/cleanState';
 
 const queryProducts = () => fetch.get(QUERYS.QUERY_PRODUCTS);
 const buy = data => fetch.private.post(QUERYS.QUERY_ORDERS, data);
 const continueOrder = id => fetch.private.post(QUERYS.CONTINUE(id));
 
-export default {
+export default cleanStateModel({
   namespace: 'product',
   state: {
     products: {},
@@ -61,4 +62,4 @@ export default {
       };
     },
   },
-};
+});

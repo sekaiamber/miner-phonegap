@@ -102,6 +102,8 @@ class Index extends Component {
     const { use, point } = this.state;
     const useWallet = this.getUseWallet();
 
+    console.log(prices);
+
     return (
       <div id="home">
         <div id="banners">
