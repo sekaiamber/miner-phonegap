@@ -47,7 +47,7 @@ class Buy extends Component {
   getItemList(list) {
     const { form } = this.state;
     return list.map(product => (
-      <div className="item balance" key={product.id}>
+      <div className="item balance shadow-pad" key={product.id}>
         <div className="logo">
           <img src={icons[product.currency.toLowerCase()]} alt="" />
         </div>
@@ -222,7 +222,7 @@ class Buy extends Component {
           <div className="order-modal" onClick={this.handleCloseModal}>
             <div className="order-container">
               {Object.keys(form).map(id => form[id]).map(order => (
-                <div className="item balance" key={order.product.id}>
+                <div className="item balance shadow-pad" key={order.product.id}>
                   <div className="logo">
                     <img src={icons[order.product.currency.toLowerCase()]} alt="" />
                   </div>

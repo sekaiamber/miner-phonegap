@@ -7,6 +7,7 @@
   left: 50%;
   z-index: 99;
   transform: translate(-50%, -50%);
+  color: #F0D7B3;
 
   &.hori {
     transform: translate(-50%, -50%) rotate(90deg);
@@ -60,5 +61,6 @@
     top: 0;
     left: 0;
     padding: 0.1rem;
+    background: rgba($color: #F0D7B3, $alpha: 0.3);
   }
 }

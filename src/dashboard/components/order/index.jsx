@@ -31,7 +31,7 @@ class Order extends Component {
 
   getItemList(list) {
     return list.map(product => (
-      <div className="item balance" key={product.id}>
+      <div className="item balance shadow-pad" key={product.id}>
         <div className="logo">
           <img src={icons[product.currency.toLowerCase()]} alt="" />
         </div>

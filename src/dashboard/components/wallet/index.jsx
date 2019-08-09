@@ -109,7 +109,7 @@ class Wallet extends Component {
           </div>
         </div>
         {useWallet.block && (
-          <div className="info">
+          <div className="info shadow-pad">
             <div className="row">
               <div className="me">
                 <div className="key">{useWallet.power}T</div>

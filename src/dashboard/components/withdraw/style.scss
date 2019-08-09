@@ -8,10 +8,6 @@
     justify-content: space-between;
     margin-bottom: 0.24rem;
     padding-top: 0.12rem;
-
-    div:last-child {
-      color: #FFEFD8;
-    }
   }
 
   .verify {
@@ -39,10 +35,6 @@
     display: flex;
     justify-content: space-between;
     height: 0.28rem;
-
-    div:last-child {
-      color: #FFEFD8;
-    }
   }
 
   .btn {
@@ -64,5 +56,42 @@
 
   .submit {
     margin-top: 0.24rem;
+  }
+
+  .history {
+    .item {
+      position: relative;
+      display: flex;
+      padding: 0.2rem 0.1rem;
+
+      .logo {
+        flex-grow: 0;
+        flex-shrink: 0;
+        width: 0.4rem;
+      }
+
+      .center {
+        font-size: 0.14rem;
+        flex-shrink: 1;
+        flex-grow: 1;
+        overflow: hidden;
+        margin: 0 0.1rem;
+      }
+
+      .amount {
+        flex-grow: 0;
+        flex-shrink: 0;
+      }
+
+      .txid {
+        font-weight: 400;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .time {
+        opacity: 0.4;
+      }
+    }
   }
 }

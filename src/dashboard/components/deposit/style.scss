@@ -20,8 +20,7 @@
       margin: 0 auto;
       width: 1.25rem;
       height: 0.36rem;
-      background: rgba($color: #1D0D0D, $alpha: 0.4);
-      color: #FFEFD8;
+      background: rgba($color: #1D0D0D, $alpha: 0.1);
       font-size: 0.14rem;
       height: auto;
       margin: 0.2rem auto;
@@ -40,7 +39,7 @@
   }
 
   .tip {
-    background: rgba($color: #322121, $alpha: 0.4);
+    background: rgba($color: #322121, $alpha: 0.1);
     padding: 0.12rem;
     text-align: justify;
   }
@@ -48,20 +47,8 @@
   .history {
     .item {
       position: relative;
-      background: rgba($color: #322121, $alpha: 0.4);
       display: flex;
       padding: 0.2rem 0.1rem;
-
-      &::before {
-        content: "";
-        display: block;
-        background-image: linear-gradient(to right, #D2B07A 0%, #F0D7B3 100%);
-        height: 1px;
-        position: absolute;
-        width: 100%;
-        top: 0;
-        left: 0;
-      }
 
       .logo {
         flex-grow: 0;

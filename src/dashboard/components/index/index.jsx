@@ -42,7 +42,7 @@ class Index extends Component {
     const { notices } = this.props;
     const { point } = this.state;
     if (notices.length === 0) return;
-    this.state({
+    this.setState({
       point: (point + 1) % notices.length,
     });
   }
@@ -65,7 +65,7 @@ class Index extends Component {
   }
 
   handleClickNotice = () => {
-    const notice = this.state.notices[this.state.point];
+    const notice = this.props.notices[this.state.point];
     if (notice.url) {
       if (window.cordova) {
         window.cordova.InAppBrowser.open(notice.url, '_system', 'location=yes');
@@ -113,7 +113,7 @@ class Index extends Component {
             ))}
           </Carousel>
         </div>
-        <div className="pad">
+        <div className="pad shadow-pad">
           <div className="top-select">
             <span>
               <span className={classnames('option', { active: use === 'btc' })} onClick={this.handleChangeUse.bind(this, 'btc')}>BTC</span>
@@ -127,7 +127,7 @@ class Index extends Component {
           </div>
         </div>
         {notices.length > 0 && (
-          <div className="notice" onClick={this.handleClickNotice}><Icon type="notification" /> {notices[point].title}</div>
+          <div className="notice shadow-pad" onClick={this.handleClickNotice}><Icon type="notification" /> {notices[point].title}</div>
         )}
         <Markets data={prices} />
       </div>

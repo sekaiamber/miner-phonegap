@@ -8,17 +8,11 @@
   }
 
   .info {
-    background: rgba($color: #322121, $alpha: 0.4);
     margin: 0.25rem 0;
 
     .row {
-      border-top: #d1ab90 solid 1px;
       display: flex;
       padding: 0.13rem 0.15rem;
-
-      &:first-child {
-        border-top-width: 2px;
-      }
 
       .me {
         width: 40%;
@@ -49,7 +43,6 @@
       margin-bottom: 0.1rem;
     }
     .value span {
-      background: rgba($color: #1D0D0D, $alpha: 0.4);
       padding: 0.06rem 0.16rem;
       height: 0.3rem;
       border-radius: 0.15rem;
@@ -68,8 +61,8 @@
       text-align: center;
       flex-grow: 1;
       margin: 0 0.05rem;
-      background: rgba($color: #FFEFD8, $alpha: 0.4);
-      color: #FFEFD8;
+      background: #B5ABAB;
+      color: #fff;
     }
   }
 
@@ -122,8 +115,8 @@
     font-weight: 400;
     border-radius: 0.03rem;
     text-align: center;
-    background: rgba($color: #FFEFD8, $alpha: 0.3);
-    color: #FFEFD8;
+    background: rgba($color: #B5ABAB, $alpha: 0.7);
+    color: #fff;
     margin-bottom: 0.12rem;
 
     i {

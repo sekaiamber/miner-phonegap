@@ -17,14 +17,9 @@
 
   .item {
     position: relative;
-    background-image: url(../../../assets/buy_item_bg.png);
-    background-size: cover;
-    background-position: bottom center;
-    background-color: #FFEFD8;
     display: flex;
     padding: 0.2rem 0.1rem;
     border-radius: 0.08rem;
-    box-shadow: 0 0.03rem 0.2rem 0 rgba(255, 239, 216, 0.45);
     color: #1D0D0D;
     align-items: center;
     margin-bottom: 0.1rem;
@@ -122,6 +117,7 @@
     animation: buy-footer-show 0.3s ease;
     transform: translate(0, 0);
     left: 0;
+    border-top: #EEEFF0 solid 1px;
 
     .info {
       font-size: 0.12rem;
@@ -141,7 +137,7 @@
     }
 
     .info-container {
-      background: #322121;
+      background: #fff;
       flex-grow: 1;
       flex-shrink: 1;
     }
@@ -172,10 +168,6 @@
       font-size: 0.12rem;
       animation: buy-modal-show 0.3s ease;
 
-      .check .ant-checkbox-wrapper {
-        color: #F0D7B3;
-      }
-
       a {
         color: #D2B07A;
         font-size: 0.14rem;
@@ -191,7 +183,7 @@
       }
     }
     &-container {
-      background: #322121;
+      background: #fff;
       padding: 0.2rem;
       border-radius: 0.05rem;
       position: absolute;

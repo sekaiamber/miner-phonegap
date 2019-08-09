@@ -9,20 +9,12 @@ html {
 body {
   font-size: 0.14rem;
   font-weight: 300;
-  background-image: url(../assets/main_bg.png);
-  background-size: auto 100vh;
-  background-position: right;
-  background-attachment: fixed;
-  color: #FFEFD8;
+  color: #000000;
   // perspective: 300;
 
   &.welcome {
     background: #000;
   }
-}
-
-h1, h2, h3, h4 {
-  color: #FFEFD8;
 }
 
 input {
@@ -92,8 +84,8 @@ a {
       width: 100%;
       line-height: 3;
       padding: 0;
-      background: rgba($color: #322121, $alpha: 0.4);
-      color: #FFEFD8;
+      background: rgba($color: #322121, $alpha: 0.1);
+      color: #322121;
       padding: 0 0.14rem;
 
       &::placeholder {
@@ -174,7 +166,7 @@ a {
     &.active {
       font-weight: 500;
       opacity: 1;
-      border-bottom-color: #FFEFD8;
+      border-bottom-color: #474747;
     }
   }
 }

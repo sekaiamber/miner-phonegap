@@ -7,7 +7,6 @@
     position: relative;
     display: flex;
     align-items: center;
-    color: #fff;
 
     img {
       height: 0.6rem;
@@ -23,7 +22,7 @@
   }
 
   .divider {
-    background-image: linear-gradient(to right, #D2B07A 0%, #F0D7B3 100%);
+    background: #000;
     height: 1px;
     margin: 0.2rem -0.3rem;
   }
@@ -46,7 +45,7 @@
     }
 
     a {
-      color: #FFEFD8;
+      color: #000;
     }
   }
 

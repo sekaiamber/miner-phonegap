@@ -79,6 +79,13 @@ class Deposit extends Component {
     const { history } = this.props;
     const useWallet = this.getUseWallet();
 
+    // const history = [{
+    //   type: 'deposits',
+    //   txid: '0x4981094091024701927409170479012704971074120749127',
+    //   created_at: '2019-01-01',
+    //   amount: '251.09',
+    // }];
+
     return (
       <div id="deposit" className={classnames('container', { usdt: useWallet.unit === 'USDT' })}>
         <div className="unit">{useWallet.unit}</div>
@@ -89,7 +96,7 @@ class Deposit extends Component {
           <div className="btn" onClick={this.handleSaveImage}>保存二维码</div>
           <div className="address clipboard-target" data-clipboard-text={useWallet.address}>{useWallet.address}</div>
         </div>
-        <div className="tip">{useWallet.unit}转入有时交易所会扣除额外手续费，请务必确定好数量后再转入，请勿向胖蚂蚁{useWallet.unit}地址充值任何非{useWallet.unit}资产。</div>
+        <div className="shadow-pad">{useWallet.unit}转入有时交易所会扣除额外手续费，请务必确定好数量后再转入，请勿向胖蚂蚁{useWallet.unit}地址充值任何非{useWallet.unit}资产。</div>
         <div className="page-title">充提历史</div>
         <div className="history">
           {history === 'LOADING' ? (
@@ -98,7 +105,7 @@ class Deposit extends Component {
             </div>
           ) : (
             history.map((item, i) => (
-              <div className="item" key={item.type + i}>
+              <div className="item shadow-pad" key={item.type + i}>
                 <img className="logo" src={useWallet.logo} alt="" />
                 <div className="center">
                   <div className="txid">{item.txid || '等待中'}</div>

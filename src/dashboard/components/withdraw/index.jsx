@@ -172,6 +172,13 @@ class Withdraw extends Component {
     const useWallet = this.getUseWallet();
     const { history } = this.props;
 
+    // const history = [{
+    //   type: 'withdraws',
+    //   txid: '0x4981094091024701927409170479012704971074120749127',
+    //   created_at: '2019-01-01',
+    //   amount: '251.09',
+    // }];
+
     return (
       <div id="withdraw" className={classnames('container', { usdt: useWallet.unit === 'USDT' })}>
         <div className="banner">
@@ -217,8 +224,7 @@ class Withdraw extends Component {
             </div>
           ) : (
             history.map((item, i) => (
-              <div className="item" key={item.type + i}>
-                <img className="logo" src={useWallet.logo} alt="" />
+              <div className="item shadow-pad" key={item.type + i}>
                 <div className="center">
                   <div className="txid">{item.txid || '等待中'}</div>
                   <div className="time">{item.created_at}</div>

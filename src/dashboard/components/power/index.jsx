@@ -54,12 +54,6 @@ class Power extends Component {
     // json.user_id user&.id
 
     const { activities } = invite;
-    // const activities = [{
-    //   time: '2010-01-01',
-    //   amount: '21.0',
-    //   nickname: 'heheh',
-    //   title: 'xxx',
-    // }];
 
     return (
       <div id="power" className="container">
@@ -85,7 +79,7 @@ class Power extends Component {
         </div>
         <div>
           {activities.map((item, i) => (
-            <div className="item" key={i}>
+            <div className="item shadow-pad" key={i}>
               <div className="center">
                 <div className="txid">{item.title}</div>
                 <div className="time">{item.time}</div>
