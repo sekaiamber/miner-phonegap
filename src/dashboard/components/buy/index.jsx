@@ -53,7 +53,12 @@ class Buy extends Component {
           <img src={icon || icons[product.currency.toLowerCase()]} alt="" />
         </div>
         <div className="center">
-          <div className="txid">{product.power}T <span>{product.price} USDT({product.days}天/期)</span></div>
+          {product.product_type == 'buy_position' ? (
+            <div className="txid">{product.power}机位 <span>{product.price} USDT({product.days}天/期)</span></div>
+          ) : (
+            <div className="txid">{product.power}T <span>{product.price} USDT({product.days}天/期)</span></div>
+          )}
+            
           <div className="time">{product.month_earns}</div>
         </div>
         <div className="amount">
@@ -205,7 +210,7 @@ class Buy extends Component {
         {list.reservation_buy_products && this.getItemList(list.reservation_buy_products)}
         <div className="product-group-title">购买算力包</div>
         {list.buy_products && this.getItemList(list.buy_products)}
-        <div className="product-group-title">矿场机位（限时预约，付款后80天后开始产生收益）</div>
+        <div className="product-group-title">矿场机位（限时预约，付款后30天后开始产生收益）</div>
         {list.buy_position_products && this.getItemList(list.buy_position_products, pangmayiImg)}
 
 
