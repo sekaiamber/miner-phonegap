@@ -199,7 +199,7 @@ class Buy extends Component {
           </div>
         </div>
 
-        <div className="product-group-title">租赁算力包（无忧控矿，到期押金全退）</div>
+        <div className="product-group-title">租赁算力包（无忧挖矿，到期押金全退）</div>
         {list.rent_products && this.getItemList(list.rent_products)}
         <div className="product-group-title">租赁算力包（限时预约，付款后20天后开始产生收益）</div>
         {list.reservation_buy_products && this.getItemList(list.reservation_buy_products)}

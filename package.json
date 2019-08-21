@@ -83,6 +83,7 @@
     "cordova-plugin-whitelist": "~1.2.1",
     "decimal.js-light": "^2.5.0",
     "dva": "^2.4.1",
+    "jquery-textfill": "^0.6.0",
     "jsonwebtoken": "^8.5.1",
     "noty": "^3.2.0-beta",
     "path-to-regexp": "^2.4.0",

@@ -160,9 +160,10 @@ class Withdraw extends Component {
       currency = match.params.currency;
     }
     if (currency) {
-      return !(to !== '' && amount !== '' && new Decimal(amount).greaterThan(new Decimal('5')));
+      const fee = this.getFee();
+      return !(to !== '' && amount !== '' && withdraw_password !== '' && verify_code !== '' && new Decimal(amount).greaterThan(new Decimal(fee)));
     }
-    return !(to !== '' && amount !== '' && new Decimal(amount).greaterThan(new Decimal('20')));
+    return !(to !== '' && amount !== '' && withdraw_password !== '' && verify_code !== '');
   }
 
   render() {

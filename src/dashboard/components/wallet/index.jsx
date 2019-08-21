@@ -97,7 +97,7 @@ class Wallet extends Component {
         </div>
         <div className={classnames('card', { usdt: use === 'usdt' })}>
           <div className="top">{useWallet.unit}</div>
-          <div className="amount">{parseFloat(useWallet.balance).toFixed(2)}</div>
+          <div className="amount">{useWallet.balance}</div>
           <div className="value">
             <span>
               {use === 'usdt' ? (

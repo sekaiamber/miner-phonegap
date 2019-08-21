@@ -11,15 +11,7 @@ import message from '../../../utils/message';
 
 import './style.scss';
 
-
-import buyUsdtImg from '../../../assets/buy_usdt.svg';
-import ltcImg from '../../../assets/ltc.png';
-import btcImg from '../../../assets/btc.png';
-
-const icons = {
-  btc: btcImg,
-  ltc: ltcImg,
-};
+import minerLogo from '../../../assets/miner-logo.jpg';
 
 // images
 // import blockHeightImg from '../../../assets/block_height.svg';
@@ -33,7 +25,7 @@ class Order extends Component {
     return list.map(product => (
       <div className="item balance shadow-pad" key={product.id}>
         <div className="logo">
-          <img src={icons[product.currency.toLowerCase()]} alt="" />
+          <img src={minerLogo} alt="" />
         </div>
         <div className="center">
           <div className="txid">{product.power}T <span>{product.price} USDT ({product.days}天/期)</span></div>
@@ -74,7 +66,7 @@ class Order extends Component {
         )}
         {list.rent_products && list.rent_products.length > 0 && (
           <div>
-            <div className="product-group-title">租赁算力包（无忧控矿，到期押金全退）</div>
+            <div className="product-group-title">租赁算力包（无忧挖矿，到期押金全退）</div>
             {this.getItemList(list.rent_products)}
           </div>
         )}
