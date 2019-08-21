@@ -61,7 +61,7 @@ class Footer extends Component {
               <div>
                 <img src={buyImg} alt="" />
               </div>
-              <div className="name">購買</div>
+              <div className="name">购买</div>
             </Link>
           )}
         </div> */}

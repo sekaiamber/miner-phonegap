@@ -43,6 +43,8 @@ const pathConfigs = {
       type: 'account/queryAccount',
     }, {
       type: 'account/queryAcitiviesInvite',
+    }, {
+      type: 'account/querySubUser',
     }],
   },
   '/buy': {

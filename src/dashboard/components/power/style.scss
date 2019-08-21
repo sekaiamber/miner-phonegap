@@ -25,6 +25,7 @@
     display: flex;
     padding: 0.2rem 0.1rem;
     align-items: center;
+    margin-top: 0.1rem;
 
     .logo {
       flex-grow: 0;
@@ -56,13 +57,17 @@
     }
   }
 
+  .item.vip {
+    background: linear-gradient(to left, #D2B07A 0%, #F0D7B3 100%);
+  }
+
   .big {
     width: 100%;
     display: block;
     padding: 0.09rem 0;
     border-radius: 0.03rem;
     text-align: center;
-    background: #452E2E;
+    background: linear-gradient(to right, #D2B07A 0%, #F0D7B3 100%);
     color: #fff;
     margin-bottom: 0.12rem;
   }

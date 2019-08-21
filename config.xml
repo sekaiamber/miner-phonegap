@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.phonegap.pangmayi" version="4.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.phonegap.pangmayi" version="4.0.6" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>胖蚂蚁</name>
     <description>
         胖蚂蚁官方客户端
@@ -14,7 +14,6 @@
     <plugin name="cordova-plugin-battery-status" source="npm" spec="~1.1.1" />
     <plugin name="cordova-plugin-camera" source="npm" spec="~2.1.1" />
     <plugin name="cordova-plugin-media-capture" source="npm" spec="~1.2.0" />
-    <plugin name="cordova-plugin-console" source="npm" spec="~1.0.2" />
     <plugin name="cordova-plugin-contacts" source="npm" spec="~2.0.1" />
     <plugin name="cordova-plugin-device" source="npm" spec="~1.1.1" />
     <plugin name="cordova-plugin-device-motion" source="npm" spec="~1.2.0" />
@@ -54,10 +53,10 @@
     <platform name="ios">
         <icon height="57" platform="ios" src="vendors/res/icon/ios/icon.png" width="57" />
         <icon height="114" platform="ios" src="vendors/res/icon/ios/icon@2x.png" width="114" />
-        <icon height="40" platform="ios" src="vendors/res/icon/ios/icon-40.png" width="40" />
-        <icon height="80" platform="ios" src="vendors/res/icon/ios/icon-40@2x.png" width="80" />
-        <icon height="50" platform="ios" src="vendors/res/icon/ios/icon-50.png" width="50" />
-        <icon height="100" platform="ios" src="vendors/res/icon/ios/icon-50@2x.png" width="100" />
+        <icon height="40" platform="ios" src="vendors/res/icon/ios/icon-small-40.png" width="40" />
+        <icon height="80" platform="ios" src="vendors/res/icon/ios/icon-small-40@2x.png" width="80" />
+        <icon height="50" platform="ios" src="vendors/res/icon/ios/icon-small-50.png" width="50" />
+        <icon height="100" platform="ios" src="vendors/res/icon/ios/icon-small-50@2x.png" width="100" />
         <icon height="60" platform="ios" src="vendors/res/icon/ios/icon-60.png" width="60" />
         <icon height="120" platform="ios" src="vendors/res/icon/ios/icon-60@2x.png" width="120" />
         <icon height="180" platform="ios" src="vendors/res/icon/ios/icon-60@3x.png" width="180" />
@@ -116,9 +115,9 @@
         <allow-intent href="itms-apps:*" />
     </platform>
     <plugin name="cordova-plugin-save-image" spec="https://github.com/quiply/SaveImage.git" />
-    <engine name="browser" spec="~5.0.4" />
     <plugin name="org.devgeeks.Canvas2ImagePlugin" spec="https://github.com/devgeeks/Canvas2ImagePlugin.git" />
     <plugin name="phonegap-plugin-barcodescanner" spec="https://github.com/phonegap/phonegap-plugin-barcodescanner.git" />
     <plugin name="cordova-plugin-advanced-http" spec="https://github.com/silkimen/cordova-plugin-advanced-http.git" />
     <plugin name="cordova-plugin-android-permissions" spec="https://github.com/NeoLSN/cordova-plugin-android-permissions.git" />
+    <engine name="browser" spec="~5.0.4" />
 </widget>

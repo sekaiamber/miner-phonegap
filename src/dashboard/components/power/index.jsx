@@ -45,7 +45,7 @@ class Power extends Component {
   render() {
     const { use } = this.state;
     const useWallet = this.getUseWallet();
-    const { invite } = this.props;
+    const { invite, subuser } = this.props;
 
     // json.(activity, :title, :description, :state, :can_receive?, :id)
     // json.amount activity.amount.round(4)
@@ -82,13 +82,13 @@ class Power extends Component {
           <Link className="big" to="/invite">邀请矿友</Link>
         </div>
         <div>
-          {activities.map((item, i) => (
-            <div className="item shadow-pad" key={i}>
+          {subuser.map((item, i) => (
+            <div className={`item shadow-pad ${item.can_withdraw ? 'vip' : ''}`} key={i}>
               <div className="center">
-                <div className="txid">{item.title}</div>
-                <div className="time">{item.time}</div>
+                <div className="txid">{item.nickname}</div>
+                {/* <div className="time">{item.phone_number}</div> */}
               </div>
-              <div className="amount">{item.amount}</div>
+              <div className="amount">{item.phone_number}</div>
             </div>
           ))}
         </div>
@@ -99,11 +99,13 @@ class Power extends Component {
 
 function mapStateToProps({ account }) {
   const {
-    invite,
+    subuser,
+    invite
   } = account;
 
   return {
-    invite,
+    subuser,
+    invite
   };
 }
 
