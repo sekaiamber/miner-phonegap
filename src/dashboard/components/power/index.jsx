@@ -68,14 +68,11 @@ class Power extends Component {
         <div className="top">
           <div>
             <div className="title">昨日奖金</div>
-            {/* <div className="value">{useWallet.yesterday} <span>{useWallet.unit}</span></div> */}
             <AutoFontSizeDiv className="value" minFontPixels={14} maxFontPixels={36} width="100%" height="60px">{`${useWallet.yesterday} ${useWallet.unit}`}</AutoFontSizeDiv>
           </div>
           <div>
             <div className="title">总奖金</div>
-            {/* <div className="value">{useWallet.total} <span>{useWallet.unit}</span></div> */}
-            {/* <div className="value">0.99999999 <span>{useWallet.unit}</span></div> */}
-            <AutoFontSizeDiv className="value" minFontPixels={14} maxFontPixels={36} width="100%" height="60px">{`${useWallet.yesterday} ${useWallet.unit}`}</AutoFontSizeDiv>
+            <AutoFontSizeDiv className="value" minFontPixels={14} maxFontPixels={36} width="100%" height="60px">{`${useWallet.total} ${useWallet.unit}`}</AutoFontSizeDiv>
           </div>
         </div>
         <div>
