@@ -202,15 +202,20 @@ class Withdraw extends Component {
             <a onClick={this.handleSendSms}>发送验证码</a>
           </div>
           <div className="item">
-            <div className="form-info">
+            <div className="form-info auto-height">
               <div>手续费</div>
               <div>{this.getFee()} {useWallet.unit}</div>
             </div>
-          </div>
-          <div className="item">
-            <div className="form-info">
+            <div className="form-info auto-height">
               <div>到账金额</div>
               <div>{this.getFinal()} {useWallet.unit}</div>
+            </div>
+          </div>
+          <div className="item">
+            <div className="warn">请确认提现数量满足提现地址账户最低充入数量，如因此造成的资产丢失胖蚂蚁不承担任何责任。</div>
+            <div className="warn">
+              <div>为保障资金安全，当您账户安全策略变更、密码修改，我们会对提现进行人工审核，请耐心等待工作人员电话或邮件联系。</div>
+              <div>请务必确认手机安全，防止信息被篡改或泄露。</div>
             </div>
           </div>
         </div>

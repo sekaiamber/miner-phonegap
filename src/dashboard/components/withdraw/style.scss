@@ -35,6 +35,18 @@
     display: flex;
     justify-content: space-between;
     height: 0.28rem;
+
+    &.auto-height {
+      height: auto;
+    }
+
+  }
+  .warn {
+    font-size: 0.12rem;
+    color: red;
+    padding: 0.06rem;
+    background: #fff0f0;
+    margin-bottom: 0.06rem;
   }
 
   .btn {

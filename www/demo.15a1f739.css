@@ -1084,6 +1084,14 @@ footer {
     -webkit-box-pack: justify;
             justify-content: space-between;
     height: 0.28rem; }
+    #withdraw .form .form-info.auto-height {
+      height: auto; }
+  #withdraw .warn {
+    font-size: 0.12rem;
+    color: red;
+    padding: 0.06rem;
+    background: #fff0f0;
+    margin-bottom: 0.06rem; }
   #withdraw .btn {
     color: #1D0D0D;
     background: -webkit-gradient(linear, left top, right top, from(#D2B07A), to(#F0D7B3));
