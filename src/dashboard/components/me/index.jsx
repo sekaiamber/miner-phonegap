@@ -43,10 +43,10 @@ class Me extends Component {
             <div><span className="icon"><img src={linkImg2} alt="" /></span> <span>安全设置</span></div>
             <div>&gt;</div>
           </Link>
-          <Link to="/about" className="link">
+          {/* <Link to="/about" className="link">
             <div><span className="icon"><img src={linkImg3} alt="" /></span> <span>关于我们</span></div>
             <div>&gt;</div>
-          </Link>
+          </Link> */}
           <Link to="/post/qa" className="link">
             <div><span className="icon"><img src={linkImg4} alt="" /></span> <span>常见问题</span></div>
             <div>&gt;</div>
