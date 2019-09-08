@@ -170,6 +170,19 @@ const pathConfigs = {
       type: 'market/queryHome',
     }],
   },
+  '/transfer/:currency': {
+    header: {
+      title: '转账',
+      icon: {
+        left: 'back',
+      },
+    },
+    refresh: [{
+      type: 'account/queryAccount',
+    }, {
+      type: 'market/queryHome',
+    }],
+  },
   '/signup': {
     header: {
       title: '注册',

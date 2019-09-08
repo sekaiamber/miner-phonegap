@@ -19,9 +19,11 @@ const queryAcitiviesInvite = () => fetch.private.get(QUERYS.QUERY_ACTIVITIES_INV
 const queryOrders = () => fetch.private.get(QUERYS.QUERY_ORDERS);
 const queryDeposits = data => fetch.private.get(QUERYS.QUERY_DEPOSITS, data);
 const queryWithdraws = data => fetch.private.get(QUERYS.QUERY_WITHDRAWS, data);
+const queryTransfers = data => fetch.private.get(QUERYS.QUERY_TRANSFERS, data);
 const querySubUser = () => fetch.private.get(QUERYS.QUERY_SUB_USER);
 const changeAutoReceive = data => fetch.private.post(QUERYS.QUERY_MY, { auto_receive: data });
 const submitWithdraw = data => fetch.private.post(QUERYS.QUERY_WITHDRAWS, data);
+const submitTransfer = data => fetch.private.post(QUERYS.QUERY_TRANSFERS, data);
 const collect = id => fetch.private.post(QUERYS.COLLECT(id));
 const sendWithdrawSms = () => fetch.private.post(QUERYS.SEND_WITHDRAW_SMS);
 const changePassword = data => fetch.private.post(QUERYS.CHANGE_PASSWORD, data);
@@ -293,6 +295,26 @@ export default cleanStateModel({
         });
       }
     },
+    * queryTransfers({ payload }, { call, put }) {
+      yield put({
+        type: 'updateState',
+        payload: {
+          history: 'LOADING',
+        },
+      });
+      const currency = payload || 'USDT';
+      const transfers = yield call(queryTransfers, { currency });
+      if (transfers.success) {
+        const history = transfers.data;
+        history.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+        yield put({
+          type: 'updateState',
+          payload: {
+            history,
+          },
+        });
+      }
+    },
     * querySubUser(_, { call, put }) {
       const data = yield call(querySubUser);
       if (data.success) {
@@ -339,6 +361,23 @@ export default cleanStateModel({
       const data = yield call(submitWithdraw, payload);
       if (data.success) {
         message.success('申请提现成功');
+        yield put({
+          type: 'queryAccount',
+        });
+      }
+      yield put({
+        type: 'utils/loading',
+        loading: null,
+      });
+    },
+    * submitTransfer({ payload }, { call, put }) {
+      yield put({
+        type: 'utils/loading',
+        loading: {},
+      });
+      const data = yield call(submitTransfer, payload);
+      if (data.success) {
+        message.success('申请转账成功');
         yield put({
           type: 'queryAccount',
         });

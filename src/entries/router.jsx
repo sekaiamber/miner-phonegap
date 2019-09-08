@@ -32,6 +32,7 @@ import Order from '../dashboard/components/order';
 import ChangePassword from '../dashboard/components/changePassword';
 import ChangeWithdrawPassword from '../dashboard/components/changeWithdrawPassword';
 import About from '../dashboard/components/about';
+import Transfer from '../dashboard/components/transfer';
 // import NoMatchPage from '../dashboard/components/noMatchPage';
 
 function AnimeRoute({ component: C, ...rest }) {
@@ -74,6 +75,7 @@ class MyRouter extends Component {
           <AnimeRoute path="/subuser" exact component={Subuser} />
           <AnimeRoute path="/deposit/:currency" exact component={Deposit} />
           <AnimeRoute path="/withdraw/:currency" exact component={Withdraw} />
+          <AnimeRoute path="/transfer/:currency" exact component={Transfer} />
           <AnimeRoute path="/post/:id" exact component={Post} />
           <AnimeRoute path="/orders" exact component={Order} />
           <AnimeRoute path="/changePassword" exact component={ChangePassword} />

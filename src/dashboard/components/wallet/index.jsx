@@ -141,6 +141,9 @@ class Wallet extends Component {
           <Link className="opt-btn" to={`/withdraw/${use}`}>
             提现
           </Link>
+          <Link className="opt-btn" to={`/transfer/${use}`}>
+            转账
+          </Link>
         </div>
         <Link className="big" to="/buy"><Icon type="transaction" /> <span>算力租赁</span></Link>
         <Link className="big" to="/orders"><Icon type="account-book" /> <span>我的算力</span></Link>

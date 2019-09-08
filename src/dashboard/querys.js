@@ -16,6 +16,7 @@ const QUERYS = {
   QUERY_PRODUCTS: '/api/v1/products.json',
   QUERY_DEPOSITS: '/api/v1/deposits.json',
   QUERY_WITHDRAWS: '/api/v1/withdraws.json',
+  QUERY_TRANSFERS: '/api/v1/transfers.json',
   QUERY_NOTICE: '/api/v1/notices.json',
   QUERY_SUB_USER: '/api/v1/my/sub_users.json',
   COLLECT: id => `/api/v1/activities/${id}/collect.json`,
