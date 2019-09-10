@@ -125,7 +125,7 @@ class Index extends Component {
               <span className={classnames('option', { active: use === 'ltc' })} onClick={this.handleChangeUse.bind(this, 'ltc')}>LTC</span>
             </span>
           </div>
-          <div className="earn">
+          <div className="earn" onClick={this.handleRedirect.bind(this, '/activities')}>
             <div className="name">昨日收益</div>
             <div className="yesterday">{useWallet.yesterday}</div>
             <div className="total">

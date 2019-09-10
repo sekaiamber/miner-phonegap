@@ -44,7 +44,7 @@ class Activities extends Component {
       <div id="myActivities" className="container">
         {list.map(item => (
           <div className="item" key={item.id}>
-            <img className="logo" src={walletBaseImg} alt="" />
+            {/* <img className="logo" src={walletBaseImg} alt="" /> */}
             <div className="center">
               <div className="txid">{item.title}</div>
               <div className="time">{item.time}</div>
