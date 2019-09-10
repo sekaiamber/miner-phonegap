@@ -65,12 +65,17 @@ class Index extends Component {
   }
 
   handleClickNotice = () => {
-    const notice = this.props.notices[this.state.point];
-    if (notice.url) {
-      if (window.cordova) {
-        window.cordova.InAppBrowser.open(notice.url, '_system', 'location=yes');
-      }
-    }
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'utils/goto',
+      goto: '/notice',
+    });
+    // const notice = this.props.notices[this.state.point];
+    // if (notice.url) {
+    //   if (window.cordova) {
+    //     window.cordova.InAppBrowser.open(notice.url, '_system', 'location=yes');
+    //   }
+    // }
   }
 
   handleAutoReceive = () => {

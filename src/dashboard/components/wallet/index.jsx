@@ -5,6 +5,7 @@ import classnames from 'classnames';
 import { connect } from 'dva';
 import { Link } from 'dva/router';
 import { Spin, Icon } from 'antd';
+import AutoFontSizeDiv from '../common/autoFontSizeDiv';
 import './style.scss';
 
 // images
@@ -32,16 +33,19 @@ class Wallet extends Component {
       logo: '',
       earnings: '',
       power: '',
+      lock: '',
       block: null,
     };
     if (use === 'usdt') {
       info.address = userInfo.usdt_payment_address;
       info.balance = accountInfo.usdt_balance;
+      info.locked = accountInfo.usdt_locked;
       info.logo = walletUsdtImg;
       info.unitValue = prices.usdt.cny;
     } else if (use === 'btc') {
       info.address = '';
       info.balance = accountInfo.btc_balance;
+      info.locked = accountInfo.btc_locked;
       info.logo = walletBase2Img;
       info.unitValue = prices[use].usdt;
       info.block = block.btc;
@@ -50,6 +54,7 @@ class Wallet extends Component {
     } else if (use === 'ltc') {
       info.address = '';
       info.balance = accountInfo.ltc_balance;
+      info.locked = accountInfo.ltc_locked;
       info.logo = walletBase2Img;
       info.unitValue = prices[use].usdt;
       info.block = block.ltc;
@@ -95,17 +100,32 @@ class Wallet extends Component {
             <span className={classnames('option', { active: use === 'ltc' })} onClick={this.handleChangeUse.bind(this, 'ltc')}>LTC</span>
           </span>
         </div>
-        <div className={classnames('card', { usdt: use === 'usdt' })}>
-          <div className="top">{useWallet.unit}</div>
-          <div className="amount">{useWallet.balance}</div>
-          <div className="value">
-            <span>
-              {use === 'usdt' ? (
-                `${parseFloat(useWallet.balance * useWallet.unitValue).toFixed(2)} CNY`
-              ) : (
-                `$ ${parseFloat(useWallet.balance * useWallet.unitValue).toFixed(2)}`
-              )}
-            </span>
+        <div className="card-container">
+          <div className={classnames('card', { usdt: use === 'usdt' })}>
+            <div className="top">可用余额</div>
+            <AutoFontSizeDiv className="amount" minFontPixels={20} maxFontPixels={48} width="100%" height="72px">{useWallet.balance}</AutoFontSizeDiv>
+            <div className="value">
+              <span>
+                {use === 'usdt' ? (
+                  `${parseFloat(useWallet.balance * useWallet.unitValue).toFixed(2)} CNY`
+                ) : (
+                  `$ ${parseFloat(useWallet.balance * useWallet.unitValue).toFixed(2)}`
+                )}
+              </span>
+            </div>
+          </div>
+          <div className={classnames('card', { usdt: use === 'usdt' })}>
+            <div className="top">锁定余额</div>
+            <AutoFontSizeDiv className="amount" minFontPixels={20} maxFontPixels={48} width="100%" height="72px">{useWallet.locked}</AutoFontSizeDiv>
+            <div className="value">
+              <span>
+                {use === 'usdt' ? (
+                  `${parseFloat(useWallet.locked * useWallet.unitValue).toFixed(2)} CNY`
+                ) : (
+                  `$ ${parseFloat(useWallet.locked * useWallet.unitValue).toFixed(2)}`
+                )}
+              </span>
+            </div>
           </div>
         </div>
         {useWallet.block && (

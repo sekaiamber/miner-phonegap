@@ -31,8 +31,14 @@
     }
   }
 
+  .card-container {
+    display: flex;
+    justify-content: space-around;
+  }
+
   .card {
     text-align: center;
+    width: 50%;
 
     .top {
       font-size: 0.17rem;
@@ -40,7 +46,7 @@
     .amount {
       font-size: 0.48rem;
       font-weight: 400;
-      margin-bottom: 0.1rem;
+      margin: 0.1rem 0;
     }
     .value span {
       padding: 0.06rem 0.16rem;
