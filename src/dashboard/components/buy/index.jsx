@@ -15,7 +15,7 @@ import './style.scss';
 import buyUsdtImg from '../../../assets/usdt-x.png';
 import ltcImg from '../../../assets/ltc-x.png';
 import btcImg from '../../../assets/btc-x.png';
-import pangmayiImg from '../../../assets/pangmayi-x.png';
+import pangmayiImg from '../../../assets/position.jpg';
 
 const icons = {
   btc: btcImg,

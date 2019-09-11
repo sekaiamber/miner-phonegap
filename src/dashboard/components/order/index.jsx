@@ -28,7 +28,12 @@ class Order extends Component {
           <img src={minerLogo} alt="" />
         </div>
         <div className="center">
-          <div className="txid">{product.power}T <span>{product.price} USDT ({product.days}天/期)</span></div>
+          {product.product_type === 'buy_position' ? (
+            <div className="txid">{product.power}机位 <span>{product.price} USDT({product.days}天/期)</span></div>
+          ) : (
+            <div className="txid">{product.power}T <span>{product.price} USDT({product.days}天/期)</span></div>
+          )}
+          <div className="time">购买时间：{product.created_at}</div>
           <div className="time">到期时间：{product.end_at}</div>
         </div>
         <div className="amount">
@@ -84,7 +89,7 @@ class Order extends Component {
         )}
         {list.buy_position_products && list.buy_position_products.length > 0 && (
           <div>
-            <div className="product-group-title">矿场机位（限时预约，付款后80天后开始产生收益）</div>
+            <div className="product-group-title">矿场机位（限时预约，付款后30天后开始产生收益）</div>
             {this.getItemList(list.buy_position_products)}
           </div>
         )}

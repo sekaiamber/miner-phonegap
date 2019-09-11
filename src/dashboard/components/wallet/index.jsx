@@ -104,7 +104,7 @@ class Wallet extends Component {
           <div className={classnames('card', { usdt: use === 'usdt' })}>
             <div className="top">可用余额</div>
             <AutoFontSizeDiv className="amount" minFontPixels={20} maxFontPixels={48} width="100%" height="72px">{useWallet.balance}</AutoFontSizeDiv>
-            <div className="value">
+            {/* <div className="value">
               <span>
                 {use === 'usdt' ? (
                   `${parseFloat(useWallet.balance * useWallet.unitValue).toFixed(2)} CNY`
@@ -112,12 +112,12 @@ class Wallet extends Component {
                   `$ ${parseFloat(useWallet.balance * useWallet.unitValue).toFixed(2)}`
                 )}
               </span>
-            </div>
+            </div> */}
           </div>
           <div className={classnames('card', { usdt: use === 'usdt' })}>
             <div className="top">锁定余额</div>
             <AutoFontSizeDiv className="amount" minFontPixels={20} maxFontPixels={48} width="100%" height="72px">{useWallet.locked}</AutoFontSizeDiv>
-            <div className="value">
+            {/* <div className="value">
               <span>
                 {use === 'usdt' ? (
                   `${parseFloat(useWallet.locked * useWallet.unitValue).toFixed(2)} CNY`
@@ -125,7 +125,7 @@ class Wallet extends Component {
                   `$ ${parseFloat(useWallet.locked * useWallet.unitValue).toFixed(2)}`
                 )}
               </span>
-            </div>
+            </div> */}
           </div>
         </div>
         {useWallet.block && (
