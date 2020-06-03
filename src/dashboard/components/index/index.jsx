@@ -58,7 +58,7 @@ class Index extends Component {
       };
     }
     return {
-      name: 'LTC',
+      name: 'USDT',
       yesterday: account.ltc_yesterday_earnings,
       total: account.ltc_total_earnings,
     };
@@ -122,7 +122,7 @@ class Index extends Component {
           <div className="top-select">
             <span>
               <span className={classnames('option', { active: use === 'btc' })} onClick={this.handleChangeUse.bind(this, 'btc')}>BTC</span>
-              <span className={classnames('option', { active: use === 'ltc' })} onClick={this.handleChangeUse.bind(this, 'ltc')}>LTC</span>
+              <span className={classnames('option', { active: use === 'ltc' })} onClick={this.handleChangeUse.bind(this, 'ltc')}>USDT</span>
             </span>
           </div>
           <div className="earn" onClick={this.handleRedirect.bind(this, '/activities')}>

@@ -11,7 +11,7 @@ import message from '../../../utils/message';
 
 import './style.scss';
 
-import minerLogo from '../../../assets/miner-logo.jpg';
+import minerLogo from '../../../assets/miner-logo.png';
 
 // images
 // import blockHeightImg from '../../../assets/block_height.svg';
@@ -29,7 +29,7 @@ class Order extends Component {
         </div>
         <div className="center">
           {product.product_type === 'buy_position' ? (
-            <div className="txid">{product.power}机位 <span>{product.price} USDT({product.days}天/期)</span></div>
+            <div className="txid">联合挖矿 <span>{product.price} USDT({product.days}天/期)</span></div>
           ) : (
             <div className="txid">{product.power}T <span>{product.price} USDT({product.days}天/期)</span></div>
           )}
@@ -89,7 +89,7 @@ class Order extends Component {
         )}
         {list.buy_position_products && list.buy_position_products.length > 0 && (
           <div>
-            <div className="product-group-title">矿场机位（限时预约，付款后30天后开始产生收益）</div>
+            <div className="product-group-title">胖蚂蚁联合挖矿</div>
             {this.getItemList(list.buy_position_products)}
           </div>
         )}
@@ -119,9 +119,9 @@ function mapStateToProps({ account }) {
 
   const list = {
     rent_products: orders.filter(o => o.product_type === 'rent'),
-    buy_products: orders.filter(o => o.product_type === 'buy'),
+    buy_products: orders.filter(o => o.product_type === 'buy' || o.product_type === 'new_reservation_buy'),
     reservation_buy_products: orders.filter(o => o.product_type === 'reservation_buy'),
-    buy_position_products: orders.filter(o => o.product_type === 'buy_position'),
+    buy_position_products: orders.filter(o => o.product_type === 'buy_position' || o.product_type === 'new_buy_position'),
     experience: orders.filter(o => o.product_type === 'experience'),
   };
 
