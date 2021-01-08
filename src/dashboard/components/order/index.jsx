@@ -28,9 +28,10 @@ class Order extends Component {
           <img src={minerLogo} alt="" />
         </div>
         <div className="center">
-          {product.product_type === 'buy_position' ? (
-            <div className="txid">联合挖矿 <span>{product.price} USDT({product.days}天/期)</span></div>
-          ) : (
+          {product.product_type === 'buy_position' ? [
+            <div className="txid">{product.price === '880.0' ? '机位套餐' : '联合挖矿'}</div>,
+            <div className="txid"><span>{product.price} USDT({product.days}天/期)</span></div>
+          ] : (
             <div className="txid">{product.power}T <span>{product.price} USDT({product.days}天/期)</span></div>
           )}
           <div className="time">购买时间：{product.created_at}</div>

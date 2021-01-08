@@ -54,9 +54,10 @@ class Buy extends Component {
           {product.number == 0 ? <img src={soldOutImg} alt="" /> : <img src={icon || icons[product.currency.toLowerCase()]} alt="" />}
         </div>
         <div className="center">
-          {product.product_type === 'buy_position' ? (
-            <div className="txid">联合挖矿 <span>{product.price} USDT({product.days}天/期)</span></div>
-          ) : (
+          {product.product_type === 'buy_position' ? [
+            <div className="txid">{product.price === '880.0' ? '机位套餐' : '联合挖矿'}</div>,
+            <div className="txid"><span>{product.price} USDT({product.days}天/期)</span></div>
+          ] : (
             <div className="txid">{product.power}T <span>{product.price} USDT({product.days}天/期)</span></div>
           )}
           <div className="time">{product.month_earns}</div>
@@ -206,8 +207,8 @@ class Buy extends Component {
 
         <div className="product-group-title">租赁算力包（无忧挖矿，到期押金全退）</div>
         {list.rent_products && this.getItemList(list.rent_products)}
-        <div className="product-group-title">租赁算力包（限时预约，付款后20天后开始产生收益）</div>
-        {list.reservation_buy_products && this.getItemList(list.reservation_buy_products)}
+        {/* <div className="product-group-title">租赁算力包（限时预约，付款后20天后开始产生收益）</div>
+        {list.reservation_buy_products && this.getItemList(list.reservation_buy_products)} */}
         <div className="product-group-title">购买算力包</div>
         {list.buy_products && this.getItemList(list.buy_products)}
         <div className="product-group-title">胖蚂蚁联合挖矿</div>
