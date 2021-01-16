@@ -17,7 +17,7 @@ class Notice extends Component {
         {list.map((notice, i) => (
           <div className="notice" key={i}>
             <div className="title">{notice.title}</div>
-            <div className="time">{notice.time}</div>
+            <div className="time tx-weak">{notice.time}</div>
             <div className="content">{notice.content}</div>
           </div>
         ))}

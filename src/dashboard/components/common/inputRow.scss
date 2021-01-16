@@ -1,0 +1,21 @@
+.input-row {
+  border-bottom: var(--div-color) solid 1px;
+  margin-bottom: 0.24rem;
+
+  .label {
+    font-size: 0.12rem;
+  }
+
+  .input {
+    margin-top: 0.1rem;
+    margin-bottom: 0.12rem;
+    display: flex;
+  }
+
+  input {
+    width: 100%;
+    padding: 0;
+    background: transparent;
+    border: none;
+  }
+}

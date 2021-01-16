@@ -3,20 +3,31 @@
     display: flex;
     align-items: center;
     font-weight: 400;
+    font-size: 0.16rem;
+    padding-bottom: 0.16rem;
+    margin-bottom: 0.2rem;
+    border-bottom: transparent solid 1px;
+    border-bottom-color: var(--div-color);
+
+    &:last-child {
+      border-bottom: none;
+    }
 
     &:last-child .info {
       border-bottom: none;
     }
 
     .icon {
-      height: 0.4rem;
-      width: 0.4rem;
+      height: 0.32rem;
+      width: 0.32rem;
       flex-grow: 0;
       flex-shrink: 0;
       margin-right: 0.13rem;
 
       img {
-        height: 0.4rem;
+        height: 0.32rem;
+        width: 0.32rem;
+        object-fit: contain;
       }
     }
     .info {
@@ -24,12 +35,9 @@
       flex-shrink: 1;
       display: flex;
       align-items: center;
-      padding: 0.16rem 0;
-      border-bottom: #E5E5E5 solid 1px;
-      min-height: 0.72rem;
     }
     .name {
-      width: 0.65rem;
+      width: 1rem;
       flex-grow: 0;
       flex-shrink: 0;
       font-size: 0.16rem;
@@ -38,12 +46,6 @@
       flex-grow: 1;
       flex-shrink: 1;
       text-align: right;
-
-      .cny {
-        font-size: 0.12rem;
-        color: #444;
-        opacity: 0.4;
-      }
     }
     .change {
       width: 0.7rem;
@@ -64,21 +66,17 @@
   position: relative;
 
   .earn {
-    text-align: center;
-    margin-bottom: 0.12rem;
-
     .name {
-      font-size: 0.17rem;
-      opacity: 0.5;
+      font-size: 0.12rem;
     }
     
     .yesterday {
-      font-size: 0.48rem;
-      color: #000;
+      font-size: 0.3rem;
+      font-weight: 500;
     }
     .total {
-      margin-top: 0.1rem;
-      opacity: 0.5;
+      font-size: 0.12rem;
+      font-weight: 500;
 
       span {
         padding: 0.04rem 0.12rem;
@@ -147,32 +145,76 @@
   }
 
   .pad {
-    padding: 0.2rem 0;
+    position: relative;
+    background: var(--index-pad-bg);
+    padding: 0.12rem 0.15rem;
     margin: 0 0.16rem;
-    border-radius: 0.06rem;
+    border-radius: 0.1rem;
     margin-bottom: 0.12rem;
+
+    .arrows {
+      position: absolute;
+      top: 50%;
+      right: 0.12rem;
+      transform: translate(0, -50%);
+
+      img {
+        display: block;
+      }
+
+      &>div:last-child {
+        transform: rotate(180deg);
+      }
+
+      .option {
+        opacity: 0.5;
+
+        &:first-child {
+          margin-bottom: 0.04rem;
+        }
+
+        &.active {
+          opacity: 1;
+        }
+      }
+    }
   }
 
   .notice {
-    padding: 0.06rem 0.12rem;
+    background-color: var(--index-notice-bg);
+    padding: 0.07rem 0.13rem;
     margin: 0 0.16rem;
-    border-radius: 0.06rem;
+    border-radius: 0.1rem;
     text-overflow: ellipsis;
     margin-bottom: 0.12rem;
     white-space: nowrap;
     min-height: auto;
+    font-weight: 500;
 
-    i {
-      margin-right: 0.06rem;
+    &>* {
+      vertical-align: middle;
+    }
+
+    img {
+      margin-right: 0.1rem;
     }
   }
 }
 
+$bannerHeight: 1.16rem;
+
 #banners {
-  margin-bottom: 0.12rem;
+  margin: 0.15rem;
+  border-radius: 0.1rem;
+  overflow: hidden;
+
+  .slick-slide>div {
+    height: $bannerHeight;
+    line-height: 1;
+  }
 
   .banner {
-    height: 1.6rem;
+    height: $bannerHeight;
     overflow: hidden;
 
     &>div {

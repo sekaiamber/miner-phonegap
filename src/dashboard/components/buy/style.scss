@@ -10,7 +10,7 @@
   }
 
   .product-group-title {
-    margin: 0.2rem 0;
+    margin: 0.18rem 0 0.26rem;
     font-size: 0.14rem;
     font-weight: 400;
   }
@@ -18,34 +18,50 @@
   .item {
     position: relative;
     display: flex;
-    padding: 0.2rem 0.1rem;
-    border-radius: 0.08rem;
-    color: #1D0D0D;
+    border-radius: 0;
     align-items: center;
-    margin-bottom: 0.1rem;
+    margin-top: 0.18rem;
+    padding: 0 0 0.18rem 0;
+    border-bottom: var(--div-color) solid 1px;
+
+    &.balance {
+      .center {
+        margin-left: 0;
+
+        .txid {
+          font-size: 0.3rem;
+          font-weight: 500;
+        }
+      }
+    }
 
     a {
-      color: #1D0D0D;
+      color: var(--text-main);
     }
 
     .buy-btn {
       display: block;
       padding: 0.06rem 0.08rem;
-      border-radius: 0.03rem;
+      border-radius: 0.1rem;
       text-align: center;
-      background: #452E2E;
+      background: var(--primary-color);
       color: #fff;
     }
 
     .logo {
       flex-grow: 0;
       flex-shrink: 0;
-      width: 0.4rem;
+      width: 0.32rem;
+      height: 0.32rem;
       text-align: center;
+      border-radius: 0.09rem;
+      overflow: hidden;
+      background-color: #FFECDA;
 
       img {
-        max-width: 0.4rem;
-        max-height: 0.4rem;
+        width: 0.32rem;
+        height: 0.32rem;
+        object-fit: contain;
       }
     }
 
@@ -100,7 +116,7 @@
       text-overflow: ellipsis;
 
       span {
-        font-size: 0.12rem;
+        font-size: 0.14rem;
       }
     }
 
@@ -111,6 +127,12 @@
     .amount-input {
       width: 0.8rem;
       text-align: center;
+    }
+
+    .ant-input {
+      background: transparent;
+      border: none;
+      color: var(--text-main);
     }
   }
 
@@ -126,10 +148,10 @@
     animation: buy-footer-show 0.3s ease;
     transform: translate(0, 0);
     left: 0;
-    border-top: #EEEFF0 solid 1px;
+    border-top: var(--div-color) solid 1px;
 
     .info {
-      font-size: 0.12rem;
+      font-size: 0.16rem;
       padding-left: 0.12rem;
 
       .cost {
@@ -137,6 +159,9 @@
       }
       .discount {
         color: #6788A2;
+      }
+      .unit {
+        font-size: 0.12rem;
       }
     }
 
@@ -146,7 +171,7 @@
     }
 
     .info-container {
-      background: #fff;
+      background: var(--page-bg);
       flex-grow: 1;
       flex-shrink: 1;
     }
@@ -154,8 +179,8 @@
     .btn-container {
       flex-grow: 0;
       flex-shrink: 0;
-      background: linear-gradient(to right, #D2B07A 0%, #F0D7B3 100%);
-      color: #1D0D0D;
+      background: var(--primary-color);
+      color: var(--text-main);
     }
 
     .info-container,
@@ -192,9 +217,10 @@
       }
     }
     &-container {
-      background: #fff;
+      background: var(--page-bg);
       padding: 0.2rem;
       border-radius: 0.05rem;
+      border: var(--div-color) solid 1px;
       position: absolute;
       top: 50%;
       left: 50%;
@@ -217,10 +243,14 @@
         font-size: 0.16rem;
         margin-top: 0.16rem;
         font-weight: 400;
-        background: linear-gradient(to right, #D2B07A 0%, #F0D7B3 100%);
-        color: #1D0D0D;
+        background: var(--primary-color);
+        color: var(--text-main);
         padding: 0.06rem 0;
-        border-radius: 0.06rem;
+        border-radius: 0.1rem;
+      }
+
+      .ant-checkbox-wrapper {
+        color: var(--text-main);
       }
     }
   }

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -19,6 +20,8 @@ import menuImg from '../../../assets/index_menu.svg';
 import menu1Img from '../../../assets/index_menu_1.svg';
 import menu2Img from '../../../assets/index_menu_2.svg';
 import refreshImg from '../../../assets/index_refresh.svg';
+import arrowImg from '../../../assets/arrow.svg';
+import noticeImg from '../../../assets/notice.svg';
 
 
 class Index extends Component {
@@ -119,23 +122,20 @@ class Index extends Component {
           </Carousel>
         </div>
         <div className="pad shadow-pad">
-          <div className="top-select">
-            <span>
-              <span className={classnames('option', { active: use === 'btc' })} onClick={this.handleChangeUse.bind(this, 'btc')}>BTC</span>
-              <span className={classnames('option', { active: use === 'ltc' })} onClick={this.handleChangeUse.bind(this, 'ltc')}>USDT</span>
-            </span>
+          <div className="arrows">
+            <div className={classnames('option', { active: use === 'btc' })} onClick={this.handleChangeUse.bind(this, 'btc')}><img src={arrowImg} /></div>
+            <div className={classnames('option', { active: use === 'ltc' })} onClick={this.handleChangeUse.bind(this, 'ltc')}><img src={arrowImg} /></div>
           </div>
           <div className="earn" onClick={this.handleRedirect.bind(this, '/activities')}>
-            <div className="name">昨日收益</div>
+            <div className="name">{use === 'btc' ? 'BTC' : 'USDT'}昨日收益</div>
             <div className="yesterday">{useWallet.yesterday}</div>
             <div className="total">
-              <div>您在胖蚂蚁总计收获</div>
-              <div>{useWallet.total} {useWallet.name}</div>
+              <div>您在胖蚂蚁总计收获 {useWallet.total} {useWallet.name}</div>
             </div>
           </div>
         </div>
         {notices.length > 0 && (
-          <div className="notice shadow-pad" onClick={this.handleClickNotice}><Icon type="notification" /> {notices[point].title}</div>
+          <div className="notice shadow-pad" onClick={this.handleClickNotice}><img src={noticeImg} /><span>{notices[point].title}</span></div>
         )}
         <Markets data={prices} />
       </div>

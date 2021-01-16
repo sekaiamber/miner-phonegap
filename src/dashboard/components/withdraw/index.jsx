@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable react/button-has-type */
 /* eslint-disable camelcase */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable react/no-array-index-key */
@@ -9,6 +11,7 @@ import Decimal from 'decimal.js-light';
 import { connect } from 'dva';
 import { Spin } from 'antd';
 import message from '../../../utils/message';
+import InputRow from '../common/inputRow';
 
 import './style.scss';
 
@@ -187,20 +190,10 @@ class Withdraw extends Component {
           <div>{useWallet.balance} {useWallet.unit}</div>
         </div>
         <div className="form">
-          <div className="item">
-            <input type="text" placeholder="提现地址" value={to} onChange={this.handleChangeTo} />
-            <img className="scan-btn" src={scanImg} alt="" onClick={this.handleScan} />
-          </div>
-          <div className="item">
-            <input type="number" placeholder="提现金额" value={amount} onChange={this.handleChangeAmount} />
-          </div>
-          <div className="item">
-            <input type="password" placeholder="提现密码" value={withdraw_password} onChange={this.handleChangeWithdrawPassword} />
-          </div>
-          <div className="item verify">
-            <input type="number" placeholder="手机验证码" value={verify_code} onChange={this.handleChangeVerifyCode} />
-            <a onClick={this.handleSendSms}>发送验证码</a>
-          </div>
+          <InputRow label="提现地址" type="text" placeholder="请输入提现地址" value={to} onChange={this.handleChangeTo} extra={<img className="scan-btn" src={scanImg} alt="" onClick={this.handleScan} />} />
+          <InputRow label="提现金额" type="number" placeholder="请输入提现金额" value={amount} onChange={this.handleChangeAmount} />
+          <InputRow label="提现密码" type="password" placeholder="请输入提现密码" value={withdraw_password} onChange={this.handleChangeWithdrawPassword} />
+          <InputRow label="验证码" type="number" placeholder="请输入验证码" value={verify_code} onChange={this.handleChangeVerifyCode} extra={<button onClick={this.handleSendSms}>发送验证码</button>} />
           <div className="item">
             <div className="form-info auto-height">
               <div>手续费</div>
@@ -230,7 +223,7 @@ class Withdraw extends Component {
             </div>
           ) : (
             history.map((item, i) => (
-              <div className="item shadow-pad" key={item.type + i}>
+              <div className="item" key={item.type + i}>
                 <div className="center">
                   <div className="txid">{item.txid || '等待中'}</div>
                   <div className="time">{item.created_at}</div>

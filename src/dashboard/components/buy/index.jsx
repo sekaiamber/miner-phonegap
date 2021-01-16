@@ -12,9 +12,9 @@ import message from '../../../utils/message';
 import './style.scss';
 
 
-import buyUsdtImg from '../../../assets/usdt-x.png';
-import ltcImg from '../../../assets/ltc-x.png';
-import btcImg from '../../../assets/btc-x.png';
+import buyUsdtImg from '../../../assets/usdt2.svg';
+import ltcImg from '../../../assets/ltc2.svg';
+import btcImg from '../../../assets/btc2.svg';
 import pangmayiImg from '../../../assets/miner-logo.png';
 import soldOutImg from '../../../assets/sold_out.jpg';
 
@@ -49,25 +49,25 @@ class Buy extends Component {
   getItemList(list, icon) {
     const { form } = this.state;
     return list.map(product => (
-      <div className="item balance shadow-pad" key={product.id}>
+      <div className="item shadow-pad" key={product.id}>
         <div className="logo">
-          {product.number == 0 ? <img src={soldOutImg} alt="" /> : <img src={icon || icons[product.currency.toLowerCase()]} alt="" />}
+          {product.number === 0 ? <img src={soldOutImg} alt="" /> : <img src={icon || icons[product.currency.toLowerCase()]} alt="" />}
         </div>
         <div className="center">
           {product.product_type === 'buy_position' ? [
             <div className="txid">{product.price === '880.0' ? '机位套餐' : '联合挖矿'}</div>,
-            <div className="txid"><span>{product.price} USDT({product.days}天/期)</span></div>
+            <div className="txid"><span>{product.price} USDT({product.days}天/期)</span></div>,
           ] : (
             <div className="txid">{product.power}T <span>{product.price} USDT({product.days}天/期)</span></div>
           )}
-          <div className="time">{product.month_earns}</div>
+          <div className="time tx-weak">{product.month_earns}</div>
         </div>
         <div className="amount">
           <a className="minus" onClick={this.handleProductCountClick.bind(this, product, -1)}>-</a>
           <Input className="amount-input" value={form[product.id] ? form[product.id].count : ''} onChange={this.handleProductCountChange.bind(this, product)} />
           <a className="plus" onClick={this.handleProductCountClick.bind(this, product, 1)}>+</a>
 
-          <div className="remain">剩余{product.number}份</div>
+          <div className="remain tx-weak">剩余{product.number}份</div>
         </div>
       </div>
     ));
@@ -194,11 +194,10 @@ class Buy extends Component {
 
     return (
       <div id="buy" className="container">
+        <div className="product-group-title">可用金额</div>
         <div className="item balance">
-          <img className="logo" src={buyUsdtImg} alt="" />
           <div className="center">
             <div className="txid">{accountInfo.usdt_balance} <span>USDT</span></div>
-            <div className="time">可用金额</div>
           </div>
           <div className="amount">
             <Link to="/deposit/usdt" className="buy-btn">去充值</Link>
@@ -218,7 +217,7 @@ class Buy extends Component {
         <div className="footer">
           <div className="info-container">
             <div className="info">
-              <div className="cost">合计：{orderCost} USDT</div>
+              <div className="cost">合计：{orderCost} <span className="unit">USDT</span></div>
             </div>
           </div>
           <div className="btn-container">
@@ -229,13 +228,13 @@ class Buy extends Component {
           <div className="order-modal" onClick={this.handleCloseModal}>
             <div className="order-container">
               {Object.keys(form).map(id => form[id]).map(order => (
-                <div className="item balance shadow-pad" key={order.product.id}>
+                <div className="item shadow-pad" key={order.product.id}>
                   <div className="logo">
                     <img src={icons[order.product.currency.toLowerCase()]} alt="" />
                   </div>
                   <div className="center">
                     <div className="txid">{order.product.power}T ({order.product.days}天/期)</div>
-                    <div className="time">{order.product.price} USDT</div>
+                    <div className="time tx-weak">{order.product.price} USDT</div>
                   </div>
                   <div className="amount check">X{order.count}</div>
                 </div>

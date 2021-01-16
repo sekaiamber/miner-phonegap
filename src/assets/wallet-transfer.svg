@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="27px" height="26px" viewBox="0 0 27 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 8</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0 0.26337037 23.4691407 0.26337037 23.4691407 25.5185185 0 25.5185185"></polygon>
+    </defs>
+    <g id="页面1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="昨日收益备份-15" transform="translate(-273.000000, -383.000000)">
+            <g id="Group-13" transform="translate(15.000000, 371.000000)">
+                <g id="Group-10" transform="translate(240.000000, 0.000000)">
+                    <g id="Group-4" transform="translate(18.000000, 12.000000)">
+                        <g id="Group-8" transform="translate(0.000000, 0.000000)">
+                            <path d="M26.4222593,14.3019741 L12.7708148,14.3019741 L18.9000741,9.11978889 L18.5659259,12.0731963 L25.0288519,12.0731963 C25.0288519,12.0731963 26.6451852,12.1849 26.4222593,14.3019741" id="Fill-1" fill="#FFFFFF"></path>
+                            <path d="M11.287563,16.5307037 L24.9390074,16.5307037 L18.8097481,21.7128889 L19.1438963,18.7594815 L12.6809704,18.7594815 C12.6809704,18.7594815 11.064637,18.6477778 11.287563,16.5307037" id="Fill-3" fill="#FFFFFF"></path>
+                            <g id="Group-7" transform="translate(0.000000, 0.218159)">
+                                <mask id="mask-2" fill="white">
+                                    <use xlink:href="#path-1"></use>
+                                </mask>
+                                <g id="Clip-6"></g>
+                                <path d="M12.6271407,25.5185185 C5.66443704,25.5185185 -0.000192592593,19.8534074 -0.000192592593,12.8907037 C-0.000192592593,5.928 5.66443704,0.26337037 12.6271407,0.26337037 C17.0437704,0.26337037 21.1979926,2.61974074 23.4691407,6.41333333 L21.4040667,7.65025926 C19.5648074,4.57888889 16.2021407,2.67077778 12.6271407,2.67077778 C6.99188148,2.67077778 2.40721481,7.25544444 2.40721481,12.8907037 C2.40721481,18.5264444 6.99188148,23.1111111 12.6271407,23.1111111 L12.6271407,25.5185185 Z" id="Fill-5" fill="#FFFFFF" mask="url(#mask-2)"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

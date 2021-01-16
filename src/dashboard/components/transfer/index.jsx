@@ -1,3 +1,4 @@
+/* eslint-disable react/button-has-type */
 /* eslint-disable camelcase */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable react/no-array-index-key */
@@ -9,8 +10,7 @@ import Decimal from 'decimal.js-light';
 import { connect } from 'dva';
 import { Spin } from 'antd';
 import message from '../../../utils/message';
-
-import './style.scss';
+import InputRow from '../common/inputRow';
 
 import scanImg from '../../../assets/withdraw_scan.svg';
 
@@ -163,19 +163,10 @@ class Transfer extends Component {
           <div>{useWallet.balance} {useWallet.unit}</div>
         </div>
         <div className="form">
-          <div className="item">
-            <input type="text" placeholder="转账手机号" value={phone_number} onChange={this.handleChangeTo} />
-          </div>
-          <div className="item">
-            <input type="number" placeholder="转账金额" value={amount} onChange={this.handleChangeAmount} />
-          </div>
-          <div className="item">
-            <input type="password" placeholder="提现密码" value={withdraw_password} onChange={this.handleChangeWithdrawPassword} />
-          </div>
-          <div className="item verify">
-            <input type="number" placeholder="手机验证码" value={verify_code} onChange={this.handleChangeVerifyCode} />
-            <a onClick={this.handleSendSms}>发送验证码</a>
-          </div>
+          <InputRow label="转账手机号" type="text" placeholder="请输入转账手机号" value={phone_number} onChange={this.handleChangeTo} />
+          <InputRow label="转账金额" type="number" placeholder="请输入转账金额" value={amount} onChange={this.handleChangeAmount} />
+          <InputRow label="提现密码" type="password" placeholder="请输入提现密码" value={withdraw_password} onChange={this.handleChangeWithdrawPassword} />
+          <InputRow label="验证码" type="number" placeholder="请输入验证码" value={verify_code} onChange={this.handleChangeVerifyCode} extra={<button onClick={this.handleSendSms}>发送验证码</button>} />
           <div className="item">
             <div className="form-info auto-height">
               <div>到账金额</div>

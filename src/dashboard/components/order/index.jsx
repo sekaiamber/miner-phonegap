@@ -23,7 +23,7 @@ class Order extends Component {
 
   getItemList(list) {
     return list.map(product => (
-      <div className="item balance shadow-pad" key={product.id}>
+      <div className="item" key={product.id}>
         <div className="logo">
           <img src={minerLogo} alt="" />
         </div>
@@ -34,8 +34,8 @@ class Order extends Component {
           ] : (
             <div className="txid">{product.power}T <span>{product.price} USDT({product.days}天/期)</span></div>
           )}
-          <div className="time">购买时间：{product.created_at}</div>
-          <div className="time">到期时间：{product.end_at}</div>
+          <div className="time tx-weak">购买时间：{product.created_at}</div>
+          <div className="time tx-weak">到期时间：{product.end_at}</div>
         </div>
         <div className="amount">
           {continueList.indexOf(product.product_type) > -1 && product.can_continue && (

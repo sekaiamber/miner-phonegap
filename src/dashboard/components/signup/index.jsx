@@ -9,6 +9,7 @@ import classnames from 'classnames';
 import Decimal from 'decimal.js-light';
 import { connect } from 'dva';
 import message from '../../../utils/message';
+import InputRow from '../common/inputRow';
 
 import './style.scss';
 
@@ -117,33 +118,26 @@ class Signup extends Component {
     return (
       <div id="signup" className="container">
         <div className="form">
-          <div className="item">
-            <input type="text" placeholder="昵称" value={nickname} onChange={this.handleChange.bind(this, 'nickname')} />
-          </div>
-          <div className="item">
-            <input type="password" placeholder="密码（8-20位数字或字母）" value={password} onChange={this.handleChange.bind(this, 'password')} />
-          </div>
-          <div className="item">
-            <input type="password" placeholder="确认密码" value={password_confirmation} onChange={this.handleChange.bind(this, 'password_confirmation')} />
-          </div>
-          <div className="item">
-            <input type="password" placeholder="提现密码（8-20位数字或字母）" value={withdraw_password} onChange={this.handleChange.bind(this, 'withdraw_password')} />
-          </div>
-          <div className="item">
-            <input type="password" placeholder="确认提现密码" value={withdraw_password_confirmation} onChange={this.handleChange.bind(this, 'withdraw_password_confirmation')} />
-          </div>
-          <div className="item">
-            <input type="text" placeholder="邀请码（必填）" value={invite_code} onChange={this.handleChange.bind(this, 'invite_code')} />
-          </div>
-          <div className="item">
-            <input type="number" placeholder="手机号码" value={phone_number} onChange={this.handleChange.bind(this, 'phone_number')} />
-          </div>
-          <div className="item verify">
-            <input type="text" placeholder="验证码" value={verify_code} onChange={this.handleChange.bind(this, 'verify_code')} />
-            <a onClick={this.handleSendSms} disabled={counting > 0}>
-              {counting > 0 ? counting : '发送验证码'}
-            </a>
-          </div>
+          <InputRow label="昵称" type="text" placeholder="不超过10个字符" value={nickname} onChange={this.handleChange.bind(this, 'nickname')} />
+          <InputRow label="密码" type="password" placeholder="8-20位数字或字母" value={password} onChange={this.handleChange.bind(this, 'password')} />
+          <InputRow label="确认密码" type="password" placeholder="请再次输入密码" value={password_confirmation} onChange={this.handleChange.bind(this, 'password_confirmation')} />
+          <InputRow label="提现密码" type="password" placeholder="8-20位数字或字母" value={withdraw_password} onChange={this.handleChange.bind(this, 'withdraw_password')} />
+          <InputRow label="确认提现密码" type="password" placeholder="请再次输入提现密码" value={withdraw_password_confirmation} onChange={this.handleChange.bind(this, 'withdraw_password_confirmation')} />
+          <InputRow label="邀请码" type="text" placeholder="必填" value={invite_code} onChange={this.handleChange.bind(this, 'invite_code')} />
+          <InputRow label="登录手机号码" type="number" placeholder="请输入手机号码" value={phone_number} onChange={this.handleChange.bind(this, 'phone_number')} />
+          <InputRow
+            label="验证码"
+            type="text"
+            placeholder="请输入验证码"
+            value={verify_code}
+            onChange={this.handleChange.bind(this, 'verify_code')}
+            extra={(
+              <button onClick={this.handleSendSms} disabled={counting > 0}>
+                {counting > 0 ? counting : '发送验证码'}
+              </button>
+            )}
+          />
+
         </div>
         <div className="submit">
           <button className="btn" disabled={!this.canSubmit()} onClick={this.handleSubmit}>注 册</button>

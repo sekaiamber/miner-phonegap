@@ -10,24 +10,23 @@
     padding-top: 0.12rem;
   }
 
-  .verify {
-    position: relative;
-
-    a {
-      position: absolute;
-      right: 0.14rem;
-      top: 50%;
-      transform: translate(0, -50%);
+  .input-row {
+    button {
+      flex-grow: 0;
+      flex-shrink: 0;
+      width: 1.2rem;
+      font-size: 14px;
+      padding: 0.06rem;
+      margin-left: 0.12rem;
     }
   }
 
   .form {
     .scan-btn {
       width: 0.2rem;
-      position: absolute;
       right: 0.14rem;
       top: 50%;
-      transform: translate(0, -50%);
+      margin-left: 0.15rem;
     }
   }
 
@@ -43,38 +42,27 @@
   }
   .warn {
     font-size: 0.12rem;
-    color: red;
     padding: 0.06rem;
-    background: #fff0f0;
+    border: var(--primary-color) solid 1px;
     margin-bottom: 0.06rem;
-  }
-
-  .btn {
-    color: #1D0D0D;
-    background: linear-gradient(to right, #D2B07A 0%, #F0D7B3 100%);
-    font-size: 0.16rem;
-    font-weight: 400;
-    padding: 0.1rem 0.15rem;
-    border-radius: 0.27rem;
-    margin-top: 0.12rem;
-    text-align: center;
-    width: 100%;
-    transition: all ease 0.3s;
-
-    &[disabled] {
-      opacity: 0.5;
-    }
+    border-radius: 0.1rem;
   }
 
   .submit {
     margin-top: 0.24rem;
+
+    button {
+      width: 100%;
+    }
   }
 
   .history {
     .item {
       position: relative;
       display: flex;
-      padding: 0.2rem 0.1rem;
+      margin-top: 0.12rem;
+      padding-bottom: 0.12rem;
+      border-bottom: var(--div-color) solid 1px;
 
       .logo {
         flex-grow: 0;

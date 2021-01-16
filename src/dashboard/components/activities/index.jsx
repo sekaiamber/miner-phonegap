@@ -47,7 +47,7 @@ class Activities extends Component {
             {/* <img className="logo" src={walletBaseImg} alt="" /> */}
             <div className="center">
               <div className="txid">{item.title}</div>
-              <div className="time">{item.time}</div>
+              <div className="time tx-weak">{item.time}</div>
             </div>
             <div className="amount">{item.amount}</div>
           </div>

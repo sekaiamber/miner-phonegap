@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable react/button-has-type */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { Component } from 'react';
@@ -12,9 +15,9 @@ import './style.scss';
 import walletBaseImg from '../../../assets/wallet_base.svg';
 import walletBase2Img from '../../../assets/wallet_base_2.svg';
 import walletUsdtImg from '../../../assets/wallet_usdt.png';
-import walletQrImg from '../../../assets/wallet_qr.svg';
-import walletDepImg from '../../../assets/wallet_deposit.svg';
-import walletWitImg from '../../../assets/wallet_withdraw.svg';
+import walletWitImg from '../../../assets/wallet-withdraw.svg';
+import walletDepImg from '../../../assets/wallet-deposit.svg';
+import walletTraImg from '../../../assets/wallet-transfer.svg';
 
 class Wallet extends Component {
   state = {
@@ -100,36 +103,15 @@ class Wallet extends Component {
             <span className={classnames('option', { active: use === 'ltc' })} onClick={this.handleChangeUse.bind(this, 'ltc')}>LTC</span>
           </span>
         </div>
-        <div className="card-container">
-          <div className={classnames('card', { usdt: use === 'usdt' })}>
-            <div className="top">可用余额</div>
-            <AutoFontSizeDiv className="amount" minFontPixels={20} maxFontPixels={48} width="100%" height="72px">{useWallet.balance}</AutoFontSizeDiv>
-            {/* <div className="value">
-              <span>
-                {use === 'usdt' ? (
-                  `${parseFloat(useWallet.balance * useWallet.unitValue).toFixed(2)} CNY`
-                ) : (
-                  `$ ${parseFloat(useWallet.balance * useWallet.unitValue).toFixed(2)}`
-                )}
-              </span>
-            </div> */}
-          </div>
-          <div className={classnames('card', { usdt: use === 'usdt' })}>
-            <div className="top">锁定余额</div>
-            <AutoFontSizeDiv className="amount" minFontPixels={20} maxFontPixels={48} width="100%" height="72px">{useWallet.locked}</AutoFontSizeDiv>
-            {/* <div className="value">
-              <span>
-                {use === 'usdt' ? (
-                  `${parseFloat(useWallet.locked * useWallet.unitValue).toFixed(2)} CNY`
-                ) : (
-                  `$ ${parseFloat(useWallet.locked * useWallet.unitValue).toFixed(2)}`
-                )}
-              </span>
-            </div> */}
+        <div className={classnames('pad', use)}>
+          <div className="name">可用余额</div>
+          <div className="amount">{useWallet.balance || '0'}</div>
+          <div className="locked">
+            <div>锁定余额 {useWallet.locked || '0'} {use.toUpperCase()}</div>
           </div>
         </div>
         {useWallet.block && (
-          <div className="info shadow-pad">
+          <div className="info">
             <div className="row">
               <div className="me">
                 <div className="key">{useWallet.power}T</div>
@@ -155,20 +137,47 @@ class Wallet extends Component {
         <div className="opt">
           {use === 'usdt' && (
             <Link className="opt-btn" to={`/deposit/${use}`}>
-              充值
+              <button><img src={walletDepImg} /><span>充值</span></button>
             </Link>
           )}
           <Link className="opt-btn" to={`/withdraw/${use}`}>
-            提现
+            <button><img src={walletWitImg} /><span>提现</span></button>
           </Link>
           <Link className="opt-btn" to={`/transfer/${use}`}>
-            转账
+            <button><img src={walletTraImg} /><span>转账</span></button>
           </Link>
         </div>
-        <Link className="big" to="/buy"><Icon type="transaction" /> <span>算力租赁</span></Link>
-        <Link className="big" to="/orders"><Icon type="account-book" /> <span>我的算力</span></Link>
+        <Link className="big" to="/buy">
+          <div className="icon">
+            <Icon type="transaction" />
+          </div>
+          <div className="text">
+            <div className="title">算力租赁</div>
+            <div className="desc tx-weak">多种选择，更加优惠</div>
+          </div>
+          <Icon type="right" />
+        </Link>
+        <Link className="big" to="/orders">
+          <div className="icon">
+            <Icon type="account-book" />
+          </div>
+          <div className="text">
+            <div className="title">我的算力</div>
+            <div className="desc tx-weak">立即查看我的算力</div>
+          </div>
+          <Icon type="right" />
+        </Link>
         {accountInfo.can_experience && (
-          <a className="big" onClick={this.handleExperience}><Icon type="gift" /> <span>体验矿机</span></a>
+          <a className="big" onClick={this.handleExperience}>
+            <div className="icon">
+              <Icon type="gift" />
+            </div>
+            <div className="text">
+              <div className="title">体验矿机</div>
+              <div className="desc tx-weak">立即体验云矿机</div>
+            </div>
+            <Icon type="right" />
+          </a>
         )}
       </div>
     );

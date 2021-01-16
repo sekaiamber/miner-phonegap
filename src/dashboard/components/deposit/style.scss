@@ -8,8 +8,6 @@
   }
 
   .qrcode-container {
-    padding: 0.12rem;
-    border-radius: 0.06rem;
     text-align: center;
 
     img {
@@ -35,13 +33,20 @@
 
     .address {
       font-size: 0.12rem;
+      white-space: pre-wrap;
+      word-break: break-all;
+      background-color: var(--primary-color);
+      border-radius: 10px;
+      padding: 0.12rem;
     }
   }
 
   .tip {
-    background: rgba($color: #322121, $alpha: 0.1);
+    margin-top: 16px;
+    border: var(--primary-color) solid 1px;
     padding: 0.12rem;
     text-align: justify;
+    border-radius: 0.1rem;
   }
 
   .history {

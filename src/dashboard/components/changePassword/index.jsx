@@ -9,6 +9,7 @@ import classnames from 'classnames';
 import Decimal from 'decimal.js-light';
 import { connect } from 'dva';
 import message from '../../../utils/message';
+import InputRow from '../common/inputRow';
 
 import scanImg from '../../../assets/withdraw_scan.svg';
 
@@ -65,15 +66,9 @@ class ChangePassword extends Component {
     return (
       <div id="signup" className="container">
         <div className="form">
-          <div className="item">
-            <input type="password" placeholder="旧密码" value={old_password} onChange={this.handleChange.bind(this, 'old_password')} />
-          </div>
-          <div className="item">
-            <input type="password" placeholder="密码（8-20位数字或字母）" value={password} onChange={this.handleChange.bind(this, 'password')} />
-          </div>
-          <div className="item">
-            <input type="password" placeholder="确认密码" value={password_confirmation} onChange={this.handleChange.bind(this, 'password_confirmation')} />
-          </div>
+          <InputRow label="旧密码" type="password" placeholder="请输入旧密码" value={old_password} onChange={this.handleChange.bind(this, 'old_password')} />
+          <InputRow label="新密码" type="password" placeholder="8-20位数字或字母" value={password} onChange={this.handleChange.bind(this, 'password')} />
+          <InputRow label="新密码确认" type="password" placeholder="请再次输入新密码" value={password_confirmation} onChange={this.handleChange.bind(this, 'password_confirmation')} />
         </div>
         <div className="submit">
           <button className="btn" disabled={!this.canSubmit()} onClick={this.handleSubmit}>修改密码</button>

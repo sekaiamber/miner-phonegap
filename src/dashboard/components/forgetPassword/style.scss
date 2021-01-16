@@ -1,23 +1,22 @@
 #forgetPassword {
   padding-top: 0.56rem;
 
-  .verify {
-    display: flex;
-
-    a {
+  .input-row {
+    button {
       flex-grow: 0;
       flex-shrink: 0;
+      width: 1.2rem;
+      font-size: 14px;
+      padding: 0.06rem;
+      margin-left: 0.12rem;
     }
   }
 
   button {
     width: 100%;
-    background-image: linear-gradient(to right, #953D96 0%, #D85BDB 100%);
-    color: #fff;
     border: none;
-    border-radius: 0.02rem;
+    border-radius: 0.1rem;
     font-size: 0.16rem;
-    padding: 0.12rem 0.24rem;
 
     &[disabled] {
       opacity: 0.5;

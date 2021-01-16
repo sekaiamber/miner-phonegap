@@ -57,18 +57,46 @@
     }
   }
 
+  .pad {
+    margin-bottom: 0.15rem;
+    padding: 0.12rem 0.15rem;
+    border-radius: 0.1rem;
+
+    .name {
+      font-size: 0.12rem;
+    }
+    
+    .yesterday {
+      font-size: 0.3rem;
+      font-weight: 500;
+    }
+    .total {
+      font-size: 0.12rem;
+      font-weight: 500;
+
+      span {
+        padding: 0.04rem 0.12rem;
+        // background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 0.2rem;
+      }
+    }
+
+    &.usdt {
+      background-image: linear-gradient(to bottom right, #50AE95 0%, #2D866E);
+    }
+    &.btc {
+      background-image: linear-gradient(to bottom right, #FCA40F 0%, #F19504);
+    }
+    &.ltc {
+      background-image: linear-gradient(to bottom right, #A6A6A6 0%, #666666);
+    }
+  }
+
   .item.vip {
     background: linear-gradient(to left, #D2B07A 0%, #F0D7B3 100%);
   }
 
-  .big {
+  .invite-btn button {
     width: 100%;
-    display: block;
-    padding: 0.09rem 0;
-    border-radius: 0.03rem;
-    text-align: center;
-    background: linear-gradient(to right, #D2B07A 0%, #F0D7B3 100%);
-    color: #fff;
-    margin-bottom: 0.12rem;
   }
 }

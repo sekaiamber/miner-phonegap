@@ -1,5 +1,6 @@
 @import "~noty/src/noty.scss";
 @import "~noty/src/themes/mint.scss";
+@import './theme.scss';
 
 // @import '~antd/dist/antd.css';
 html {
@@ -9,8 +10,9 @@ html {
 body {
   font-size: 0.14rem;
   font-weight: 300;
-  color: #000000;
+  color: var(--text-main);
   // perspective: 300;
+  background: var(--page-bg);
 
   &.welcome {
     background: #000;
@@ -23,10 +25,10 @@ input {
 }
 
 button {
-  background-image: linear-gradient(to right, #D2B07A 0%, #F0D7B3 100%);
-  color: #1D0D0D;
+  background: var(--primary-color);
+  color: var(--text-main);
   border: none;
-  border-radius: 0.02rem;
+  border-radius: 0.1rem;
   font-size: 0.16rem;
   padding: 0.12rem 0.24rem;
   outline: none;
@@ -34,7 +36,7 @@ button {
 
 a {
   text-decoration: none;
-  color: #D2B07A;
+  color: var(--primary-color);
   font-weight: 400;
 }
 
@@ -63,6 +65,10 @@ a {
   padding: 0 0.15rem;
 }
 
+.tx-weak {
+  color: var(--text-weak);
+}
+
 #app {
   position: relative;
 }
@@ -78,20 +84,6 @@ a {
   .item {
     margin-bottom: 0.2rem;
     position: relative;
-
-    input {
-      border: none;
-      width: 100%;
-      line-height: 3;
-      padding: 0;
-      background: rgba($color: #322121, $alpha: 0.1);
-      color: #322121;
-      padding: 0 0.14rem;
-
-      &::placeholder {
-        color: #c0b3a1;
-      }
-    }
   }
 }
 
@@ -166,39 +158,42 @@ a {
     &.active {
       font-weight: 500;
       opacity: 1;
-      border-bottom-color: #474747;
+      border-bottom-color: #fff;
     }
   }
 }
 
 // antd
 .ant-spin-dot-item {
-  background-color: #322121;
+  background-color: var(--primary-color);
 }
 .ant-btn.ant-btn-primary {
-  background-color: #452E2E;
-  border-color: #452E2E;
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-main);
 }
 
 // shadow pad
 .shadow-pad {
-  background: #fff;
-  border-radius: 0.06rem;
+  border-radius: 0.1rem;
   min-height: 0.66rem;
   padding: 0.12rem;
   position: relative;
   // animation: shadow-pad-show .5s ease;
 
   &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: -1;
-    box-shadow: 0 0.08rem 0.16rem 0 rgba($color: #22222C, $alpha: 0.1);
-    border-radius: 0.06rem;
+    // content: "";
+    // position: absolute;
+    // top: 0;
+    // bottom: 0;
+    // left: 0;
+    // right: 0;
+    // z-index: -1;
+    // box-shadow: 0 0.08rem 0.16rem 0 rgba($color: #22222C, $alpha: 0.1);
+    // border-radius: 0.06rem;
   }
 }
 
