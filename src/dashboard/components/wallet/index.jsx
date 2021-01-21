@@ -134,7 +134,7 @@ class Wallet extends Component {
             </div>
           </div>
         )}
-        <div className="opt">
+        <div className={classnames('opt', { usdt: use === 'usdt' })}>
           {use === 'usdt' && (
             <Link className="opt-btn" to={`/deposit/${use}`}>
               <button><img src={walletDepImg} /><span>充值</span></button>

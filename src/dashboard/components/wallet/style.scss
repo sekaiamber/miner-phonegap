@@ -74,9 +74,14 @@
   }
 
   .opt {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     margin: 0.15rem 0;
     column-gap: 0.1rem;
+
+    &.usdt {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
 
     .opt-btn {
       flex-grow: 1;
